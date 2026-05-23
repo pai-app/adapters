@@ -1,0 +1,41 @@
+{
+  "kind": "pdf",
+  "name": "paytm-wallet-feb-2024.pdf",
+  "pages": [
+    [
+      "Paytm Payments Bank",
+      "Wallet statement for February 2024",
+      "",
+      "ANITA SHARMA",
+      "+91-9876543210",
+      "",
+      "DATE & TIME   TRANSACTION DETAILS   AVAILABLE BALANCE",
+      "10:15 AM",
+      "- Rs.614.02 Paid for order to McD Kilpauk   Rs.385.98 25 FEB 24",
+      "2:30 PM",
+      "- Rs.200.00 Paid for order to Swiggy   Rs.185.98 25 FEB 24",
+      "6:45 PM",
+      "+   Rs.1,000.00",
+      "Added to wallet via UPI",
+      "Transaction ID: TXN20240225001",
+      "Rs.1,185.98 25 FEB 24",
+      "9:00 AM",
+      "- Rs.150.50 Paid for order to Zomato   Rs.1,035.48 26 FEB 24"
+    ],
+    [
+      "11:30 AM",
+      "-   Rs.500.00",
+      "Money Sent using UPI",
+      "Sent to: Rajesh Kumar",
+      "Rs.535.48 26 FEB 24",
+      "3:15 PM",
+      "+   Rs.250.00",
+      "Cashback Received",
+      "Rs.785.48 26 FEB 24",
+      "Note: Promotional cashback",
+      "",
+      "Page 1 of 1",
+      "**** Visit Bank website for more details"
+    ]
+  ]
+}

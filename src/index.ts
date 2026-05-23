@@ -1,4 +1,28 @@
-// Phase A.1 placeholder. Real public API lands in A.3.
-// See docs/fin-adapters-plan.md for the design.
+// ── Bank registration (side-effect imports) ─────────────
+import './banks/index'
 
-export {}
+// ── Public API ──────────────────────────────────────────
+export { parseFile } from './parse-file'
+export { parseEmail } from './parse-email'
+export { extractPdfPages } from './extract/pdf'
+export { extractExcelSheets } from './extract/excel'
+
+// ── Public types ────────────────────────────────────────
+export type {
+  ImportData,
+  AccountKind,
+  AccountDetails,
+  TransactionDetails,
+} from './types'
+export type {
+  PdfFile,
+  ExcelFile,
+  ExcelSheet,
+  FileKind,
+} from './types'
+export type {
+  MailMessage,
+  MailAttachment,
+} from './types'
+export { ParseError } from './types'
+export type { ParseErrorKind } from './types'

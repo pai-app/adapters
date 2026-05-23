@@ -1,0 +1,46 @@
+{
+  "bankId": "paytm",
+  "offeringId": "wallet",
+  "kind": "wallet",
+  "account": {
+    "currency": "INR",
+    "accountNumber": [
+      "919876543210"
+    ],
+    "accountHolderName": [
+      "ANITA SHARMA"
+    ]
+  },
+  "transactions": [
+    {
+      "date": 1708856100000,
+      "amount": -61402,
+      "description": "Paid for order to McD Kilpauk"
+    },
+    {
+      "date": 1708871400001,
+      "amount": -20000,
+      "description": "Paid for order to Swiggy"
+    },
+    {
+      "date": 1708886700002,
+      "amount": 100000,
+      "description": "Added to wallet via UPI Transaction ID: TXN20240225001"
+    },
+    {
+      "date": 1708938000003,
+      "amount": -15050,
+      "description": "Paid for order to Zomato"
+    },
+    {
+      "date": 1708947000004,
+      "amount": -50000,
+      "description": "Sent to: Rajesh Kumar"
+    },
+    {
+      "date": 1708960500005,
+      "amount": 25000,
+      "description": "Cashback Received  Note: Promotional cashback"
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "bankId": "federal",
+  "offeringId": "credit-card",
+  "kind": "credit-card",
+  "account": {
+    "currency": "INR",
+    "accountNumber": [
+      "4567XXXXXXXX8901"
+    ],
+    "accountHolderName": [
+      "ANITA DESAI"
+    ]
+  },
+  "transactions": [
+    {
+      "date": 1775001600000,
+      "amount": -329900,
+      "description": "AMAZON INDIA MARKETPLACE"
+    },
+    {
+      "date": 1775174400001,
+      "amount": -75630,
+      "description": "SWIGGY FOOD ORDER"
+    },
+    {
+      "date": 1775347200002,
+      "amount": -64900,
+      "description": "NETFLIX SUBSCRIPTION"
+    },
+    {
+      "date": 1775606400003,
+      "amount": -34250,
+      "description": "UBER TRIP BANGALORE"
+    },
+    {
+      "date": 1775779200004,
+      "amount": 500000,
+      "description": "PAYMENT RECEIVED - THANK YOU"
+    },
+    {
+      "date": 1775952000005,
+      "amount": -215675,
+      "description": "FLIPKART INTERNET"
+    },
+    {
+      "date": 1776211200006,
+      "amount": -124500,
+      "description": "ZOMATO ORDER"
+    },
+    {
+      "date": 1776470400007,
+      "amount": -382000,
+      "description": "IRCTC BOOKING"
+    },
+    {
+      "date": 1776816000008,
+      "amount": 149900,
+      "description": "REFUND - AMAZON INDIA"
+    },
+    {
+      "date": 1777075200009,
+      "amount": -1500000,
+      "description": "CRED BILL PAYMENT"
+    },
+    {
+      "date": 1777334400010,
+      "amount": -289000,
+      "description": "MYNTRA FASHION"
+    }
+  ]
+}

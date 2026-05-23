@@ -3,3 +3,6 @@ node_modules
 coverage
 *.tsbuildinfo
 .turbo
+
+# Real PDFs contain personal data — never commit
+tests/fixtures/**/*.pdf
