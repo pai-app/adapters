@@ -30,7 +30,18 @@ export async function extractPdfPages(file: File, password?: string): Promise<Pd
 
   let doc
   try {
-    doc = await pdfjs.getDocument({ data: bytes, password: password ?? undefined }).promise
+    const loadingTask = pdfjs.getDocument({ data: bytes, password: password ?? undefined })
+    // In browser with a Web Worker, pdfjs sends a password prompt via onPassword
+    // instead of rejecting. Handle it explicitly so we don't hang.
+    loadingTask.onPassword = (_callback: unknown, reason: number) => {
+      // reason: 1 = NEED_PASSWORD, 2 = INCORRECT_PASSWORD
+      loadingTask.destroy()
+      throw new ParseError(
+        reason === 2 ? 'Incorrect PDF password' : 'PDF is password-protected',
+        { kind: 'password-required' },
+      )
+    }
+    doc = await loadingTask.promise
   } catch (err: unknown) {
     if (isPasswordError(err)) {
       throw new ParseError('PDF is password-protected', { kind: 'password-required', cause: toError(err) })

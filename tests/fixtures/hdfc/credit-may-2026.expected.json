@@ -1,0 +1,84 @@
+{
+  "bankId": "hdfc",
+  "offeringId": "credit-card",
+  "kind": "credit-card",
+  "account": {
+    "currency": "INR",
+    "accountNumber": [
+      "00361010XXXX8912"
+    ],
+    "accountHolderName": [
+      "RAVI KUMAR"
+    ],
+    "customerId": [
+      "0001015260009887654"
+    ]
+  },
+  "transactions": [
+    {
+      "date": 1776783360000,
+      "amount": 2245000,
+      "description": "BPPY CC PAYMENT AB098765432109xPq7R (Ref# ST261120083000098765432)"
+    },
+    {
+      "date": 1776809640001,
+      "amount": -38700,
+      "description": "WWW FOODAPP COMGURGAON"
+    },
+    {
+      "date": 1776969720002,
+      "amount": -125000,
+      "description": "PREMIER FOODS PRIVATECHENNAI"
+    },
+    {
+      "date": 1777076400003,
+      "amount": -2475000,
+      "description": "EMI MEGASTORE PAYMENTSGURGAON"
+    },
+    {
+      "date": 1777420320004,
+      "amount": -782050,
+      "description": "EMI FUNPARK HOLIDAYS LIMITBANGALORE"
+    },
+    {
+      "date": 1777501080005,
+      "amount": -42500,
+      "description": "THE SUNRISE CAFEBANGALORE"
+    },
+    {
+      "date": 1777668000006,
+      "amount": -2750000,
+      "description": "EMI TRAVEL GROUP PRIVATE LIMGURGAON"
+    },
+    {
+      "date": 1777674900007,
+      "amount": -58000,
+      "description": "The Garden Pizza and BBENGALURU UR"
+    },
+    {
+      "date": 1778020440008,
+      "amount": -49500,
+      "description": "WWW FOODAPP COMGURGAON"
+    },
+    {
+      "date": 1778109600009,
+      "amount": -71000,
+      "description": "WWW FOODAPP COMGURGAON"
+    },
+    {
+      "date": 1778275920010,
+      "amount": -98000,
+      "description": "THE PIZZA FACTORYBANGALORE"
+    },
+    {
+      "date": 1779144780011,
+      "amount": -75000,
+      "description": "Sri Ram PalaceBANGALORE"
+    },
+    {
+      "date": 1779230220012,
+      "amount": -54500,
+      "description": "SCREENMAX NEXUS CENTRALBANGALORE"
+    }
+  ]
+}
