@@ -22,3 +22,13 @@ export function registerBank(bank: Bank): void {
 export function registeredBanks(): readonly Bank[] {
   return banks
 }
+
+/**
+ * Flat, de-duplicated list of every registered bank's statement email
+ * domains. Public — consumers use it as the server-side pre-filter when
+ * sweeping a mailbox for statement emails (mirrors `parseEmail`'s own
+ * `email.from` pre-filter).
+ */
+export function statementEmailDomains(): readonly string[] {
+  return [...new Set(banks.flatMap((b) => b.emailDomains ?? []))]
+}
