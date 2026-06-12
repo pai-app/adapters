@@ -1,7 +1,7 @@
-# @fin-app/adapters
+# @pai-app/adapters
 
-Bank statement and email parsers for **fin** — pure TypeScript, no React, no
-storage, no Strata access. Bytes/text in → structured `ImportData` out.
+Bank statement and email parsers for **Pai** — pure TypeScript, no React, no
+storage, no fyre-db access. Bytes/text in → structured `ImportData` out.
 
 ## Public API
 
@@ -14,7 +14,7 @@ import {
   type ImportData,
   type MailMessage,
   type ParseError,
-} from '@fin-app/adapters'
+} from '@pai-app/adapters'
 
 // File path
 const data = await parseFile(file, [savedPassword])
@@ -32,7 +32,7 @@ caller prompts the user, retries with the new password appended to the list.
 
 ## Design
 
-See `docs/fin-adapters-plan.md` in the workspace root for the full design and
+See `docs/pai-adapters-plan.md` in the workspace root for the full design and
 phase plan. Bank/adapter authoring is internal; consumers only see the public
 API above.
 

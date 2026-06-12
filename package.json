@@ -1,7 +1,7 @@
 {
-  "name": "@fin-app/adapters",
-  "version": "0.1.0",
-  "description": "Bank statement and email parsers for fin — pure TypeScript, no UI, no storage.",
+  "name": "@pai-app/adapters",
+  "version": "0.0.1",
+  "description": "Bank statement and email parsers for pai-app — pure TypeScript, no UI, no storage.",
   "license": "MIT",
   "author": "Abhay Jatin Doshi <ajd1996@hotmail.com>",
   "type": "module",
