@@ -11,7 +11,7 @@ import { log } from '@/log'
 export async function extractPdfPages(file: File, password?: string): Promise<PdfFile> {
   // Use the legacy build which bundles the worker inline — works in both
   // Node and browser without requiring a separate worker file.
-  const pdfjs = await import('pdfjs-dist/legacy/build/pdf.mjs') as typeof import('pdfjs-dist')
+  const pdfjs = await import('pdfjs-dist/legacy/build/pdf.mjs')
 
   // In browser environments, configure the worker source so pdfjs can
   // offload parsing to a Web Worker. Without this, getDocument() hangs
@@ -35,7 +35,7 @@ export async function extractPdfPages(file: File, password?: string): Promise<Pd
     // instead of rejecting. Handle it explicitly so we don't hang.
     loadingTask.onPassword = (_callback: unknown, reason: number) => {
       // reason: 1 = NEED_PASSWORD, 2 = INCORRECT_PASSWORD
-      loadingTask.destroy()
+      void loadingTask.destroy()
       throw new ParseError(
         reason === 2 ? 'Incorrect PDF password' : 'PDF is password-protected',
         { kind: 'password-required' },

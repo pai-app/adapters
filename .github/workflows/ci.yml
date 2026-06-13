@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org
+
+      - run: npm install
+
+      - run: npm run lint
+
+      - run: npx vitest run --coverage --reporter=default --reporter=json --outputFile=test-results.json
+
+      - run: npm run build
+
+      # Packaging validation — green CI ⟹ publishable. Validates the exact
+      # tarball (files globs, exports, dist present) without contacting the
+      # registry, so it does not fail on the placeholder 0.0.0 version. The
+      # release workflow handles version-uniqueness separately.
+      - run: npm pack --dry-run
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: coverage/coverage-final.json
+          fail_ci_if_error: false
