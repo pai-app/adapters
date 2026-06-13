@@ -1,0 +1,271 @@
+{
+  "bankId": "paytm",
+  "offeringId": "wallet",
+  "kind": "wallet",
+  "account": {
+    "currency": "INR",
+    "accountNumber": [
+      "919000000001"
+    ],
+    "accountHolderName": [
+      "RAHUL MEHTA"
+    ]
+  },
+  "transactions": [
+    {
+      "date": 1691611920000,
+      "amount": -2000,
+      "description": "Paid to Corner Bakers  Transaction ID - 47475607620"
+    },
+    {
+      "date": 1691611920001,
+      "amount": 2000,
+      "description": "Added to wallet from Paytm Payments Bank  Transaction ID - 47475607600"
+    },
+    {
+      "date": 1690730820002,
+      "amount": -20000,
+      "description": "Paid to Abc Fuel Station  Transaction ID - 47293716300"
+    },
+    {
+      "date": 1690730820003,
+      "amount": 20000,
+      "description": "Added to wallet from PPBL  Transaction ID - 47293715937"
+    },
+    {
+      "date": 1688923920004,
+      "amount": -5000,
+      "description": "Paid to Ramesh Gupta  Transaction ID - 46915182174"
+    },
+    {
+      "date": 1688923920005,
+      "amount": 5000,
+      "description": "Added to wallet from Paytm Payments Bank  Transaction ID - 46915182147"
+    },
+    {
+      "date": 1688909400006,
+      "amount": -50000,
+      "description": "Paid to Abc Fuel Station  Transaction ID - 46910944106"
+    },
+    {
+      "date": 1688909400007,
+      "amount": 50000,
+      "description": "Added to wallet from Paytm Payments Bank  Transaction ID - 46910944095"
+    },
+    {
+      "date": 1688496600008,
+      "amount": -3000,
+      "description": "Paid to Suresh Patel  Transaction ID - 46827855021"
+    },
+    {
+      "date": 1688496600009,
+      "amount": 3000,
+      "description": "Added to wallet from Paytm Payments Bank  Transaction ID - 46827855010"
+    },
+    {
+      "date": 1688062680010,
+      "amount": -4500,
+      "description": "Paid to Lakshmi B  Transaction ID - 46730967657"
+    },
+    {
+      "date": 1688062680011,
+      "amount": 1900,
+      "description": "Added to wallet from Paytm Payments Bank  Transaction ID - 46730967651"
+    },
+    {
+      "date": 1687958460012,
+      "amount": 2600,
+      "description": "Cashback Received from Paytm  Transaction ID - 46707847862"
+    },
+    {
+      "date": 1687872180013,
+      "amount": -200,
+      "description": "Paid to Dinesh Pai  Transaction ID - 46689854798"
+    },
+    {
+      "date": 1687872180014,
+      "amount": 200,
+      "description": "Added to wallet from Paytm Payments Bank  Transaction ID - 46689854789"
+    },
+    {
+      "date": 1687872120015,
+      "amount": -4300,
+      "description": "Paid to Dinesh Pai  Transaction ID - 46689831045"
+    },
+    {
+      "date": 1687872120016,
+      "amount": 4300,
+      "description": "Added to wallet from Paytm Payments Bank  Transaction ID - 46689831034"
+    },
+    {
+      "date": 1687735860017,
+      "amount": -37500,
+      "description": "Paid to Frosty Icecream  Transaction ID - 46664240261"
+    },
+    {
+      "date": 1687735860018,
+      "amount": 37500,
+      "description": "Added to wallet from Paytm Payments Bank  Transaction ID - 46664240256"
+    },
+    {
+      "date": 1687095180019,
+      "amount": -74900,
+      "description": "Paid to Reliance Jio  Transaction ID - 46519343511"
+    },
+    {
+      "date": 1687095180020,
+      "amount": 74900,
+      "description": "Added to wallet from Paytm Payments Bank  Transaction ID - 46519343058"
+    },
+    {
+      "date": 1687094460021,
+      "amount": -69204,
+      "description": "Paid to Bookmyshow  Transaction ID - 46519131787"
+    },
+    {
+      "date": 1687094460022,
+      "amount": 69204,
+      "description": "Added to wallet from Paytm Payments Bank  Transaction ID - 46519131772"
+    },
+    {
+      "date": 1686849900023,
+      "amount": -1200,
+      "description": "Paid to Imran Sayyad Khan  Transaction ID - 46462007983"
+    },
+    {
+      "date": 1686849900024,
+      "amount": 1200,
+      "description": "Added to wallet from Paytm Payments Bank  Transaction ID - 46462007976"
+    },
+    {
+      "date": 1686596160025,
+      "amount": -30000,
+      "description": "Paid to Abc Fuel Station  Transaction ID - 46403337485"
+    },
+    {
+      "date": 1686596160026,
+      "amount": 30000,
+      "description": "Added to wallet from Paytm Payments Bank  Transaction ID - 46403337471"
+    },
+    {
+      "date": 1686432600027,
+      "amount": -1200,
+      "description": "Paid to Iqbalkhanpk  Transaction ID - 46367818361"
+    },
+    {
+      "date": 1686432600028,
+      "amount": 1200,
+      "description": "Added to wallet from Paytm Payments Bank  Transaction ID - 46367818346"
+    },
+    {
+      "date": 1685913600029,
+      "amount": -9000,
+      "description": "Paid to Iqbalkhanpk  Transaction ID - 46232750461"
+    },
+    {
+      "date": 1685913600030,
+      "amount": 9000,
+      "description": "Added to wallet from Paytm Payments Bank  Transaction ID - 46232750439"
+    },
+    {
+      "date": 1685903400031,
+      "amount": -2500,
+      "description": "Paid to Iqbalkhanpk  Transaction ID - 46228957607"
+    },
+    {
+      "date": 1685903400032,
+      "amount": 2500,
+      "description": "Added to wallet from Paytm Payments Bank  Transaction ID - 46228957594"
+    },
+    {
+      "date": 1685903400033,
+      "amount": -2800,
+      "description": "Paid to Iqbalkhanpk  Transaction ID - 46228943014"
+    },
+    {
+      "date": 1685903400034,
+      "amount": 2800,
+      "description": "Added to wallet from Paytm Payments Bank  Transaction ID - 46228942994"
+    },
+    {
+      "date": 1685884140035,
+      "amount": -13800,
+      "description": "Paid to Blessing Grand  Transaction ID - 46223132970"
+    },
+    {
+      "date": 1685884140036,
+      "amount": 13800,
+      "description": "Added to wallet from Paytm Payments Bank  Transaction ID - 46223132957"
+    },
+    {
+      "date": 1685711460037,
+      "amount": -14000,
+      "description": "Paid to Sri Coastal Food Hub  Transaction ID - 46182346920"
+    },
+    {
+      "date": 1685711460038,
+      "amount": 14000,
+      "description": "Added to wallet from Paytm Payments Bank  Transaction ID - 46182346904"
+    },
+    {
+      "date": 1685708100039,
+      "amount": -10500,
+      "description": "Paid to Srivari Enterprises  Transaction ID - 46181396223"
+    },
+    {
+      "date": 1685708100040,
+      "amount": 10500,
+      "description": "Added to wallet from Paytm Payments Bank  Transaction ID - 46181396209"
+    },
+    {
+      "date": 1685648820041,
+      "amount": -98066,
+      "description": "Paid to K R Srinivasan  Transaction ID - 46166101458"
+    },
+    {
+      "date": 1685648820042,
+      "amount": 98066,
+      "description": "Added to wallet from Paytm Payments Bank  Transaction ID - 46166101440"
+    },
+    {
+      "date": 1684872660043,
+      "amount": -22000,
+      "description": "Paid to Mr Prakash V  Transaction ID - 45978394872"
+    },
+    {
+      "date": 1684872660044,
+      "amount": 22000,
+      "description": "Added to wallet from Paytm Payments Bank  Transaction ID - 45978394856"
+    },
+    {
+      "date": 1684849920045,
+      "amount": -19000,
+      "description": "Paid to Mohan T  Transaction ID - 45971709655"
+    },
+    {
+      "date": 1684849920046,
+      "amount": 19000,
+      "description": "Added to wallet from Paytm Payments Bank  Transaction ID - 45971709641"
+    },
+    {
+      "date": 1684696620047,
+      "amount": -6000,
+      "description": "Paid to Sita Devi  Transaction ID - 45942448684"
+    },
+    {
+      "date": 1684696620048,
+      "amount": 6000,
+      "description": "Added to wallet from Paytm Payments Bank  Transaction ID - 45942448658"
+    },
+    {
+      "date": 1684520940049,
+      "amount": -2900,
+      "description": "Paid to Salim Kunhi Moideen  Transaction ID - 45903569163"
+    },
+    {
+      "date": 1684520940050,
+      "amount": 2900,
+      "description": "Added to wallet from Paytm Payments Bank  Transaction ID - 45903569147"
+    }
+  ]
+}

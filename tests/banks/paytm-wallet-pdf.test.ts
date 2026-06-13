@@ -51,4 +51,27 @@ describe('Paytm wallet PDF adapter', () => {
       expect(credits).toHaveLength(2)
     })
   })
+
+  // Regression fixtures captured from real statements via the actual PDF text
+  // extractor (not hand-written). They preserve the real token layout — in
+  // particular the "glued/spaceless" combined-line variant where amount,
+  // description, balance and date run together (e.g. "Rs.200.00Paid to …
+  // Rs.030 JUL 23"). Earlier fixtures used a spaced layout that never exercised
+  // this path, so a real-world parse silently produced zero transactions.
+  describe('real captured statements', () => {
+    it('parses the glued July 2023 wallet layout', async () => {
+      const glued = loadFixture('paytm/wallet-jul-2023-glued.fixture.json')
+      expect(paytmWalletPdfAdapter.isSupported(glued)).toBe(true)
+      const result = await paytmWalletPdfAdapter.read(glued)
+      expect(result).toEqual(loadExpectedAdapterResult('paytm/wallet-jul-2023-glued.expected.json'))
+      expect(result.transactions.length).toBeGreaterThan(0)
+    })
+
+    it('parses the separated August 2023 wallet layout', async () => {
+      const aug = loadFixture('paytm/wallet-aug-2023.fixture.json')
+      expect(paytmWalletPdfAdapter.isSupported(aug)).toBe(true)
+      const result = await paytmWalletPdfAdapter.read(aug)
+      expect(result).toEqual(loadExpectedAdapterResult('paytm/wallet-aug-2023.expected.json'))
+    })
+  })
 })
