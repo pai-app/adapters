@@ -4,6 +4,14 @@
   "description": "Bank statement and email parsers for pai-app — pure TypeScript, no UI, no storage.",
   "license": "MIT",
   "author": "Abhay Jatin Doshi <ajd1996@hotmail.com>",
+  "homepage": "https://github.com/pai-app/adapters#readme",
+  "bugs": {
+    "url": "https://github.com/pai-app/adapters/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pai-app/adapters.git"
+  },
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
