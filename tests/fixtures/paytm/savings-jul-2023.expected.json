@@ -1,0 +1,362 @@
+{
+  "bankId": "paytm",
+  "offeringId": "savings",
+  "kind": "bank",
+  "account": {
+    "currency": "INR",
+    "accountNumber": [
+      "919000000001"
+    ],
+    "ifscCode": [
+      "PYTM0123456"
+    ],
+    "micrCode": [
+      "110766001"
+    ],
+    "accountHolderName": [
+      "Rahul Mehta"
+    ]
+  },
+  "transactions": [
+    {
+      "date": 1688248860000,
+      "amount": -10500,
+      "description": "VPA: BHARATPE00000000001@yesbankltd Transaction ID: S3022357 Reference Number: 354846369606 Sent to: Deepak Rao"
+    },
+    {
+      "date": 1688251200001,
+      "amount": -12000,
+      "description": "VPA: Q000000001@ybl Transaction ID: S3665447 Reference Number: 354848326278 Sent to: Subramanian"
+    },
+    {
+      "date": 1688265480002,
+      "amount": 400,
+      "description": "Transaction ID : M202089 Earned on Savings account balance Received for the period 01-06-2023 to 30-06-2023"
+    },
+    {
+      "date": 1688387040003,
+      "amount": -10600,
+      "description": "VPA: upiswiggy@icici Transaction ID: S40932613 Reference Number: 355016891294 Sent to: Swiggy"
+    },
+    {
+      "date": 1688395920004,
+      "amount": 500000,
+      "description": "VPA: rahulmehta@okhdfcbank Transaction ID: S43975467 Reference Number: 318410499917 Received from: RAHUL MEHTA"
+    },
+    {
+      "date": 1688395920005,
+      "amount": -160000,
+      "description": "VPA: 919000000010@paytm Transaction ID: S43982694 Reference Number: 318426363423 Sent to: MOHAN VERMA"
+    },
+    {
+      "date": 1688402700006,
+      "amount": -5300,
+      "description": "VPA: pinelabs.1134252@icici Transaction ID: S45847243 Reference Number: 355022545567 Sent to: Village Hyper Market"
+    },
+    {
+      "date": 1688409780007,
+      "amount": 1500000,
+      "description": "VPA: 9000000003@paytm Transaction ID: S48923498 Reference Number: 318431374850 Received from: KARAN MEHTA"
+    },
+    {
+      "date": 1688410380008,
+      "amount": -4300,
+      "description": "VPA: upiswiggy@icici Transaction ID: S49306887 Reference Number: 318432346620 Sent to: Swiggy"
+    },
+    {
+      "date": 1688421000009,
+      "amount": -193270,
+      "description": "VPA: dmartsouth.innoviti@icici Transaction ID: S53838890 Reference Number: 355048667188 Sent to: Dmart India"
+    },
+    {
+      "date": 1688496600010,
+      "amount": -3000,
+      "description": "Account Number 919000000001 Transaction ID : M4080313 Paid successfully at Paytm Add Money"
+    },
+    {
+      "date": 1688505600011,
+      "amount": -30000,
+      "description": "VPA: 6000000001@paytm Transaction ID: S79060177 Reference Number: 355142076894 Sent to: SURESH NAYAK"
+    },
+    {
+      "date": 1688559720012,
+      "amount": -180000,
+      "description": "VPA: BMTC20.rzp@icici Transaction ID: S92385902 Reference Number: 355217832955 Sent to: Bengaluru Metropolitan Transport Corporation"
+    },
+    {
+      "date": 1688595060013,
+      "amount": -22000,
+      "description": "VPA: Q000000005@ybl Transaction ID: S5864625 Reference Number: 355241613848 Sent to: R Anand Kumar"
+    },
+    {
+      "date": 1688673720014,
+      "amount": -3000,
+      "description": "VPA: 30VWIATOM0001.payu@indus Transaction ID: S28181076 Reference Number: 318745364359 Sent to: Bmrcl"
+    },
+    {
+      "date": 1688677200015,
+      "amount": -75000,
+      "description": "VPA: pinelabs.1134257@icici Transaction ID: S29682898 Reference Number: 355340865346 Sent to: Village Hyper Market"
+    },
+    {
+      "date": 1688768100016,
+      "amount": -3000,
+      "description": "VPA: Q000000004@ybl Transaction ID: S56523346 Reference Number: 355440334637 Sent to: Murugan V"
+    },
+    {
+      "date": 1688812080017,
+      "amount": -500000,
+      "description": "VPA: user09up@okaxis Transaction ID: S66369961 Reference Number: 318934980493 Sent to: SNEHA RAJESH KULKARNI"
+    },
+    {
+      "date": 1688854140018,
+      "amount": -12100,
+      "description": "VPA: BHARATPE00000000002@yesbankltd Transaction ID: S81148523 Reference Number: 355543624335 Sent to: Mukesh"
+    },
+    {
+      "date": 1688857560019,
+      "amount": -3200,
+      "description": "VPA: swiggy.stores@axisbank Transaction ID: S81908674 Reference Number: 318956699214 Sent to: Swiggy"
+    },
+    {
+      "date": 1688873700020,
+      "amount": -30100,
+      "description": "VPA: user2109@ybl Transaction ID: S84663237 Reference Number: 319008844776 Sent to: Mahesh B"
+    },
+    {
+      "date": 1688887020021,
+      "amount": -2000,
+      "description": "VPA: Q000000002@ybl Transaction ID: S88636335 Reference Number: 319000926060 Sent to: Praveen Nair"
+    },
+    {
+      "date": 1688906460022,
+      "amount": -11200,
+      "description": "VPA: 7000000001@ybl Transaction ID: S93598026 Reference Number: 355616907689 Sent to: Hari Kumar"
+    },
+    {
+      "date": 1688909400023,
+      "amount": -50000,
+      "description": "Account Number 919000000001 Transaction ID : M2389647 Paid successfully at Paytm Add Money"
+    },
+    {
+      "date": 1688915760024,
+      "amount": -4000,
+      "description": "VPA: Q000000003@ybl Transaction ID: S96156408 Reference Number: 319026098660 Sent to: Halb Families Wel"
+    },
+    {
+      "date": 1688920080025,
+      "amount": -30000,
+      "description": "VPA: WL0503120A0006581@unionbank Transaction ID: S97238234 Reference Number: 355629891906 Sent to: Humanitarian Hands"
+    },
+    {
+      "date": 1688923920026,
+      "amount": -5000,
+      "description": "Account Number 919000000001 Transaction ID : M3664144 Paid successfully at Paytm Add Money"
+    },
+    {
+      "date": 1688924340027,
+      "amount": -21299,
+      "description": "VPA: mcdonalds.40934821@hdfcbank Transaction ID: S98469569 Reference Number: 355624406512 Sent to: Mc Donalds"
+    },
+    {
+      "date": 1688994060028,
+      "amount": -10600,
+      "description": "VPA: swiggyupi@axisbank Transaction ID: S18348369 Reference Number: 355711349417 Sent to: Swiggy"
+    },
+    {
+      "date": 1689164760029,
+      "amount": -6400,
+      "description": "VPA: swiggy@yespay Transaction ID: S67779820 Reference Number: 355917804406 Sent to: Swiggy"
+    },
+    {
+      "date": 1689173880030,
+      "amount": -23691,
+      "description": "VPA: decathlonsportsindiapvtltd.rzp@icici Transaction ID: S70753382 Reference Number: 319327292553 Sent to: Decathlon Sports India Pvt Ltd"
+    },
+    {
+      "date": 1689206760031,
+      "amount": -50000,
+      "description": "VPA: paytm-78110218@paytm Transaction ID: S82081187 Reference Number: 319475944585 Sent to: INOX Brookefield Mall Kundalahalli"
+    },
+    {
+      "date": 1689347340032,
+      "amount": -20000,
+      "description": "Account Number 919000000001 Transaction ID : M2576697 Paid successfully at Anand"
+    },
+    {
+      "date": 1689419280033,
+      "amount": -159320,
+      "description": "VPA: irctc.cf@hdfcbank Transaction ID: S40819297 Reference Number: 319622955063 Sent to: IRCTC CF"
+    },
+    {
+      "date": 1689431280034,
+      "amount": -8000,
+      "description": "Account Number 919000000001 Transaction ID : M2522524 Paid successfully at Mrs Rekha Sharma"
+    },
+    {
+      "date": 1689519480035,
+      "amount": -219500,
+      "description": "VPA: TRENTZUDIO@ybl Transaction ID: S70705822 Reference Number: 319727979464 Sent to: Zudio"
+    },
+    {
+      "date": 1689536700036,
+      "amount": -15000,
+      "description": "VPA: gpay-11197163013@okbizaxis Transaction ID: S77273515 Reference Number: 356339781013 Sent to: Manoj Pani Puri Chats"
+    },
+    {
+      "date": 1689536940037,
+      "amount": -9500,
+      "description": "Account Number 919000000001 Transaction ID : M4454833 Paid successfully at SELVAM SUPERMARKET"
+    },
+    {
+      "date": 1689541800038,
+      "amount": -12000,
+      "description": "VPA: Q000000008@ybl Transaction ID: S79413972 Reference Number: 356347859486 Sent to: Karthik S"
+    },
+    {
+      "date": 1689631800039,
+      "amount": -25000,
+      "description": "Account Number 919000000001 Transaction ID : M5588078 Paid successfully at SRI VENKATESHWARA SERVICE STATION"
+    },
+    {
+      "date": 1689645360040,
+      "amount": -30600,
+      "description": "VPA: BHARATPE00000000003@yesbankltd Transaction ID: S6701177 Reference Number: 319909380661 Sent to: Imran Ul Hassan"
+    },
+    {
+      "date": 1689699300041,
+      "amount": -51100,
+      "description": "VPA: billdesk.electricity@icici Transaction ID: S21800024 Reference Number: 319975088987 Sent to: billdesktez"
+    },
+    {
+      "date": 1689792960042,
+      "amount": -6000,
+      "description": "VPA: Q000000006@ybl Transaction ID: S49275099 Reference Number: 320034705725 Sent to: Phonepemerchant"
+    },
+    {
+      "date": 1689794820043,
+      "amount": 500000,
+      "description": "VPA: rahulmehta@okhdfcbank Transaction ID: S50193582 Reference Number: 320050087148 Received from: RAHUL MEHTA"
+    },
+    {
+      "date": 1689795240044,
+      "amount": -380000,
+      "description": "VPA: Q000000007@ybl Transaction ID: S50457228 Reference Number: 356638544710 Sent to: Bangalore Tonic"
+    },
+    {
+      "date": 1689801960045,
+      "amount": -124204,
+      "description": "VPA: STARBAZAARMARKET@ybl Transaction ID: S53342655 Reference Number: 356648949985 Sent to: Star Bazaar"
+    },
+    {
+      "date": 1690040700046,
+      "amount": -4000,
+      "description": "Account Number 919000000001 Transaction ID : M2957127 Paid successfully at SANDEEP B"
+    },
+    {
+      "date": 1690064880047,
+      "amount": -15000,
+      "description": "VPA: Q000000005@ybl Transaction ID: S27922445 Reference Number: 356942632137 Sent to: R Anand Kumar"
+    },
+    {
+      "date": 1690131420048,
+      "amount": 500000,
+      "description": "VPA: rahulmehta@okhdfcbank Transaction ID: S44112357 Reference Number: 320448341743 Received from: RAHUL MEHTA"
+    },
+    {
+      "date": 1690131480049,
+      "amount": -190000,
+      "description": "Account Number 919000000001 Transaction ID : M3352660 Paid successfully at ROYAL WINES"
+    },
+    {
+      "date": 1690131960050,
+      "amount": -7840,
+      "description": "VPA: 2305852635609-01@jiopay Transaction ID: S44248087 Reference Number: 357020655636 Sent to: Fresh Signature Bangalore 2945"
+    },
+    {
+      "date": 1690132080051,
+      "amount": -6000,
+      "description": "Account Number 919000000001 Transaction ID : M3418325 Paid successfully at Sri Lakshmi Condiments"
+    },
+    {
+      "date": 1690132260052,
+      "amount": -3000,
+      "description": "Account Number 919000000001 Transaction ID : M3438151 Paid successfully at IMRAN"
+    },
+    {
+      "date": 1690167000053,
+      "amount": -1000,
+      "description": "Account Number 919000000001 Transaction ID : M146408 Paid successfully at B Lakshmi"
+    },
+    {
+      "date": 1690201860054,
+      "amount": -19600,
+      "description": "VPA: swiggyupi@axisbank Transaction ID: S63882251 Reference Number: 357118246180 Sent to: Swiggy"
+    },
+    {
+      "date": 1690398420055,
+      "amount": -2000,
+      "description": "VPA: BHARATPE.0102130047@indus Transaction ID: S20546296 Reference Number: 357338979087 Sent to: S R Enterprises"
+    },
+    {
+      "date": 1690405980056,
+      "amount": -5000,
+      "description": "VPA: user3842@okaxis Transaction ID: S23726311 Reference Number: 357340835747 Sent to: Ramesh Dhami"
+    },
+    {
+      "date": 1690472280057,
+      "amount": -20000,
+      "description": "VPA: paytmqr281005050101sj57drptfqtj@paytm Transaction ID: S40184936 Reference Number: 357475046036 Sent to: WEST COAST SPORTS"
+    },
+    {
+      "date": 1690480620058,
+      "amount": -2000,
+      "description": "VPA: pinelabs.1134252@icici Transaction ID: S42634548 Reference Number: 357425915618 Sent to: Village Hyper Market"
+    },
+    {
+      "date": 1690487100059,
+      "amount": -10400,
+      "description": "VPA: paytm-70258461@paytm Transaction ID: S46128742 Reference Number: 320867801308 Sent to: Blinkit"
+    },
+    {
+      "date": 1690488900060,
+      "amount": -6000,
+      "description": "VPA: Q000000005@ybl Transaction ID: S46926200 Reference Number: 320849323505 Sent to: R Anand Kumar"
+    },
+    {
+      "date": 1690630380061,
+      "amount": -15600,
+      "description": "VPA: dailydelsolutions.rzp@axisbank Transaction ID: S84297996 Reference Number: 321019831831 Sent to: Dailydel Solutions Pvt Ltd"
+    },
+    {
+      "date": 1690645440062,
+      "amount": -91500,
+      "description": "VPA: paytm-74242470@paytm Transaction ID: S89082096 Reference Number: 357651128521 Sent to: Meghana Foods Marathahalli"
+    },
+    {
+      "date": 1690660680063,
+      "amount": -5000,
+      "description": "VPA: Q000000009@ybl Transaction ID: S95126589 Reference Number: 357635640314 Sent to: Rakesh Kumar Singh"
+    },
+    {
+      "date": 1690667700064,
+      "amount": -4000,
+      "description": "VPA: Q000000005@ybl Transaction ID: S97754094 Reference Number: 357645286995 Sent to: R Anand Kumar"
+    },
+    {
+      "date": 1690730820065,
+      "amount": -20000,
+      "description": "Account Number 919000000001 Transaction ID : M2761254 Paid successfully at Paytm Add Money"
+    },
+    {
+      "date": 1690736340066,
+      "amount": -80000,
+      "description": "VPA: Vyapar.168659844851@hdfcbank Transaction ID: S14318152 Reference Number: 357724491145 Sent to: Cell Focus"
+    },
+    {
+      "date": 1690832580067,
+      "amount": -9000,
+      "description": "VPA: paytmqr281005050101tuocketpjxc3@paytm Transaction ID: S43960731 Reference Number: 321269055105 Sent to: Sri Udupi Park"
+    }
+  ]
+}

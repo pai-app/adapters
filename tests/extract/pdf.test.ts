@@ -66,7 +66,9 @@ vi.mock('pdfjs-dist/legacy/build/pdf.mjs', () => {
           getPage: () =>
             Promise.resolve({
               getTextContent: () => Promise.resolve({ items: state.items }),
+              cleanup: () => undefined,
             }),
+          destroy: () => Promise.resolve(),
         })
       },
     }

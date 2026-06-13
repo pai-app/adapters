@@ -50,4 +50,19 @@ describe('Paytm savings PDF adapter', () => {
       expect(credits).toHaveLength(3)
     })
   })
+
+  // Regression fixture captured from a real statement via the actual PDF text
+  // extractor. The real layout separates the account-table columns with single
+  // spaces (e.g. "919000000001 SAVINGS PYTM…"); the earlier fixture used
+  // multi-space columns, so real-world account extraction failed (parse-failed).
+  describe('real captured statement', () => {
+    it('parses the July 2023 savings layout', async () => {
+      const real = loadFixture('paytm/savings-jul-2023.fixture.json')
+      expect(paytmSavingsPdfAdapter.isSupported(real)).toBe(true)
+      const result = await paytmSavingsPdfAdapter.read(real)
+      expect(result).toEqual(loadExpectedAdapterResult('paytm/savings-jul-2023.expected.json'))
+      expect(result.account.accountNumber?.[0]).toBeTruthy()
+      expect(result.transactions.length).toBeGreaterThan(0)
+    })
+  })
 })

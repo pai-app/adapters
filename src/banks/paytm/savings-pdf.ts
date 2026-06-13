@@ -91,8 +91,10 @@ function extractAccountDetails(pages: Pages): AccountDetails {
   for (const page of pages) {
     for (let i = 0; i < page.length; i++) {
       // Table format: "ACCOUNT NUMBER   ACCOUNT TYPE   IFSC   MICR..."
+      // Columns may be separated by a single space or several, depending on the
+      // PDF text extractor, so split on any run of whitespace.
       if (TABLE_HEADER.test(page[i]) && i + 1 < page.length) {
-        const parts = page[i + 1].split(/\s{2,}/)
+        const parts = page[i + 1].split(/\s+/)
         if (parts.length >= 4) {
           const acctMatch = ACCOUNT_NUMBER.exec(parts[0])
           return {
