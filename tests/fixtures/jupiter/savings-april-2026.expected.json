@@ -1,0 +1,78 @@
+{
+  "bankId": "jupiter",
+  "offeringId": "upi-account",
+  "kind": "bank",
+  "account": {
+    "currency": "INR",
+    "accountNumber": [
+      "1234567890"
+    ],
+    "accountHolderName": [
+      "John Doe"
+    ],
+    "customerId": [
+      "998877"
+    ],
+    "ifscCode": [
+      "FDRL0007777"
+    ],
+    "micrCode": [
+      "600049002"
+    ],
+    "swiftCode": [
+      "FDRLINBBIBD"
+    ]
+  },
+  "transactions": [
+    {
+      "date": 1775001600000,
+      "amount": -500000,
+      "description": "UPI/RAJESH KUMAR/9876543210"
+    },
+    {
+      "date": 1775174400001,
+      "amount": -250000,
+      "description": "UPI/PRIYA SHARMA/PRIYA@YBL"
+    },
+    {
+      "date": 1775347200002,
+      "amount": 17500000,
+      "description": "NEFT CR-GLOBEX SALARY-JOHN DOE"
+    },
+    {
+      "date": 1775606400003,
+      "amount": -75630,
+      "description": "UPI/SWIGGY/MERCHANT"
+    },
+    {
+      "date": 1775779200004,
+      "amount": -64900,
+      "description": "UPI/NETFLIX/SUBSCRIPTION"
+    },
+    {
+      "date": 1775952000005,
+      "amount": -1520000,
+      "description": "UPI/ZERODHA/INVEST"
+    },
+    {
+      "date": 1776211200006,
+      "amount": 180000,
+      "description": "ACH C-RELIANCE DIV"
+    },
+    {
+      "date": 1776470400007,
+      "amount": -850000,
+      "description": "UPI/AMIT VERMA/9871234567"
+    },
+    {
+      "date": 1776816000008,
+      "amount": 2500000,
+      "description": "NEFT CR-FREELANCE PAYMENT"
+    },
+    {
+      "date": 1777075200009,
+      "amount": -329900,
+      "description": "UPI/FLIPKART/ORDER"
+    }
+  ]
+}

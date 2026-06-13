@@ -1,0 +1,41 @@
+{
+  "bankId": "hdfc",
+  "offeringId": "savings",
+  "kind": "bank",
+  "account": {
+    "currency": "INR",
+    "accountNumber": [
+      "50100387621480"
+    ],
+    "accountHolderName": [
+      "RAHUL KUMAR SHARMA"
+    ]
+  },
+  "transactions": [
+    {
+      "date": 1551398400000,
+      "amount": -1500000,
+      "description": "ATW-436278XXXXXX9521-S1ANCN32-CHENNAI Value Dt 01/03/2019 Ref 7253"
+    },
+    {
+      "date": 1552089600001,
+      "amount": -4500000,
+      "description": "IB SS FUNDS TRANSFER DR-55000009876543 Value Dt 09/03/2019"
+    },
+    {
+      "date": 1553212800002,
+      "amount": -1800000,
+      "description": "IMPS-908117234567-SAMPLE JEWELLERS-BKDN-X XXXXXXX0077-SAMPLE JEWELLERS Value Dt 22/03/2019 Ref 908117234567"
+    },
+    {
+      "date": 1553472000003,
+      "amount": -2200000,
+      "description": "IMPS-908412345678-SAMPLE JEWELLERS-BKDN-X XXXXXXX0077-SAMPLE JEWELLERS Value Dt 25/03/2019 Ref 908412345678"
+    },
+    {
+      "date": 1553817600004,
+      "amount": 5275000,
+      "description": "SALARY ACME TECHNOLOGIES PVT LTD Value Dt 29/03/2019 Ref 903286789012"
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "bankId": "federal",
+  "offeringId": "credit-card",
+  "kind": "credit-card",
+  "account": {
+    "currency": "INR",
+    "accountNumber": [
+      "467741XXXXXX7293"
+    ],
+    "accountHolderName": [
+      "RAHUL KUMAR SHARMA"
+    ]
+  },
+  "transactions": [
+    {
+      "date": 1776816000000,
+      "amount": 585000,
+      "description": "PAYMENT RECEIVED THROUGH BBPS"
+    },
+    {
+      "date": 1777334400001,
+      "amount": -73550,
+      "description": "MEGA MART BANGALORE IN"
+    },
+    {
+      "date": 1778371200002,
+      "amount": -192500,
+      "description": "The Grand Stay Jaipur IN"
+    },
+    {
+      "date": 1778544000003,
+      "amount": -218075,
+      "description": "DAILY NEEDS STORE BANGALORE IN"
+    },
+    {
+      "date": 1778803200004,
+      "amount": -245000,
+      "description": "TRENDY FASHION BANGALORE IN"
+    },
+    {
+      "date": 1778803200005,
+      "amount": -128540,
+      "description": "URBAN KITCHEN REST MUMBAI IN"
+    },
+    {
+      "date": 1778889600006,
+      "amount": -41000,
+      "description": "GLOW BEAUTY STUDIO Bangalore IN"
+    }
+  ]
+}

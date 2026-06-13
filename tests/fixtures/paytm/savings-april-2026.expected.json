@@ -1,0 +1,57 @@
+{
+  "bankId": "paytm",
+  "offeringId": "savings",
+  "kind": "bank",
+  "account": {
+    "currency": "INR",
+    "accountNumber": [
+      "987654321"
+    ],
+    "ifscCode": [
+      "PYTM0123456"
+    ],
+    "micrCode": [
+      "110088002"
+    ],
+    "accountHolderName": [
+      "Anita Sharma"
+    ]
+  },
+  "transactions": [
+    {
+      "date": 1775124900000,
+      "amount": -500000,
+      "description": "Sent to: Rajesh Kumar UPI Ref: 120555000001"
+    },
+    {
+      "date": 1775399400001,
+      "amount": 1250000,
+      "description": "Received from: Priya Sharma"
+    },
+    {
+      "date": 1775638800002,
+      "amount": -64900,
+      "description": "Netflix India"
+    },
+    {
+      "date": 1775993400003,
+      "amount": -850000,
+      "description": "Sent to: Amit Verma"
+    },
+    {
+      "date": 1776267900004,
+      "amount": 25075,
+      "description": "Quarterly Interest Credit"
+    },
+    {
+      "date": 1776536400005,
+      "amount": -329900,
+      "description": "Flipkart India Pvt Ltd"
+    },
+    {
+      "date": 1776845400006,
+      "amount": 17500000,
+      "description": "NEFT Credit Salary Payment - Globex Corp"
+    }
+  ]
+}

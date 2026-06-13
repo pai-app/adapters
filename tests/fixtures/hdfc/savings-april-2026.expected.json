@@ -1,0 +1,100 @@
+{
+  "bankId": "hdfc",
+  "offeringId": "savings",
+  "kind": "bank",
+  "account": {
+    "currency": "INR",
+    "accountNumber": [
+      "50100000001234"
+    ],
+    "accountHolderName": [
+      "JOHN DOE"
+    ],
+    "customerId": [
+      "99887766"
+    ],
+    "ifscCode": [
+      "HDFC0001073"
+    ],
+    "micrCode": [
+      "600240051"
+    ]
+  },
+  "transactions": [
+    {
+      "date": 1775001600000,
+      "amount": -1200000,
+      "description": "00482730009812 NET BANKING SI -HDFC247 7ABCDE123 Value Dt 01/04/2026"
+    },
+    {
+      "date": 1775001600001,
+      "amount": -350000,
+      "description": "55000008834521 NET BANKING SI -HDFC PP K Value Dt 01/04/2026"
+    },
+    {
+      "date": 1775001600002,
+      "amount": -2500000,
+      "description": "UPI-RAJESH KUMAR-9812345678@YBL-HDFC 0000314-120555000001-UPI Value Dt 01/04/2026 Ref 120555000001"
+    },
+    {
+      "date": 1775260800003,
+      "amount": -400000,
+      "description": "UPI-PRIYA SHARMA MEHRA-PRIYAMEHRA@ OKHDFCBANK-FDRL0007778-121088800012-UPI Value Dt 04/04/2026 Ref 121088800012"
+    },
+    {
+      "date": 1775260800004,
+      "amount": -650000,
+      "description": "UPI-PRIYA SHARMA MEHRA-PRIYAMEHRA@ OKHDFCBANK-FDRL0007778-121088800045-UPI Value Dt 04/04/2026 Ref 121088800045"
+    },
+    {
+      "date": 1775606400005,
+      "amount": -15000,
+      "description": "UPI-GROWW SECURITIES LTD-GROWWLTD D.RZP1.BRK@VALIDAXIS-UTIB0000029-8770000 12345-PAY VIA RAZORPAY Value Dt 08/04/2026 Ref 877000012345"
+    },
+    {
+      "date": 1776211200006,
+      "amount": 180000,
+      "description": "ACH C- RELIANCE INDUSTRIES-44820001 Value Dt 15/04/2026 Ref 2100000051"
+    },
+    {
+      "date": 1776211200007,
+      "amount": 50000,
+      "description": "ACH C- POWERGRID INTDIV 202526-3310050 Value Dt 15/04/2026 Ref 2100000072"
+    },
+    {
+      "date": 1776211200008,
+      "amount": -1800000,
+      "description": "UPI-AMIT VERMA-9876500001-2@AXL-D BSS0IN0811-610000012345-UPI Value Dt 15/04/2026 Ref 610000012345"
+    },
+    {
+      "date": 1776297600009,
+      "amount": 25000,
+      "description": "NEFT CR-CITI0000004-GLOBEX-1608-SALARY PA YMENT-JOHN DOE-CITIN26600012345 Value Dt 16/04/2026"
+    },
+    {
+      "date": 1776470400010,
+      "amount": -300000,
+      "description": "UPI-NEHA PATEL-9871234567@JUPITE RAXIS-FDRL0007777-647000012345-UPI Value Dt 18/04/2026 Ref 647000012345"
+    },
+    {
+      "date": 1776729600011,
+      "amount": -1520000,
+      "description": "UPI-ZERODHA BROKING LTD-ZERODHA.PAYU@ AXISBANK-UTIB0003156-121900012345-UPIINT ENT Value Dt 21/04/2026 Ref 121900012345"
+    },
+    {
+      "date": 1776816000012,
+      "amount": -480050,
+      "description": "UPI-ZERODHA BROKING Value Dt 22/04/2026 Ref 121900067890"
+    },
+    {
+      "date": 1777248000013,
+      "amount": -850000,
+      "description": "UPI-FLIPKART INDIA-FLIPKARTINDIA990012 .RZP@RXAIRTEL-AIRP0000011-648000012345-F LIPKARTINDIAXXXX Value Dt 27/04/2026 Ref 648000012345"
+    },
+    {
+      "date": 1777334400014,
+      "amount": 17500000,
+      "description": "NEFT CR-CITI0000004-GLOBEX-1608-SALARY PA YMENT-JOHN DOE-CITIN26600045678 SALARY PAYMENT FOR APR 2026 Value Dt 28/04/2026"
+    }
+  ]
+}

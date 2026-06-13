@@ -1,0 +1,39 @@
+{
+  "kind": "pdf",
+  "name": "federal-credit-april-2026.pdf",
+  "pages": [
+    [
+      "Federal Bank Ltd",
+      "Credit Card Statement",
+      "For enquiries: cardservices@federalbank.co.in",
+      "",
+      "Name and Address of the Customer",
+      "ANITA DESAI",
+      "42/B Lotus Tower",
+      "MG Road, Bengaluru 560001",
+      "",
+      "Credit Card Number",
+      "4567XXXXXXXX8901",
+      "",
+      "Statement Period: 01-04-2026 to 30-04-2026",
+      "",
+      "01-04-2026 AMAZON INDIA MARKETPLACE 3,299.00 Dr",
+      "03-04-2026 SWIGGY FOOD ORDER 756.30 Dr",
+      "05-04-2026 NETFLIX SUBSCRIPTION 649.00 Dr",
+      "08-04-2026 UBER TRIP BANGALORE 342.50 Dr",
+      "10-04-2026 PAYMENT RECEIVED - THANK YOU 5,000.00 Cr",
+      "12-04-2026 FLIPKART INTERNET 2,156.75 Dr"
+    ],
+    [
+      "Page 2 of 2",
+      "15-04-2026 ZOMATO ORDER 1,245.00 Dr",
+      "18-04-2026 IRCTC BOOKING 3,820.00 Dr",
+      "22-04-2026 REFUND - AMAZON INDIA 1,499.00 Cr",
+      "25-04-2026 CRED BILL PAYMENT 15,000.00 Dr",
+      "28-04-2026 MYNTRA FASHION 04-05-2026 2,890.00 Dr",
+      "",
+      "Total Due: Rs. 21,659.55",
+      "Minimum Amount Due: Rs. 2,165.96"
+    ]
+  ]
+}

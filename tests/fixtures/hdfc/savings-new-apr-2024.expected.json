@@ -1,0 +1,120 @@
+{
+  "bankId": "hdfc",
+  "offeringId": "savings",
+  "kind": "bank",
+  "account": {
+    "currency": "INR",
+    "accountNumber": [
+      "50100000004567"
+    ],
+    "accountHolderName": [
+      "Rahul Vikram Sharma"
+    ],
+    "customerId": [
+      "99988877"
+    ],
+    "ifscCode": [
+      "HDFC0001073"
+    ],
+    "micrCode": [
+      "600240051"
+    ]
+  },
+  "transactions": [
+    {
+      "date": 1711929600000,
+      "amount": -1200000,
+      "description": "00487230005612 NET BANKING SI -Priya HDFC Value Dt 01/04/2024"
+    },
+    {
+      "date": 1711929600001,
+      "amount": -450000,
+      "description": "55000008834521 NET BANKING SI -Rahul PPF Value Dt 01/04/2024"
+    },
+    {
+      "date": 1711929600002,
+      "amount": -600000,
+      "description": "UPI-Rahul Vikram Sharma-fakeuser@ fifederal-FDRL0005556-409876543210-U PI Value Dt 01/04/2024 Ref 409876543210"
+    },
+    {
+      "date": 1711929600003,
+      "amount": -7800000,
+      "description": "NEFT Dr-SBIN0002288-SBI HOME LOAN-ACMECORP- MUM-N098765432112345-NET BANKING SI -SBI Home Loan Value Dt 01/04/2024 Ref N098765432112345"
+    },
+    {
+      "date": 1712102400004,
+      "amount": -485000,
+      "description": "UPI-MUNICIPAL CORP CHENN-municipalcorp.12345678 @ hdfcbank-HDFC0000001-409555712344- Upi Transaction Value Dt 03/04/2024 Ref 409555712344"
+    },
+    {
+      "date": 1712275200005,
+      "amount": -3800000,
+      "description": "ACH D- RACPC CHENNAI-NCACDOSYM2404050001Val ue Dt Ref Value Dt 05/04/2024 Ref 2876543219"
+    },
+    {
+      "date": 1712707200006,
+      "amount": -600000,
+      "description": "UPI-Rahul Vikram Sharma-fakeuser@ fifederal-FDRL0005556-410876543210-U PI Value Dt 10/04/2024 Ref 410876543210"
+    },
+    {
+      "date": 1712880000007,
+      "amount": -400000,
+      "description": "UPI-Rahul Vikram Sharma-fakeuser@ fifederal-FDRL0005556-410765432109-U PI Value Dt 12/04/2024 Ref 410765432109"
+    },
+    {
+      "date": 1713052800008,
+      "amount": -550000,
+      "description": "UPI-NEHA SURESH PATEL-9876543210@ jupiteraxis-FDRL0007777-410654321098- UPIValue Dt 14/04/2024 Ref 410654321098"
+    },
+    {
+      "date": 1713052800009,
+      "amount": 300,
+      "description": "UPI-Fresh Dairy Co-paytm-99887766@ paytm-YESB0PTMUPI-447876543210-ex press Value Dt 14/04/2024 Ref 447876543210"
+    },
+    {
+      "date": 1713139200010,
+      "amount": -4535000,
+      "description": ""
+    },
+    {
+      "date": 1713398400011,
+      "amount": -300000,
+      "description": "UPI-MEERA RAJESH VERMA-fakeuser2@ okaxis-BARB0GUMASH-410543210987- UPI Value Dt 18/04/2024 Ref 410543210987"
+    },
+    {
+      "date": 1713830400012,
+      "amount": -450000,
+      "description": "UPI-Rahul Vikram Sharma-fakeuser@ fifederal-FDRL0005556-411876543210-U PI Value Dt 23/04/2024 Ref 411876543210"
+    },
+    {
+      "date": 1714003200013,
+      "amount": -350000,
+      "description": "UPI-MEERA RAJESH VERMA-fakeuser2@ okaxis-BARB0GUMASH-411765432109- UPI Value Dt 25/04/2024 Ref 411765432109"
+    },
+    {
+      "date": 1714089600014,
+      "amount": 23500000,
+      "description": "NEFT Cr-CITI0000004-GLOBEX-1608-SALARY PAYMENT-Rahul Vikram Sharma-CITIN24998877665 Salary Transfer April 2024 Value Dt 26/04/2024 Ref CITIN24998877665"
+    },
+    {
+      "date": 1714089600015,
+      "amount": -550000,
+      "description": "UPI-NEHA SURESH PATEL-9876543210@ jupiteraxis-FDRL0007777-411654321098- UPIValue Dt 26/04/2024 Ref 411654321098"
+    },
+    {
+      "date": 1714176000016,
+      "amount": -350000,
+      "description": "UPI-MEERA RAJESH VERMA-fakeuser2@ okaxis-BARB0GUMASH-411543210987- UPI Value Dt 27/04/2024 Ref 411543210987"
+    },
+    {
+      "date": 1714348800017,
+      "amount": -18500000,
+      "description": "UPI-Trading Corp-brokerfirm.razorpay@ icici-ICIC0DC0099-412876543210-Pay via Razorpay Value Dt 29/04/2024 Ref 412876543210"
+    },
+    {
+      "date": 1714348800018,
+      "amount": 1500000,
+      "description": "UPI-RAHUL VIKRAM SHARMA-fakeuser3@okhdfcbank-F DRL0005556-412765432109-miscValue Dt 29/04/2024 Ref 412765432109"
+    }
+  ]
+}

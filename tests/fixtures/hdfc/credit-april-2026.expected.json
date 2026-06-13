@@ -1,0 +1,69 @@
+{
+  "bankId": "hdfc",
+  "offeringId": "credit-card",
+  "kind": "credit-card",
+  "account": {
+    "currency": "INR",
+    "accountNumber": [
+      "4329XXXXXXXX4567"
+    ],
+    "accountHolderName": [
+      "JOHN DOE"
+    ],
+    "customerId": [
+      "9876543210"
+    ]
+  },
+  "transactions": [
+    {
+      "date": 1775124900000,
+      "amount": -429900,
+      "description": "AMAZON PAY INDIA PVT LTD"
+    },
+    {
+      "date": 1775241900001,
+      "amount": -75630,
+      "description": "SWIGGY INSTAMART"
+    },
+    {
+      "date": 1775379600002,
+      "amount": -64900,
+      "description": "NETFLIX INDIA SUBSCRIPTION RENEWAL APR 2026"
+    },
+    {
+      "date": 1775658120003,
+      "amount": -34250,
+      "description": "UBER INDIA TECHNOLOGY PVT LTD BANGALORE"
+    },
+    {
+      "date": 1775820600004,
+      "amount": 50000,
+      "description": "CASHBACK REWARD APRIL"
+    },
+    {
+      "date": 1776010200005,
+      "amount": -215675,
+      "description": "BIGBASKET COM"
+    },
+    {
+      "date": 1776283500006,
+      "amount": -124500,
+      "description": "ZOMATO ORDER 44872519"
+    },
+    {
+      "date": 1776501000007,
+      "amount": -382000,
+      "description": "IRCTC ETICKET BOOKING"
+    },
+    {
+      "date": 1776861900008,
+      "amount": 149900,
+      "description": "AMAZON REFUND CR"
+    },
+    {
+      "date": 1777144500009,
+      "amount": -1500000,
+      "description": "CRED RZP PAYMENT"
+    }
+  ]
+}
