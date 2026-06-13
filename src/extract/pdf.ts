@@ -50,26 +50,34 @@ export async function extractPdfPages(file: File, password?: string): Promise<Pd
   }
 
   const pages: string[][] = []
-  for (let i = 1; i <= doc.numPages; i++) {
-    const page = await doc.getPage(i)
-    const content = await page.getTextContent()
-    const lines: string[] = []
-    let currentLine = ''
-    let lastY: number | null = null
+  try {
+    for (let i = 1; i <= doc.numPages; i++) {
+      const page = await doc.getPage(i)
+      const content = await page.getTextContent()
+      const lines: string[] = []
+      let currentLine = ''
+      let lastY: number | null = null
 
-    for (const item of content.items) {
-      if (!('str' in item)) continue
-      const textItem = item as { str: string; transform: number[] }
-      const y = textItem.transform[5]
-      if (lastY !== null && Math.abs(y - lastY) > 2) {
-        if (currentLine.trim()) lines.push(currentLine.trim())
-        currentLine = ''
+      for (const item of content.items) {
+        if (!('str' in item)) continue
+        const textItem = item as { str: string; transform: number[] }
+        const y = textItem.transform[5]
+        if (lastY !== null && Math.abs(y - lastY) > 2) {
+          if (currentLine.trim()) lines.push(currentLine.trim())
+          currentLine = ''
+        }
+        currentLine += textItem.str
+        lastY = y
       }
-      currentLine += textItem.str
-      lastY = y
+      if (currentLine.trim()) lines.push(currentLine.trim())
+      pages.push(lines)
+      // Release pdfjs' per-page caches as we go (fonts, operator lists).
+      page.cleanup()
     }
-    if (currentLine.trim()) lines.push(currentLine.trim())
-    pages.push(lines)
+  } finally {
+    // pdfjs retains the document (and worker-side state) until destroyed;
+    // without this a long email backfill leaks memory per statement PDF.
+    await doc.destroy()
   }
 
   log.pdf('extracted %d pages from %s', pages.length, file.name)

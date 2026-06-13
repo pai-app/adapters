@@ -29,8 +29,13 @@ const HOLDER_NAME = /^([A-Z][A-Z\s]+[A-Z])$/
 // ── Transaction amount patterns ─────────────────────────
 
 const AMOUNT_ONLY = /^([+-])\s*(?:Rs\.|₹)\s*(\d{1,3}(?:,\d{2,3})*(?:\.\d{2})?)$/
+// Combined line packs amount, description, balance and date together. Depending
+// on the PDF's internal layout, the text extractor may or may not emit spaces
+// between the amount and the description, and between the balance and the date
+// (e.g. "- Rs.200.00Paid to X Rs.030 JUL 23"). So those joins are `\s*`, and the
+// date day is pinned to exactly two digits to disambiguate the glued balance.
 const COMBINED =
-  /^([+-])\s*Rs\.\s*(\d{1,3}(?:,\d{2,3})*(?:\.\d{2})?)\s+(.+?)\s+Rs\.\s*\d{1,3}(?:,\d{2,3})*(?:\.\d{2})?\s+(\d{1,2}\s+(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+\d{2,4})$/i
+  /^([+-])\s*Rs\.\s*(\d{1,3}(?:,\d{2,3})*(?:\.\d{2})?)\s*(.+?)\s+Rs\.\s*\d{1,3}(?:,\d{2,3})*(?:\.\d{2})?\s*(\d{2}\s+(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+\d{2,4})$/i
 const INLINE_DATE = /(\d{1,2}\s+(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+\d{2,4})/i
 const RS_BALANCE = /Rs\.\s*\d{1,3}(?:,\d{2,3})*(?:\.\d{2})?/g
 

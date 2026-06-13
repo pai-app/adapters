@@ -1,0 +1,56 @@
+{
+  "bankId": "paytm",
+  "offeringId": "wallet",
+  "kind": "wallet",
+  "account": {
+    "currency": "INR",
+    "accountNumber": [
+      "919000000001"
+    ],
+    "accountHolderName": [
+      "RAHUL MEHTA"
+    ]
+  },
+  "transactions": [
+    {
+      "date": 1690730820000,
+      "amount": -20000,
+      "description": "Paid to Abc Fuel Station"
+    },
+    {
+      "date": 1690730820001,
+      "amount": 20000,
+      "description": "Added to wallet from PPBL"
+    },
+    {
+      "date": 1688923920002,
+      "amount": -5000,
+      "description": "Paid to Ramesh Gupta"
+    },
+    {
+      "date": 1688923920003,
+      "amount": 5000,
+      "description": "Added to wallet from Paytm"
+    },
+    {
+      "date": 1688909400004,
+      "amount": -50000,
+      "description": "Paid to Abc Fuel Station"
+    },
+    {
+      "date": 1688909400005,
+      "amount": 50000,
+      "description": "Added to wallet from Paytm"
+    },
+    {
+      "date": 1688496600006,
+      "amount": -3000,
+      "description": "Paid to Suresh Patel"
+    },
+    {
+      "date": 1688496600007,
+      "amount": 3000,
+      "description": "Added to wallet from Paytm"
+    }
+  ]
+}
