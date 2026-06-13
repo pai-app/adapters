@@ -193,6 +193,9 @@ function removeHeaderAndFooter(pages: Pages): string[] {
   const out: string[] = []
   for (const page of pages) {
     const headerIdx = page.findIndex((line) => DATE_SLASH_START.test(line))
+    // Unreachable: callers only pass pages already filtered to contain a date
+    // line, so `findIndex` never returns -1 here.
+    /* v8 ignore next */
     if (headerIdx === -1) continue
     let footerIdx = page.length
     for (let i = headerIdx; i < footerIdx; i++) {
@@ -250,6 +253,9 @@ function parseTransactionLines(lines: string[], openingBalance: number): Transac
     const date = parseDate(dateStr) + transactions.length // preserve order within same day
 
     const amountMatches = [...line.matchAll(INDIAN_AMOUNT_G)]
+    // Unreachable: the merge step above already guaranteed >= 2 amounts and only
+    // the leading date token is sliced off, so the count never drops below 2.
+    /* v8 ignore next */
     if (amountMatches.length < 2) continue
 
     // Remove amount strings to isolate description
@@ -268,6 +274,9 @@ function parseTransactionLines(lines: string[], openingBalance: number): Transac
       if (rawAmount !== 0) break
     }
 
+    // Unreachable: `parseAmountFloat` throws on non-numeric input, so the
+    // values here are always valid numbers rather than NaN.
+    /* v8 ignore next */
     if (Number.isNaN(balance) || Number.isNaN(rawAmount)) continue
 
     const sign: 1 | -1 = balance < currentBalance ? -1 : 1
@@ -290,6 +299,7 @@ function parseTransactionLines(lines: string[], openingBalance: number): Transac
         refIdx = findLastIndex(parts, (p) => /^[0-9]{4,}$/.test(p))
       }
       if (refIdx !== -1) {
+        /* v8 ignore next -- refIdx is a valid index from findLastIndex, so parts[refIdx] is always defined */
         const ref = parts[refIdx] ?? ''
         parts = [...parts.slice(0, refIdx), ...parts.slice(refIdx + 1)]
         if (/^[0-9]+$/.test(ref) && parseInt(ref) > 0) {

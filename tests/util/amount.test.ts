@@ -51,4 +51,8 @@ describe('parseAmountFloat', () => {
   it('strips Rs.₹ symbols', () => {
     expect(parseAmountFloat('₹1,234.50')).toBeCloseTo(1234.5)
   })
+
+  it('throws on unparseable input', () => {
+    expect(() => parseAmountFloat('not-a-number')).toThrow('Unparseable amount')
+  })
 })

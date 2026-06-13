@@ -106,5 +106,9 @@ async function extractWithPasswords(
   }
 
   // All passwords exhausted
+  // The candidate list always begins with `undefined`, so the loop only exits
+  // here after at least one `password-required` failure set `lastError`. The
+  // right-hand fallback is defensive and unreachable in practice.
+  /* v8 ignore next */
   throw lastError ?? new ParseError('PDF is password-protected', { kind: 'password-required' })
 }

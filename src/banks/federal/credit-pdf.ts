@@ -125,6 +125,9 @@ function parseTransactionLines(lines: string[]): TransactionDetails[] {
 
     // Extract dates — first match becomes transaction date; all removed from line
     const dateMatches = [...line.matchAll(DATE_DASH_G)]
+    // Unreachable: lines reaching here all passed `TX_LINE`, which requires a
+    // leading dash-separated date, so there is always at least one match.
+    /* v8 ignore next */
     if (dateMatches.length === 0) continue
     let date = 0
     for (let j = dateMatches.length - 1; j >= 0; j--) {

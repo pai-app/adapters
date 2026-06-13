@@ -75,6 +75,7 @@ function readPaytmSavingsPdf(pages: Pages): AdapterResult {
 // ── Metadata extraction ─────────────────────────────────
 
 function extractHolderName(pages: Pages): string | null {
+  /* v8 ignore next -- callers only reach here with non-empty pages (account extraction throws first otherwise) */
   if (pages.length === 0) return null
   const page = pages[0]
   for (let i = 0; i < page.length - 1; i++) {
@@ -97,6 +98,9 @@ function extractAccountDetails(pages: Pages): AccountDetails {
           return {
             currency: CURRENCY,
             accountNumber: acctMatch ? [acctMatch[1]] : [],
+            // parts[2] is always present and non-empty when parts.length >= 4
+            // (split never yields an empty interior segment).
+            /* v8 ignore next */
             ifscCode: parts[2] ? [parts[2]] : [],
             micrCode: parts[3] ? [parts[3]] : [],
           }
@@ -180,6 +184,9 @@ function parseTransactions(lines: string[]): TransactionDetails[] {
     if (!amountLine) continue
 
     const parsed = AMOUNT_LINE.exec(amountLine)
+    // Unreachable: `amountLine` was only set after `AMOUNT_LINE.test` matched, so
+    // re-running the same regex always parses.
+    /* v8 ignore next */
     if (!parsed) continue
     const sign: 1 | -1 = parsed[1] === '-' ? -1 : 1
 
