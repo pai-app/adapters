@@ -1,16 +1,13 @@
 import { describe, it, expect } from 'vitest'
 import { hdfcCreditPdfAdapter } from '@/banks/hdfc/credit-pdf'
-import { loadFixture, loadExpected, loadExpectedAdapterResult } from '../helpers'
+import { loadFixture } from '../helpers'
 
 const fixture = loadFixture('hdfc/credit-april-2026.fixture.json')
-const expected = loadExpected('hdfc/credit-april-2026.expected.json')
 
+// Fixture routing + full-output round-trips are covered generically by
+// tests/fixtures.test.ts. This file keeps only adapter-specific assertions.
 describe('HDFC credit card PDF adapter', () => {
   describe('isSupported', () => {
-    it('matches an HDFC credit card statement', () => {
-      expect(hdfcCreditPdfAdapter.isSupported(fixture)).toBe(true)
-    })
-
     it('rejects a non-HDFC PDF', () => {
       const other = { kind: 'pdf' as const, name: 'other.pdf', pages: [['Some random text']] }
       expect(hdfcCreditPdfAdapter.isSupported(other)).toBe(false)
@@ -27,22 +24,6 @@ describe('HDFC credit card PDF adapter', () => {
   })
 
   describe('read', () => {
-    it('extracts account details', async () => {
-      const result = await hdfcCreditPdfAdapter.read(fixture)
-      expect(result.account).toEqual(expected.account)
-    })
-
-    it('extracts correct number of transactions', async () => {
-      const result = await hdfcCreditPdfAdapter.read(fixture)
-      expect(result.transactions).toHaveLength(expected.transactions.length)
-    })
-
-    it('matches full expected output', async () => {
-      const result = await hdfcCreditPdfAdapter.read(fixture)
-      const expectedResult = loadExpectedAdapterResult('hdfc/credit-april-2026.expected.json')
-      expect(result).toEqual(expectedResult)
-    })
-
     it('handles continuation lines', async () => {
       const result = await hdfcCreditPdfAdapter.read(fixture)
       const netflix = result.transactions.find((t) => t.description.includes('NETFLIX'))

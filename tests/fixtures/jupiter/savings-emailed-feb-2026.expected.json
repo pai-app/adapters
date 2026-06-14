@@ -1,0 +1,220 @@
+{
+  "bankId": "jupiter",
+  "offeringId": "upi-account",
+  "kind": "bank",
+  "account": {
+    "currency": "INR",
+    "accountNumber": [
+      "XXXXX5588"
+    ],
+    "accountHolderName": [
+      "RAHUL KUMAR SHARMA"
+    ],
+    "customerId": [
+      "XXXXX901"
+    ],
+    "ifscCode": [
+      "FDRL0007778"
+    ],
+    "swiftCode": [
+      "FDRLINBBIBD"
+    ]
+  },
+  "transactions": [
+    {
+      "date": 1770595200000,
+      "amount": -12000,
+      "description": "UPIOUT/640630841010/vyapar.170560649551@hdfc/5814"
+    },
+    {
+      "date": 1770681600001,
+      "amount": -13800,
+      "description": "UPIOUT/640727995547/landmarkspar@axl/ Payment/5411"
+    },
+    {
+      "date": 1770681600002,
+      "amount": -4140,
+      "description": "UPIOUT/640718004441/landmarkspar@ybl/ Payment/5411"
+    },
+    {
+      "date": 1770681600003,
+      "amount": -73700,
+      "description": "UPIOUT/640708011814/cred.utility@axisb/payme/4900"
+    },
+    {
+      "date": 1770854400004,
+      "amount": -20100,
+      "description": "UPIOUT/640909249484/credpay.swiggy@axisb/ pay/5812"
+    },
+    {
+      "date": 1770940800005,
+      "amount": -250000,
+      "description": "UPIOUT/641082032550/rahulsharma12@axl/Khane k/0000"
+    },
+    {
+      "date": 1770940800006,
+      "amount": 250000,
+      "description": "UPIOUT/641082032550/UPI6anwO1zhBhr/0000"
+    },
+    {
+      "date": 1770940800007,
+      "amount": -250000,
+      "description": "UPIOUT/641082041343/rahulsharma12-2@okicici/K/0000"
+    },
+    {
+      "date": 1771027200008,
+      "amount": -62000,
+      "description": "UPIOUT/604511385938/paytmqrjeg21cc21o@paytm//5462"
+    },
+    {
+      "date": 1771113600009,
+      "amount": -6900,
+      "description": "UPIOUT/604628723060/amznlpa-vok95fuzol@apl/ Y/6540"
+    },
+    {
+      "date": 1771113600010,
+      "amount": -30000,
+      "description": "UPIOUT/641208734748/paytm.d14085578510@pty/ P/5541"
+    },
+    {
+      "date": 1771286400011,
+      "amount": -3252900,
+      "description": "UPIOUT/604884769670/rahulsharma12-2@okicici/P/0000"
+    },
+    {
+      "date": 1771286400012,
+      "amount": -24000,
+      "description": "UPIOUT/604889379988/vyapar.170560649551@hdfc/5814"
+    },
+    {
+      "date": 1771286400013,
+      "amount": -6000,
+      "description": "UPIOUT/604889447131/gpay-11251962746@okbizax/5812"
+    },
+    {
+      "date": 1771286400014,
+      "amount": -5000,
+      "description": "UPIOUT/604889548644/paytmqr17l7x2rkel@paytm//5411"
+    },
+    {
+      "date": 1771632000015,
+      "amount": -7500,
+      "description": "UPIOUT/641887819407/swiggydinein@icici/Paid /5814"
+    },
+    {
+      "date": 1771718400016,
+      "amount": -357700,
+      "description": "UPIOUT/641916844260/cred.telecom@axisb/ payme/4814"
+    },
+    {
+      "date": 1771718400017,
+      "amount": -370804,
+      "description": "UPIOUT/133153568857/cheq1@yesbank/Invoice/5413"
+    },
+    {
+      "date": 1771718400018,
+      "amount": 1000,
+      "description": "UPI IN/102759785194/ bhimcashback@hdfcbank/ BH/0000"
+    },
+    {
+      "date": 1771718400019,
+      "amount": -38062,
+      "description": "UPIOUT/135026272970/payzomato@hdfcbank/NO RE/5814"
+    },
+    {
+      "date": 1771718400020,
+      "amount": -5600,
+      "description": "UPIOUT/605307000378/easebuzz.bbdaily1@hdfcba/5411"
+    },
+    {
+      "date": 1771718400021,
+      "amount": -29800,
+      "description": "UPIOUT/641908895051/cred.club@axisb/payment /5413"
+    },
+    {
+      "date": 1772064000022,
+      "amount": -7000,
+      "description": "UPIOUT/193937183112/BANGALOREMETRO.payu@mair/4112"
+    },
+    {
+      "date": 1772064000023,
+      "amount": 300,
+      "description": "UPI IN/102787533391/ bhimcashback@hdfcbank/ BH/0000"
+    },
+    {
+      "date": 1772064000024,
+      "amount": -12000,
+      "description": "UPIOUT/642329932925/q843579837@ybl/Cold coff/5441"
+    },
+    {
+      "date": 1772323200025,
+      "amount": -15000,
+      "description": "UPIOUT/642658962696/q422105878@ybl/Metro/4112"
+    },
+    {
+      "date": 1772323200026,
+      "amount": -3500,
+      "description": "UPIOUT/642659696926/9876543210.wallet@phonep/0000"
+    },
+    {
+      "date": 1772323200027,
+      "amount": -6200,
+      "description": "UPIOUT/000962889110/easebuzz.bbdaily1@hdfcba/5411"
+    },
+    {
+      "date": 1772323200028,
+      "amount": 1000,
+      "description": "UPI IN/606015451550/navilimited@idfcbank/NAV/0000"
+    },
+    {
+      "date": 1772668800029,
+      "amount": -30000,
+      "description": "UPIOUT/001035349299/paytm.d14085578510@pty/ P/5541"
+    },
+    {
+      "date": 1772668800030,
+      "amount": -6000,
+      "description": "UPIOUT/001036084244/gpay-11251962746@okbizax/5812"
+    },
+    {
+      "date": 1772668800031,
+      "amount": -12000,
+      "description": "UPIOUT/001036085214/Vyapar.170560649551@hdfc/5814"
+    },
+    {
+      "date": 1772668800032,
+      "amount": -3000,
+      "description": "UPIOUT/001036192067/paytmqr17l7x2rkel@paytm//5411"
+    },
+    {
+      "date": 1772668800033,
+      "amount": 2700,
+      "description": "UPI IN/606523214757/navilimited@idfcbank/NAV/0000"
+    },
+    {
+      "date": 1772755200034,
+      "amount": -16800,
+      "description": "UPIOUT/001053539789/paytm.s1gi0tj@pty/Pay/5812"
+    },
+    {
+      "date": 1772841600035,
+      "amount": 10000,
+      "description": "UPI IN/001070890452/9876543211-1@nyes/Pay/0000"
+    },
+    {
+      "date": 1772841600036,
+      "amount": -10000,
+      "description": "UPIOUT/643230806002/9876543212@ibl/Paid via /0000"
+    },
+    {
+      "date": 1772841600037,
+      "amount": 3400,
+      "description": "UPI IN/606626062998/navilimited@idfcbank/NAV/0000"
+    },
+    {
+      "date": 1772841600038,
+      "amount": 3000,
+      "description": "UPI IN/606626144788/navilimited@idfcbank/NAV/0000"
+    }
+  ]
+}

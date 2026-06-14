@@ -1,6 +1,6 @@
 import type { ImportData, FileAdapter, BankOffering } from '@/types'
 import { ParseError } from '@/types'
-import { registeredBanks } from '@/registry'
+import { BANKS } from '@/banks'
 import { extractPdfPages } from '@/extract/pdf'
 import { extractExcelSheets } from '@/extract/excel'
 import { log } from '@/log'
@@ -35,7 +35,7 @@ export async function parseFile(
 
   const matches: { bankId: string; offering: BankOffering; adapter: FileAdapter }[] = []
 
-  for (const bank of registeredBanks()) {
+  for (const bank of BANKS) {
     for (const offering of bank.offerings) {
       if (!offering.fileAdapters) continue
       for (const adapter of offering.fileAdapters) {

@@ -1,10 +1,13 @@
 /**
- * Importing this module registers all bank adapters with the internal registry.
- * The public entry point (`src/index.ts`) imports this so `parseFile` /
- * `parseEmail` have adapters available at call time.
+ * Static list of every bank the package can parse. Each bank is a plain `Bank`
+ * value; `parseFile` / `parseEmail` walk this array. No runtime registration —
+ * the set is fixed for a given package version.
  */
 
-import './hdfc/index'
-import './federal/index'
-import './jupiter/index'
-import './paytm/index'
+import type { Bank } from '@/types'
+import { hdfcBank } from './hdfc/index'
+import { federalBank } from './federal/index'
+import { jupiterBank } from './jupiter/index'
+import { paytmBank } from './paytm/index'
+
+export const BANKS: readonly Bank[] = [hdfcBank, federalBank, jupiterBank, paytmBank]

@@ -12,7 +12,6 @@ function createLogger(module: string) {
 
 export const log = {
   parse: createLogger('parse'),
-  registry: createLogger('registry'),
   pdf: createLogger('pdf'),
   excel: createLogger('excel'),
   email: createLogger('email'),

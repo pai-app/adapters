@@ -1,0 +1,48 @@
+{
+  "bankId": "federal",
+  "offeringId": "credit-card",
+  "kind": "credit-card",
+  "account": {
+    "currency": "INR",
+    "accountNumber": [
+      "355412XXXXXX8842"
+    ]
+  },
+  "transactions": [
+    {
+      "date": 1745193600000,
+      "amount": -31200,
+      "description": "QUICK BITES DELIVERY IND"
+    },
+    {
+      "date": 1745280000001,
+      "amount": 152000,
+      "description": "PAYMENT RECEIVED THROUGH BBPS"
+    },
+    {
+      "date": 1746489600002,
+      "amount": -18540,
+      "description": "CORNER PIZZA IND"
+    },
+    {
+      "date": 1746835200003,
+      "amount": -25430,
+      "description": "ACME SUPPLIES PVT LTD IND"
+    },
+    {
+      "date": 1747526400004,
+      "amount": 14250,
+      "description": "FEDERAL BANK REVERSAL IN"
+    },
+    {
+      "date": 1747526400005,
+      "amount": -27890,
+      "description": "CITY DINER IND"
+    },
+    {
+      "date": 1747699200006,
+      "amount": -30560,
+      "description": "FOOD EXPRESS PRIVATE LIMITED IN"
+    }
+  ]
+}

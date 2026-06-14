@@ -1,6 +1,6 @@
 import type { ImportData, EmailAdapter, FileAdapter, BankOffering, Bank } from '@/types'
 import { ParseError } from '@/types'
-import { registeredBanks } from '@/registry'
+import { BANKS } from '@/banks'
 import { extractPdfPages } from '@/extract/pdf'
 import { extractExcelSheets } from '@/extract/excel'
 import { log } from '@/log'
@@ -28,6 +28,14 @@ export async function parseEmail(
   }
 
   // ── First pass: email-content adapters ────────────────────
+  //
+  // Match adapters by `isSupported`, then run `read` on each. The ambiguity
+  // rule applies to adapters that actually produce body content: only when
+  // more than one returns `ImportData` is the email genuinely ambiguous.
+  // Pass-through adapters (which return `null` to defer to their attachment)
+  // are not in conflict — several banks legitimately share a sender domain
+  // (e.g. a fintech and its sponsor bank both mailing from the same address),
+  // and the attachment pass disambiguates them by PDF content.
 
   const emailMatches: { bankId: string; offering: BankOffering; adapter: EmailAdapter }[] = []
 
@@ -42,28 +50,40 @@ export async function parseEmail(
     }
   }
 
-  if (emailMatches.length > 1) {
-    const labels = emailMatches.map((m) => `${m.bankId}/${m.offering.id}`)
+  const contentMatches: { bankId: string; offering: BankOffering; result: ImportData }[] = []
+  for (const match of emailMatches) {
+    const result = await match.adapter.read(email)
+    if (result) {
+      contentMatches.push({
+        bankId: match.bankId,
+        offering: match.offering,
+        result: {
+          bankId: match.bankId,
+          offeringId: match.offering.id,
+          kind: match.offering.kind,
+          account: result.account,
+          transactions: result.transactions,
+        },
+      })
+    }
+  }
+
+  if (contentMatches.length > 1) {
+    const labels = contentMatches.map((m) => `${m.bankId}/${m.offering.id}`)
     throw new ParseError(
       `Multiple email adapters matched: ${labels.join(', ')}`,
       { kind: 'ambiguous-format' },
     )
   }
 
-  if (emailMatches.length === 1) {
-    const match = emailMatches[0]
+  if (contentMatches.length === 1) {
+    const match = contentMatches[0]
     log.email('email-content match: %s/%s', match.bankId, match.offering.id)
-    const result = await match.adapter.read(email)
-    if (result) {
-      return {
-        bankId: match.bankId,
-        offeringId: match.offering.id,
-        kind: match.offering.kind,
-        account: result.account,
-        transactions: result.transactions,
-      }
-    }
-    log.email('email adapter returned null, trying attachments')
+    return match.result
+  }
+
+  if (emailMatches.length > 0) {
+    log.email('email adapters matched but produced no body content, trying attachments')
   }
 
   // ── Second pass: attachments → file adapters ──────────────
@@ -126,7 +146,7 @@ export async function parseEmail(
 
 function filterBanksByEmail(from: string): readonly Bank[] {
   const lower = from.toLowerCase()
-  return registeredBanks().filter((bank) => {
+  return BANKS.filter((bank) => {
     if (!bank.emailDomains?.length) return false
     return bank.emailDomains.some((domain) => lower.includes(domain.toLowerCase()))
   })

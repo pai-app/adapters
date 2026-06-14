@@ -1,0 +1,506 @@
+{
+  "bankId": "paytm",
+  "offeringId": "wallet",
+  "kind": "wallet",
+  "account": {
+    "currency": "INR",
+    "accountNumber": [
+      "919000000002"
+    ],
+    "accountHolderName": [
+      "ROHAN KAPOOR"
+    ]
+  },
+  "transactions": [
+    {
+      "date": 1679013960000,
+      "amount": 2500,
+      "description": "Cashback Received from Paytm"
+    },
+    {
+      "date": 1679003100001,
+      "amount": -15800,
+      "description": "Paid to Swiggy"
+    },
+    {
+      "date": 1679003100002,
+      "amount": 15730,
+      "description": "Added to wallet"
+    },
+    {
+      "date": 1677145680003,
+      "amount": -2700,
+      "description": "Paid to Bangalore Cafe Bake And"
+    },
+    {
+      "date": 1676667780004,
+      "amount": -12230,
+      "description": "Paid to Uber"
+    },
+    {
+      "date": 1676667780005,
+      "amount": 12230,
+      "description": "Refunded for on hold transaction"
+    },
+    {
+      "date": 1676667780006,
+      "amount": -12230,
+      "description": "On hold for order"
+    },
+    {
+      "date": 1676665260007,
+      "amount": 12230,
+      "description": "Refunded for on hold transaction"
+    },
+    {
+      "date": 1676665260008,
+      "amount": -12230,
+      "description": "On hold for order"
+    },
+    {
+      "date": 1676665080009,
+      "amount": 15000,
+      "description": "Added to wallet from PPBL"
+    },
+    {
+      "date": 1674314040010,
+      "amount": -79600,
+      "description": "Paid to Swiggy"
+    },
+    {
+      "date": 1674313920011,
+      "amount": 79600,
+      "description": "Added to wallet from Paytm"
+    },
+    {
+      "date": 1674156480012,
+      "amount": 17700,
+      "description": "Added to wallet from Paytm"
+    },
+    {
+      "date": 1672410060013,
+      "amount": 1000,
+      "description": "Gift voucher added"
+    },
+    {
+      "date": 1671701280014,
+      "amount": -74900,
+      "description": "Paid to Reliance Jio"
+    },
+    {
+      "date": 1671701160015,
+      "amount": 74900,
+      "description": "Added to wallet from Paytm"
+    },
+    {
+      "date": 1670972580016,
+      "amount": -117882,
+      "description": "Paid to Reliance Retail"
+    },
+    {
+      "date": 1670972580017,
+      "amount": 117882,
+      "description": "Added to wallet from Paytm"
+    },
+    {
+      "date": 1670970780018,
+      "amount": -39500,
+      "description": "Paid to Reliance Jio"
+    },
+    {
+      "date": 1670970780019,
+      "amount": 39500,
+      "description": "Added to wallet from Paytm"
+    },
+    {
+      "date": 1670970720020,
+      "amount": -39500,
+      "description": "Paid to Reliance Jio"
+    },
+    {
+      "date": 1670970720021,
+      "amount": 39500,
+      "description": "Added to wallet from Paytm"
+    },
+    {
+      "date": 1670970660022,
+      "amount": -39500,
+      "description": "Paid to Reliance Jio"
+    },
+    {
+      "date": 1670970660023,
+      "amount": 38500,
+      "description": "Added to wallet from Paytm"
+    },
+    {
+      "date": 1669547100024,
+      "amount": 1000,
+      "description": "Cashback Received from Paytm"
+    },
+    {
+      "date": 1668455460025,
+      "amount": -111200,
+      "description": "Money sent to 9876543210"
+    },
+    {
+      "date": 1668455460026,
+      "amount": 111200,
+      "description": "Added to wallet from Axis Bank"
+    },
+    {
+      "date": 1664962380027,
+      "amount": -31000,
+      "description": "Sent from wallet to PAYTM"
+    },
+    {
+      "date": 1664962320028,
+      "amount": -1500,
+      "description": "Paid to Tea Day"
+    },
+    {
+      "date": 1664930880029,
+      "amount": 29700,
+      "description": "Payment received from Anita"
+    },
+    {
+      "date": 1664025840030,
+      "amount": 2800,
+      "description": "Cashback Received from Paytm"
+    },
+    {
+      "date": 1664024640031,
+      "amount": -52500,
+      "description": "Paid to Swiggy"
+    },
+    {
+      "date": 1664024640032,
+      "amount": 49800,
+      "description": "Added to wallet from Paytm"
+    },
+    {
+      "date": 1664023380033,
+      "amount": 2700,
+      "description": "Cashback Received from Paytm"
+    },
+    {
+      "date": 1663893720034,
+      "amount": -52000,
+      "description": "Paid to Swiggy"
+    },
+    {
+      "date": 1663893720035,
+      "amount": 52000,
+      "description": "Added to wallet from Paytm"
+    },
+    {
+      "date": 1663762140036,
+      "amount": -54900,
+      "description": "Paid to Swiggy"
+    },
+    {
+      "date": 1663762140037,
+      "amount": 53900,
+      "description": "Added to wallet from Paytm"
+    },
+    {
+      "date": 1663751400038,
+      "amount": 1000,
+      "description": "Cashback Received from Paytm"
+    },
+    {
+      "date": 1663751340039,
+      "amount": -74900,
+      "description": "Paid to Reliance Jio"
+    },
+    {
+      "date": 1663751340040,
+      "amount": 74895,
+      "description": "Added to wallet from Paytm"
+    },
+    {
+      "date": 1663328940041,
+      "amount": -10000,
+      "description": "Sent from wallet to PAYTM"
+    },
+    {
+      "date": 1663328880042,
+      "amount": 10000,
+      "description": "Added to wallet from PPBL"
+    },
+    {
+      "date": 1663328820043,
+      "amount": -7500,
+      "description": "Sent from wallet to PAYTM"
+    },
+    {
+      "date": 1663069740044,
+      "amount": 7500,
+      "description": "Cashback Received from Paytm"
+    },
+    {
+      "date": 1662820920045,
+      "amount": -127095,
+      "description": "Paid to Zomato Limited"
+    },
+    {
+      "date": 1662820920046,
+      "amount": 127100,
+      "description": "Added to wallet from Paytm"
+    },
+    {
+      "date": 1661813400047,
+      "amount": -35700,
+      "description": "Sent from wallet to PAYTM"
+    },
+    {
+      "date": 1661813280048,
+      "amount": 35700,
+      "description": "Payment received from Anita"
+    },
+    {
+      "date": 1660820760049,
+      "amount": -104900,
+      "description": "Paid to Reliance Trends Marathhalli"
+    },
+    {
+      "date": 1660820760050,
+      "amount": 104900,
+      "description": "Added to wallet from PPBL"
+    },
+    {
+      "date": 1660596180051,
+      "amount": -6600,
+      "description": "Paid to Suprdaily"
+    },
+    {
+      "date": 1660596180052,
+      "amount": 6600,
+      "description": "Added to wallet"
+    },
+    {
+      "date": 1660497540053,
+      "amount": -70000,
+      "description": "Sent from wallet to PAYTM"
+    },
+    {
+      "date": 1660497480054,
+      "amount": 70000,
+      "description": "Payment received from Anita"
+    },
+    {
+      "date": 1659645960055,
+      "amount": -34000,
+      "description": "Paid to Suprdaily"
+    },
+    {
+      "date": 1659645960056,
+      "amount": 34000,
+      "description": "Added to wallet"
+    },
+    {
+      "date": 1659345300057,
+      "amount": -26600,
+      "description": "Sent from wallet to PAYTM"
+    },
+    {
+      "date": 1659343980058,
+      "amount": 26600,
+      "description": "Added to wallet from PPBL"
+    },
+    {
+      "date": 1656621300059,
+      "amount": -71900,
+      "description": "Paid to Reliance Jio"
+    },
+    {
+      "date": 1656621240060,
+      "amount": 71200,
+      "description": "Added to wallet from PPBL"
+    },
+    {
+      "date": 1656365940061,
+      "amount": 700,
+      "description": "Cashback Received from Paytm"
+    },
+    {
+      "date": 1656098400062,
+      "amount": -39500,
+      "description": "Paid to Reliance Jio"
+    },
+    {
+      "date": 1656098340063,
+      "amount": -39500,
+      "description": "Paid to Reliance Jio"
+    },
+    {
+      "date": 1656098160064,
+      "amount": -39500,
+      "description": "Paid to Reliance Jio"
+    },
+    {
+      "date": 1656098160065,
+      "amount": 118500,
+      "description": "Added to wallet from PPBL"
+    },
+    {
+      "date": 1655503020066,
+      "amount": -3500,
+      "description": "Sent from wallet to PAYTM"
+    },
+    {
+      "date": 1655502960067,
+      "amount": 3500,
+      "description": "Cashback Received from Paytm"
+    },
+    {
+      "date": 1655502900068,
+      "amount": -117882,
+      "description": "Paid to Reliance Retail"
+    },
+    {
+      "date": 1655502900069,
+      "amount": 117882,
+      "description": "Added to wallet from PPBL"
+    },
+    {
+      "date": 1652723700070,
+      "amount": -3000,
+      "description": "Sent from wallet to PAYTM"
+    },
+    {
+      "date": 1652723700071,
+      "amount": -220000,
+      "description": "Sent from wallet to PAYTM"
+    },
+    {
+      "date": 1652650440072,
+      "amount": 220000,
+      "description": "Payment received from Meena"
+    },
+    {
+      "date": 1651607940073,
+      "amount": -2000,
+      "description": "Paid to Ramesh"
+    },
+    {
+      "date": 1651582860074,
+      "amount": 5000,
+      "description": "Cashback Received from Paytm"
+    },
+    {
+      "date": 1650051480075,
+      "amount": -39800,
+      "description": "Paid to Zomato media Private"
+    },
+    {
+      "date": 1650051420076,
+      "amount": 39769,
+      "description": "Added to wallet from PPBL"
+    },
+    {
+      "date": 1649876940077,
+      "amount": -19900,
+      "description": "Sent from wallet to PAYTM"
+    },
+    {
+      "date": 1649876820078,
+      "amount": 19900,
+      "description": "Refund from Yulu Bikes"
+    },
+    {
+      "date": 1649858220079,
+      "amount": -69,
+      "description": "Paid to Zomato media Private"
+    },
+    {
+      "date": 1649858220080,
+      "amount": 100,
+      "description": "Added to wallet from PPBL"
+    },
+    {
+      "date": 1649780100081,
+      "amount": -22400,
+      "description": "Paid to Yulu Bikes"
+    },
+    {
+      "date": 1649780100082,
+      "amount": 22400,
+      "description": "Added to wallet from Paytm"
+    },
+    {
+      "date": 1649603700083,
+      "amount": -25513,
+      "description": "Paid to Zomato media Private"
+    },
+    {
+      "date": 1649603700084,
+      "amount": 573,
+      "description": "Added to wallet from PPBL"
+    },
+    {
+      "date": 1649545980085,
+      "amount": 24940,
+      "description": "Refund from Zomato media Private"
+    },
+    {
+      "date": 1649542620086,
+      "amount": -26578,
+      "description": "Paid to Zomato media Private"
+    },
+    {
+      "date": 1649542560087,
+      "amount": 26578,
+      "description": "Added to wallet from PPBL"
+    },
+    {
+      "date": 1649539980088,
+      "amount": -24940,
+      "description": "Paid to Zomato media Private"
+    },
+    {
+      "date": 1649539920089,
+      "amount": 24940,
+      "description": "Added to wallet from PPBL"
+    },
+    {
+      "date": 1649449920090,
+      "amount": -56490,
+      "description": "Paid to Zomato media Private"
+    },
+    {
+      "date": 1649449920091,
+      "amount": 56490,
+      "description": "Added to wallet from PPBL"
+    },
+    {
+      "date": 1649430720092,
+      "amount": -1500,
+      "description": "Paid to Play zone"
+    },
+    {
+      "date": 1649240700093,
+      "amount": 1500,
+      "description": "Cashback Received from Paytm"
+    },
+    {
+      "date": 1649154300094,
+      "amount": -39500,
+      "description": "Paid to Reliance Jio"
+    },
+    {
+      "date": 1649154300095,
+      "amount": 39500,
+      "description": "Added to wallet from PPBL"
+    },
+    {
+      "date": 1648931280096,
+      "amount": -129900,
+      "description": "Paid to Reliance TRENDS TH36"
+    },
+    {
+      "date": 1648931220097,
+      "amount": 129900,
+      "description": "Added to wallet from PPBL"
+    }
+  ]
+}

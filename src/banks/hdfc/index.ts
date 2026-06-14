@@ -1,18 +1,18 @@
 /**
- * HDFC Bank — registration module.
+ * HDFC Bank — bank definition.
  *
- * Importing this file registers HDFC with the package's internal bank registry.
- * The package's `parseFile` / `parseEmail` entry points automatically walk
- * all registered banks.
+ * Exported as a plain `Bank` value and collected into `BANKS` in
+ * `banks/index.ts`. The package's `parseFile` / `parseEmail` entry points walk
+ * that static list.
  */
 
-import { registerBank } from '@/registry'
+import type { Bank } from '@/types'
 import { hdfcSavingsPdfAdapter } from './savings-pdf'
 import { hdfcCreditPdfAdapter } from './credit-pdf'
 import { hdfcSavingsEmailAdapter, hdfcCreditEmailAdapter } from './email'
 import { HDFC_EMAIL_DOMAINS } from './shared'
 
-registerBank({
+export const hdfcBank: Bank = {
   id: 'hdfc',
   emailDomains: HDFC_EMAIL_DOMAINS,
   offerings: [
@@ -29,4 +29,4 @@ registerBank({
       emailAdapters: [hdfcCreditEmailAdapter],
     },
   ],
-})
+}

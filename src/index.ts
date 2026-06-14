@@ -1,10 +1,7 @@
-// ── Bank registration (side-effect imports) ─────────────
-import './banks/index'
-
 // ── Public API ──────────────────────────────────────────
 export { parseFile } from './parse-file'
 export { parseEmail } from './parse-email'
-export { statementEmailDomains } from './registry'
+export { statementEmailDomains, BANK_CATALOG } from './catalog'
 export { extractPdfPages } from './extract/pdf'
 export { extractExcelSheets } from './extract/excel'
 
@@ -14,6 +11,10 @@ export type {
   AccountKind,
   AccountDetails,
   TransactionDetails,
+} from './types'
+export type {
+  BankCatalogEntry,
+  BankCatalogOffering,
 } from './types'
 export type {
   PdfFile,

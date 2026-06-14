@@ -8,8 +8,8 @@ const mocks = vi.hoisted(() => ({
   extractExcelSheets: vi.fn(),
 }))
 
-vi.mock('@/registry', () => ({
-  registeredBanks: () => mocks.banks,
+vi.mock('@/banks', () => ({
+  get BANKS() { return mocks.banks },
 }))
 
 vi.mock('@/extract/pdf', () => ({
