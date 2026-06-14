@@ -1,6 +1,6 @@
 {
   "name": "@pai-app/adapters",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Bank statement and email parsers for pai-app — pure TypeScript, no UI, no storage.",
   "license": "MIT",
   "author": "Abhay Jatin Doshi <ajd1996@hotmail.com>",
