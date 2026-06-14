@@ -1,16 +1,13 @@
 import { describe, it, expect } from 'vitest'
 import { paytmSavingsPdfAdapter } from '@/banks/paytm/savings-pdf'
-import { loadFixture, loadExpected, loadExpectedAdapterResult } from '../helpers'
+import { loadFixture } from '../helpers'
 
 const fixture = loadFixture('paytm/savings-april-2026.fixture.json')
-const expected = loadExpected('paytm/savings-april-2026.expected.json')
 
+// Fixture routing + full-output round-trips are covered generically by
+// tests/fixtures.test.ts. This file keeps only adapter-specific assertions.
 describe('Paytm savings PDF adapter', () => {
   describe('isSupported', () => {
-    it('matches a Paytm savings statement', () => {
-      expect(paytmSavingsPdfAdapter.isSupported(fixture)).toBe(true)
-    })
-
     it('rejects a non-Paytm PDF', () => {
       const other = { kind: 'pdf' as const, name: 'other.pdf', pages: [['Random text']] }
       expect(paytmSavingsPdfAdapter.isSupported(other)).toBe(false)
@@ -18,22 +15,6 @@ describe('Paytm savings PDF adapter', () => {
   })
 
   describe('read', () => {
-    it('extracts account details', async () => {
-      const result = await paytmSavingsPdfAdapter.read(fixture)
-      expect(result.account).toEqual(expected.account)
-    })
-
-    it('extracts correct number of transactions', async () => {
-      const result = await paytmSavingsPdfAdapter.read(fixture)
-      expect(result.transactions).toHaveLength(7)
-    })
-
-    it('matches full expected output', async () => {
-      const result = await paytmSavingsPdfAdapter.read(fixture)
-      const expectedResult = loadExpectedAdapterResult('paytm/savings-april-2026.expected.json')
-      expect(result).toEqual(expectedResult)
-    })
-
     it('strips UPI/IMPS noise from descriptions', async () => {
       const result = await paytmSavingsPdfAdapter.read(fixture)
       for (const tx of result.transactions) {
@@ -48,21 +29,6 @@ describe('Paytm savings PDF adapter', () => {
       const credits = result.transactions.filter((t) => t.amount > 0)
       expect(debits).toHaveLength(4)
       expect(credits).toHaveLength(3)
-    })
-  })
-
-  // Regression fixture captured from a real statement via the actual PDF text
-  // extractor. The real layout separates the account-table columns with single
-  // spaces (e.g. "919000000001 SAVINGS PYTM…"); the earlier fixture used
-  // multi-space columns, so real-world account extraction failed (parse-failed).
-  describe('real captured statement', () => {
-    it('parses the July 2023 savings layout', async () => {
-      const real = loadFixture('paytm/savings-jul-2023.fixture.json')
-      expect(paytmSavingsPdfAdapter.isSupported(real)).toBe(true)
-      const result = await paytmSavingsPdfAdapter.read(real)
-      expect(result).toEqual(loadExpectedAdapterResult('paytm/savings-jul-2023.expected.json'))
-      expect(result.account.accountNumber?.[0]).toBeTruthy()
-      expect(result.transactions.length).toBeGreaterThan(0)
     })
   })
 })

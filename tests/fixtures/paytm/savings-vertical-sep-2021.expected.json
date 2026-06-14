@@ -1,0 +1,202 @@
+{
+  "bankId": "paytm",
+  "offeringId": "savings",
+  "kind": "bank",
+  "account": {
+    "currency": "INR",
+    "accountNumber": [
+      "919876543210"
+    ],
+    "ifscCode": [
+      "PYTM0123456"
+    ],
+    "micrCode": [
+      "110766001"
+    ],
+    "accountHolderName": [
+      "Rohan Kumar Sharma"
+    ]
+  },
+  "transactions": [
+    {
+      "date": 1632148920000,
+      "amount": 500000,
+      "description": "Received from: ROHAN K SHARMA ANDKUMAR K SHARMA VPA: 9876543210@paytm A/C No: 70350100000001 (BARB0DBGEOR) Transaction ID: S10000001 Reference Number: 100000000001"
+    },
+    {
+      "date": 1632154440001,
+      "amount": -150000,
+      "description": "Sent to: Priya Nair VPA: priyanair09@okhdfcbank Transaction ID: S10000002 Reference Number: 100000000002"
+    },
+    {
+      "date": 1632154440002,
+      "amount": 150000,
+      "description": "Restored against Failed Payment Added back to Savings account Transaction ID : S10000003 UPI Reference No : 100000000002"
+    },
+    {
+      "date": 1632154500003,
+      "amount": 150000,
+      "description": "Restored against Failed Payment Added back to Savings account Transaction ID : S10000004 UPI Reference No : 100000000003"
+    },
+    {
+      "date": 1632154500004,
+      "amount": -150000,
+      "description": "Sent to: Priya Nair VPA: priyanair09@okhdfcbank Transaction ID: S10000005 Reference Number: 100000000003"
+    },
+    {
+      "date": 1632154560005,
+      "amount": 150000,
+      "description": "Restored against Failed Payment Added back to Savings account Transaction ID : S10000006 UPI Reference No : 100000000004"
+    },
+    {
+      "date": 1632154560006,
+      "amount": -150000,
+      "description": "Sent to: Priya Nair VPA: priyanair09@okhdfcbank Transaction ID: S10000007 Reference Number: 100000000004"
+    },
+    {
+      "date": 1632154620007,
+      "amount": 150000,
+      "description": "Restored against Failed Payment Added back to Savings account Transaction ID : S10000008 UPI Reference No : 100000000005"
+    },
+    {
+      "date": 1632154620008,
+      "amount": -150000,
+      "description": "Sent to: PRIYA NAIR VPA: 8000000001@paytm A/C No: XX 0001 (HDFC0001225) Transaction ID: S10000009 Reference Number: 100000000005"
+    },
+    {
+      "date": 1632157260009,
+      "amount": 150000,
+      "description": "Restored against Failed Payment Added back to Savings account Transaction ID : S10000010 UPI Reference No : 100000000006"
+    },
+    {
+      "date": 1632157260010,
+      "amount": -150000,
+      "description": "Sent to: Priya Nair VPA: priyanair09@okhdfcbank Transaction ID: S10000011 Reference Number: 100000000006"
+    },
+    {
+      "date": 1632172920011,
+      "amount": -150000,
+      "description": "Sent to: PRIYA NAIR VPA: 8000000001@paytm A/C No: XX 0001 (HDFC0001225) Transaction ID: S10000012 Reference Number: 100000000007"
+    },
+    {
+      "date": 1632172920012,
+      "amount": 150000,
+      "description": "Restored against Failed Payment Added back to Savings account Transaction ID : S10000013 UPI Reference No : 100000000007"
+    },
+    {
+      "date": 1632225960013,
+      "amount": -150000,
+      "description": "Sent to: PRIYA NAIR VPA: 8000000001@paytm A/C No: XX 0001 (HDFC0001225) Transaction ID: S10000014 Reference Number: 100000000008"
+    },
+    {
+      "date": 1632226020014,
+      "amount": 150000,
+      "description": "Restored against Failed Payment Added back to Savings account Transaction ID : S10000015 UPI Reference No : 100000000008"
+    },
+    {
+      "date": 1632238980015,
+      "amount": -150000,
+      "description": "Sent to: PRIYA NAIR VPA: 8000000001@paytm A/C No: XX 0001 (HDFC0001225) Transaction ID: S10000016 Reference Number: 100000000009"
+    },
+    {
+      "date": 1632239100016,
+      "amount": 1000,
+      "description": "Received from: Paytm VPA: payouts-8725913@paytm A/C No: 19742050000003 (Paytm Payments Bank) Transaction ID: S10000017 Reference Number: 100000000010"
+    },
+    {
+      "date": 1632304620017,
+      "amount": -119454,
+      "description": "Sent to: Ccavenues VPA: ccavenues@icici Transaction ID: S10000018 Reference Number: 100000000011"
+    },
+    {
+      "date": 1632304740018,
+      "amount": 1000,
+      "description": "Received from: Paytm VPA: payouts-8725913@paytm A/C No: 19742050000003 (Paytm Payments Bank) Transaction ID: S10000019 Reference Number: 100000000012"
+    },
+    {
+      "date": 1632327000019,
+      "amount": -20000,
+      "description": "Sent to: Anita R VPA: anitar08@okhdfcbank Transaction ID: S1000020 Reference Number: 100000000013"
+    },
+    {
+      "date": 1632514800020,
+      "amount": -117100,
+      "description": "Sent to: Dominos Pizza VPA: dominospizzaonline@paytm A/C No: XX 0007 (Paytm Payments Bank) Transaction ID: S10000021 Reference Number: 100000000014"
+    },
+    {
+      "date": 1632516780021,
+      "amount": 300000,
+      "description": "Received from: ANANDKUMAR M VPA: 9000000001@paytm A/C No: 50100200000001 (HDFC0001225) Transaction ID: S10000022 Reference Number: 100000000015"
+    },
+    {
+      "date": 1632516840022,
+      "amount": -285500,
+      "description": "Sent to: Dominos Pizza VPA: dominospizzaonline@paytm A/C No: XX 0007 (Paytm Payments Bank) Transaction ID: S10000023 Reference Number: 100000000016"
+    },
+    {
+      "date": 1632517080023,
+      "amount": -14000,
+      "description": "Sent to: Dominos Pizza VPA: dominospizzaonline@paytm A/C No: XX 0007 (Paytm Payments Bank) Transaction ID: S10000024 Reference Number: 100000000017"
+    },
+    {
+      "date": 1632519540024,
+      "amount": -6000,
+      "description": "Sent to: Dominos Pizza VPA: dominospizzaonline@paytm A/C No: XX 0007 (Paytm Payments Bank) Transaction ID: S10000025 Reference Number: 100000000018"
+    },
+    {
+      "date": 1632520080025,
+      "amount": -17746,
+      "description": "Sent to: Burger King India Pvt Ltd VPA: burgerkingindiapvtlt.41681287@hdfcbank Transaction ID: S10000026 Reference Number: 100000000019"
+    },
+    {
+      "date": 1632559260026,
+      "amount": 93000,
+      "description": "Received from: RAMESH KUMAR VPA: rameshkumar2002@ybl A/C No: 50100300000001 (HDFC0000178) Transaction ID: S10000027 Reference Number: 100000000020"
+    },
+    {
+      "date": 1632562140027,
+      "amount": -2000,
+      "description": "Sent to: Ramesh Kumar VPA: rameshkumar2002@ybl Transaction ID: S10000028 Reference Number: 100000000021"
+    },
+    {
+      "date": 1632650100028,
+      "amount": -2100,
+      "description": "Sent to: Jio Mobility VPA: jio@yesbank A/C No: XX 0030 (YESB0000248) Transaction ID: S10000029 Reference Number: 100000000022"
+    },
+    {
+      "date": 1632685440029,
+      "amount": 85000,
+      "description": "Received from: S RAJESH VPA: 7000000001@paytm A/C No: 53030100000001 (BARB0NANDHI) Transaction ID: S10000030 Reference Number: 100000000023"
+    },
+    {
+      "date": 1632738780030,
+      "amount": 42400,
+      "description": "Received from: MAHESH C VPA: 6000000001@paytm A/C No: 019801000000001 (IOBA0000198) Transaction ID: S10000031 Reference Number: 100000000024"
+    },
+    {
+      "date": 1632740880031,
+      "amount": 42400,
+      "description": "Received from: GANESHKUMAR S VPA: 9000000002@paytm A/C No: 00000034000000001 (SBIN0000970) Transaction ID: S10000032 Reference Number: 100000000025"
+    },
+    {
+      "date": 1632847440032,
+      "amount": -4000,
+      "description": "Sent to: PRIYA NAIR VPA: 8000000001@paytm A/C No: XX 0001 (HDFC0001225) Transaction ID: S10000033 Reference Number: 100000000026"
+    },
+    {
+      "date": 1632847740033,
+      "amount": 4000,
+      "description": "Received from: PRIYA SANJAY NAIR VPA: 8000000001@paytm A/C No: 35480100000001 (BARB0GUMASH) Transaction ID: S10000034 Reference Number: 100000000027"
+    },
+    {
+      "date": 1632903060034,
+      "amount": -300000,
+      "description": "Sent to: ANANDKUMAR M VPA: 9000000001@paytm A/C No: XX 0002 (HDFC0001225) Transaction ID: S10000035 Reference Number: 100000000028"
+    },
+    {
+      "date": 1633013700035,
+      "amount": 42500,
+      "description": "Received from: K SURESH VPA: sureshk1@ybl A/C No: 50100290000001 (HDFC0001225) Transaction ID: S10000036 Reference Number: 100000000029"
+    }
+  ]
+}

@@ -1,15 +1,16 @@
 /**
- * Federal Bank — registration module.
+ * Federal Bank — bank definition.
  *
- * Importing this file registers Federal Bank with the internal bank registry.
+ * Exported as a plain `Bank` value and collected into `BANKS` in
+ * `banks/index.ts`.
  */
 
-import { registerBank } from '@/registry'
+import type { Bank } from '@/types'
 import { federalCreditPdfAdapter } from './credit-pdf'
 import { federalEmailAdapter } from './email'
 import { FEDERAL_EMAIL_DOMAINS } from './shared'
 
-registerBank({
+export const federalBank: Bank = {
   id: 'federal',
   emailDomains: FEDERAL_EMAIL_DOMAINS,
   offerings: [
@@ -20,4 +21,4 @@ registerBank({
       emailAdapters: [federalEmailAdapter],
     },
   ],
-})
+}

@@ -1,0 +1,181 @@
+{
+  "bankId": "paytm",
+  "offeringId": "wallet",
+  "kind": "wallet",
+  "account": {
+    "currency": "INR",
+    "accountNumber": [
+      "919000000001"
+    ],
+    "accountHolderName": [
+      "RAHUL MEHTA"
+    ]
+  },
+  "transactions": [
+    {
+      "date": 1688062680000,
+      "amount": -4500,
+      "description": "Paid to Ramesh Kumar"
+    },
+    {
+      "date": 1688062680001,
+      "amount": 1900,
+      "description": "Added to wallet from Paytm"
+    },
+    {
+      "date": 1687958460002,
+      "amount": 2600,
+      "description": "Cashback Received from Paytm"
+    },
+    {
+      "date": 1687872180003,
+      "amount": -200,
+      "description": "Paid to Suresh Patel"
+    },
+    {
+      "date": 1687872180004,
+      "amount": 200,
+      "description": "Added to wallet from Paytm"
+    },
+    {
+      "date": 1687872120005,
+      "amount": -4300,
+      "description": "Paid to Suresh Patel"
+    },
+    {
+      "date": 1687872120006,
+      "amount": 4300,
+      "description": "Added to wallet from Paytm"
+    },
+    {
+      "date": 1687735860007,
+      "amount": -37500,
+      "description": "Paid to Sample Ice Cream"
+    },
+    {
+      "date": 1687735860008,
+      "amount": 37500,
+      "description": "Added to wallet from Paytm"
+    },
+    {
+      "date": 1687095180009,
+      "amount": -74900,
+      "description": "Paid to Acme Telecom"
+    },
+    {
+      "date": 1687095180010,
+      "amount": 74900,
+      "description": "Added to wallet from Paytm"
+    },
+    {
+      "date": 1687094460011,
+      "amount": -69204,
+      "description": "Paid to Sample Tickets"
+    },
+    {
+      "date": 1687094460012,
+      "amount": 69204,
+      "description": "Added to wallet from Paytm"
+    },
+    {
+      "date": 1686849900013,
+      "amount": -1200,
+      "description": "Paid to Mahesh Verma"
+    },
+    {
+      "date": 1686849900014,
+      "amount": 1200,
+      "description": "Added to wallet from Paytm"
+    },
+    {
+      "date": 1686596160015,
+      "amount": -30000,
+      "description": "Paid to Abc Fuel Station"
+    },
+    {
+      "date": 1686596160016,
+      "amount": 30000,
+      "description": "Added to wallet from Paytm"
+    },
+    {
+      "date": 1686432600017,
+      "amount": -1200,
+      "description": "Paid to Vendor Store"
+    },
+    {
+      "date": 1686432600018,
+      "amount": 1200,
+      "description": "Added to wallet from Paytm"
+    },
+    {
+      "date": 1685913600019,
+      "amount": -9000,
+      "description": "Paid to Vendor Store"
+    },
+    {
+      "date": 1685913600020,
+      "amount": 9000,
+      "description": "Added to wallet from Paytm"
+    },
+    {
+      "date": 1685903400021,
+      "amount": -2500,
+      "description": "Paid to Vendor Store"
+    },
+    {
+      "date": 1685903400022,
+      "amount": 2500,
+      "description": "Added to wallet from Paytm"
+    },
+    {
+      "date": 1685903400023,
+      "amount": -2800,
+      "description": "Paid to Vendor Store"
+    },
+    {
+      "date": 1685903400024,
+      "amount": 2800,
+      "description": "Added to wallet from Paytm"
+    },
+    {
+      "date": 1685884140025,
+      "amount": -13800,
+      "description": "Paid to Sample Restaurant"
+    },
+    {
+      "date": 1685884140026,
+      "amount": 13800,
+      "description": "Added to wallet from Paytm"
+    },
+    {
+      "date": 1685711460027,
+      "amount": -14000,
+      "description": "Paid to Test Food Hub"
+    },
+    {
+      "date": 1685711460028,
+      "amount": 14000,
+      "description": "Added to wallet from Paytm"
+    },
+    {
+      "date": 1685708100029,
+      "amount": -10500,
+      "description": "Paid to Sample Enterprises"
+    },
+    {
+      "date": 1685708100030,
+      "amount": 10500,
+      "description": "Added to wallet from Paytm"
+    },
+    {
+      "date": 1685648820031,
+      "amount": -98066,
+      "description": "Paid to Anil Sharma"
+    },
+    {
+      "date": 1685648820032,
+      "amount": 98066,
+      "description": "Added to wallet from Paytm"
+    }
+  ]
+}

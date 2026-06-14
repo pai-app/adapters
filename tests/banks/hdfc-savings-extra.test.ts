@@ -1,25 +1,10 @@
 import { describe, it, expect } from 'vitest'
 import { hdfcSavingsPdfAdapter } from '@/banks/hdfc/savings-pdf'
 import type { PdfFile } from '@/types'
-import { loadFixture, loadExpectedAdapterResult } from '../helpers'
 
 function pdf(pages: string[][]): PdfFile {
   return { kind: 'pdf', name: 'synthetic.pdf', pages }
 }
-
-describe('HDFC savings PDF adapter — alternate layouts', () => {
-  it('parses a modern header-style statement (new-apr-2024 fixture)', async () => {
-    const fixture = loadFixture('hdfc/savings-new-apr-2024.fixture.json')
-    const result = await hdfcSavingsPdfAdapter.read(fixture)
-    expect(result).toEqual(loadExpectedAdapterResult('hdfc/savings-new-apr-2024.expected.json'))
-  })
-
-  it('parses a legacy footer-style statement (old-mar-2019 fixture)', async () => {
-    const fixture = loadFixture('hdfc/savings-old-mar-2019.fixture.json')
-    const result = await hdfcSavingsPdfAdapter.read(fixture)
-    expect(result).toEqual(loadExpectedAdapterResult('hdfc/savings-old-mar-2019.expected.json'))
-  })
-})
 
 describe('HDFC savings PDF adapter — error paths', () => {
   it('throws parse-failed when no account number can be found', async () => {

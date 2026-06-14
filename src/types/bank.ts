@@ -31,3 +31,19 @@ export type Bank = {
   readonly emailDomains?: readonly string[]
   readonly offerings: readonly BankOffering[]
 }
+
+/**
+ * Public, display-free identity projection of an offering. Consumers (e.g. the
+ * Pai app) join these ids with their own label/icon maps — the package never
+ * owns display concerns.
+ */
+export type BankCatalogOffering = {
+  readonly offeringId: string
+  readonly kind: AccountKind
+}
+
+/** Public identity projection of a bank and its offerings. */
+export type BankCatalogEntry = {
+  readonly bankId: string
+  readonly offerings: readonly BankCatalogOffering[]
+}

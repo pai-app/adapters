@@ -1,15 +1,16 @@
 /**
- * Jupiter — registration module.
+ * Jupiter — bank definition.
  *
- * Importing this file registers Jupiter with the internal bank registry.
+ * Exported as a plain `Bank` value and collected into `BANKS` in
+ * `banks/index.ts`.
  */
 
-import { registerBank } from '@/registry'
+import type { Bank } from '@/types'
 import { jupiterSavingsPdfAdapter } from './savings-pdf'
 import { jupiterEmailAdapter } from './email'
 import { JUPITER_EMAIL_DOMAINS } from './shared'
 
-registerBank({
+export const jupiterBank: Bank = {
   id: 'jupiter',
   emailDomains: JUPITER_EMAIL_DOMAINS,
   offerings: [
@@ -20,4 +21,4 @@ registerBank({
       emailAdapters: [jupiterEmailAdapter],
     },
   ],
-})
+}

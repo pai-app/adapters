@@ -1,16 +1,14 @@
 import { describe, it, expect } from 'vitest'
 import { federalCreditPdfAdapter } from '@/banks/federal/credit-pdf'
-import { loadFixture, loadExpected, loadExpectedAdapterResult } from '../helpers'
+import { loadFixture } from '../helpers'
 
 const fixture = loadFixture('federal/credit-april-2026.fixture.json')
-const expected = loadExpected('federal/credit-april-2026.expected.json')
 
+// Fixture routing + full-output round-trips are covered generically by
+// tests/fixtures.test.ts. This file keeps only adapter-specific assertions:
+// negative isSupported cases and semantic checks.
 describe('Federal Bank credit card PDF adapter', () => {
   describe('isSupported', () => {
-    it('matches a Federal Bank credit card statement', () => {
-      expect(federalCreditPdfAdapter.isSupported(fixture)).toBe(true)
-    })
-
     it('rejects a non-Federal PDF', () => {
       const other = { kind: 'pdf' as const, name: 'other.pdf', pages: [['Random text']] }
       expect(federalCreditPdfAdapter.isSupported(other)).toBe(false)
@@ -27,22 +25,6 @@ describe('Federal Bank credit card PDF adapter', () => {
   })
 
   describe('read', () => {
-    it('extracts account details', async () => {
-      const result = await federalCreditPdfAdapter.read(fixture)
-      expect(result.account).toEqual(expected.account)
-    })
-
-    it('extracts correct number of transactions', async () => {
-      const result = await federalCreditPdfAdapter.read(fixture)
-      expect(result.transactions).toHaveLength(expected.transactions.length)
-    })
-
-    it('matches full expected output', async () => {
-      const result = await federalCreditPdfAdapter.read(fixture)
-      const expectedResult = loadExpectedAdapterResult('federal/credit-april-2026.expected.json')
-      expect(result).toEqual(expectedResult)
-    })
-
     it('debits are negative, credits are positive', async () => {
       const result = await federalCreditPdfAdapter.read(fixture)
       const debits = result.transactions.filter((t) => t.amount < 0)

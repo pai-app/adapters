@@ -1,17 +1,17 @@
 /**
- * Paytm Payments Bank — registration module.
+ * Paytm Payments Bank — bank definition.
  *
- * Importing this file registers Paytm with the internal bank registry.
- * Two offerings: savings account and wallet.
+ * Exported as a plain `Bank` value and collected into `BANKS` in
+ * `banks/index.ts`. Two offerings: savings account and wallet.
  */
 
-import { registerBank } from '@/registry'
+import type { Bank } from '@/types'
 import { paytmSavingsPdfAdapter } from './savings-pdf'
 import { paytmWalletPdfAdapter } from './wallet-pdf'
 import { paytmSavingsEmailAdapter, paytmWalletEmailAdapter } from './email'
 import { PAYTM_EMAIL_DOMAINS } from './shared'
 
-registerBank({
+export const paytmBank: Bank = {
   id: 'paytm',
   emailDomains: PAYTM_EMAIL_DOMAINS,
   offerings: [
@@ -28,4 +28,4 @@ registerBank({
       emailAdapters: [paytmWalletEmailAdapter],
     },
   ],
-})
+}
