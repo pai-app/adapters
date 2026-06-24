@@ -44,5 +44,14 @@
       "amount": -30560,
       "description": "FOOD EXPRESS PRIVATE LIMITED IN"
     }
-  ]
+  ],
+  "statement": {
+    "asOf": 1747785600000,
+    "periodStart": 1745280000000,
+    "periodEnd": 1747785600000,
+    "closingBalance": -124560,
+    "creditLimit": 50000000,
+    "minimumDue": 12500,
+    "dueDate": 1749340800000
+  }
 }

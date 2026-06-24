@@ -94,16 +94,28 @@ function readFederalCreditPdf(pages: Pages): AdapterResult {
  * Best-effort extraction of the statement's closing figures. The total amount
  * due is a liability, so `closingBalance` is stored negative; `minimumDue` and
  * `creditLimit` are stored positive. Any figure that cannot be found is left
- * `undefined`. The statement is omitted entirely when no closing figure (due,
- * minimum, credit limit, or due date) can be read — the label-free positional
- * layout of older statements is not parsed.
+ * `undefined`. Newer statements label the figures; older statements use a
+ * fixed label-free *positional* layout, recovered relative to the billing
+ * period line. The statement is omitted only when nothing can be read.
  */
 function extractStatement(pages: Pages): StatementSummary | undefined {
   const period = extractPeriod(pages)
-  const dueDate = findDateAfterLabel(pages, PAYMENT_DUE_LABEL)
-  const totalDue = findAmountAfterLabel(pages, TOTAL_DUE_LABEL)
-  const minimumDue = findAmountAfterLabel(pages, MIN_DUE_LABEL)
-  const creditLimit = findAmountAfterLabel(pages, CREDIT_LIMIT_LABEL)
+  let dueDate = findDateAfterLabel(pages, PAYMENT_DUE_LABEL)
+  let totalDue = findAmountAfterLabel(pages, TOTAL_DUE_LABEL)
+  let minimumDue = findAmountAfterLabel(pages, MIN_DUE_LABEL)
+  let creditLimit = findAmountAfterLabel(pages, CREDIT_LIMIT_LABEL)
+
+  // Older statements carry no labels; recover the figures from their fixed
+  // positions around the billing-period line. Only attempted when the labelled
+  // path found nothing (so newer statements are unaffected) and a period anchors
+  // the layout.
+  if (totalDue === undefined && minimumDue === undefined && creditLimit === undefined && dueDate === undefined && period) {
+    const pos = extractPositional(pages)
+    totalDue = pos.totalDue
+    minimumDue = pos.minimumDue
+    creditLimit = pos.creditLimit
+    dueDate = pos.dueDate
+  }
 
   if (totalDue === undefined && minimumDue === undefined && creditLimit === undefined && dueDate === undefined) {
     return undefined
@@ -126,6 +138,48 @@ function extractPeriod(pages: Pages): { start: number; end: number } | undefined
     }
   }
   return undefined
+}
+
+// Amounts in the positional summary row carry exactly two decimals.
+const POS_AMOUNT_G = /\d{1,3}(?:,\d{2,3})*\.\d{2}/g
+const STANDALONE_AMOUNT = /^[\d,]+(?:\.\d{2})?$/
+
+/**
+ * Recover the closing figures from the older label-free layout, whose lines sit
+ * in a fixed order around the billing-period line `p`:
+ *   p-1  minimum amount due (standalone)
+ *   p    `<dd-mm-yyyy> to <dd-mm-yyyy>` period
+ *   p+1  `<credit limit> <cash limit> <statement date>`
+ *   p+2  `<available credit> <available cash> <payment due date>`
+ *   p+3  `<previous> <payments> <purchases> <total due>` (total due last)
+ */
+function extractPositional(pages: Pages): {
+  totalDue?: string; minimumDue?: string; creditLimit?: string; dueDate?: number
+} {
+  for (const page of pages) {
+    const p = page.findIndex((l) => PERIOD_RANGE.test(l))
+    if (p < 0) continue
+    const result: { totalDue?: string; minimumDue?: string; creditLimit?: string; dueDate?: number } = {}
+
+    if (p - 1 >= 0 && STANDALONE_AMOUNT.test(page[p - 1].trim())) {
+      result.minimumDue = page[p - 1].trim()
+    }
+    const limitMatch = p + 1 < page.length ? INDIAN_AMOUNT.exec(page[p + 1]) : null
+    if (limitMatch) result.creditLimit = limitMatch[1]
+    if (p + 2 < page.length) {
+      const dates = [...page[p + 2].matchAll(DATE_DASH_G)]
+      if (dates.length > 0) {
+        const last = dates[dates.length - 1]
+        result.dueDate = parseDate(`${last[1]}-${last[2]}-${last[3]}`)
+      }
+    }
+    for (let j = p + 3; j < Math.min(p + 5, page.length); j++) {
+      const amounts = [...page[j].matchAll(POS_AMOUNT_G)].map((m) => m[0])
+      if (amounts.length >= 3) { result.totalDue = amounts[amounts.length - 1]; break }
+    }
+    return result
+  }
+  return {}
 }
 
 function findDateAfterLabel(pages: Pages, labelRe: RegExp): number | undefined {

@@ -49,6 +49,11 @@ const WALLET_PERIOD =
 const CLOSING_LABEL = /^Closing Balance$/i
 // Looser than INDIAN_AMOUNT so a bare `Rs.0` closing balance is captured too.
 const RS_AMOUNT = /Rs\.\s*([\d,]+(?:\.\d{2})?)/
+// A running available balance: an amount immediately followed by its row date
+// (e.g. "Rs.785.48 26 FEB 24"). The transaction *amount* is never followed by a
+// date, so this only matches the balance column.
+const RUNNING_BALANCE_G =
+  /Rs\.\s*([\d,]+(?:\.\d{2})?)\s+\d{1,2}\s+(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+\d{2,4}/gi
 
 // ── Skip patterns ───────────────────────────────────────
 
@@ -142,7 +147,9 @@ function extractPeriod(pages: Pages): { start: number; end: number } | undefined
   return undefined
 }
 
-/** The closing balance follows the `Closing Balance` label and its date line. */
+/** The closing balance follows the `Closing Balance` label and its date line.
+ *  Simple single-month statements omit that block, so fall back to the last
+ *  running available balance printed against a row date. */
 function extractClosingBalance(pages: Pages): number | undefined {
   for (const page of pages) {
     for (let i = 0; i < page.length; i++) {
@@ -153,7 +160,15 @@ function extractClosingBalance(pages: Pages): number | undefined {
       }
     }
   }
-  return undefined
+  // Fallback: the last running available balance is the closing balance.
+  let last: string | undefined
+  for (const page of pages) {
+    for (const line of page) {
+      const matches = [...line.matchAll(RUNNING_BALANCE_G)]
+      if (matches.length > 0) last = matches[matches.length - 1][1]
+    }
+  }
+  return last !== undefined ? parseAmountToMinor(last, CURRENCY, 1) : undefined
 }
 
 // ── Metadata extraction ─────────────────────────────────
