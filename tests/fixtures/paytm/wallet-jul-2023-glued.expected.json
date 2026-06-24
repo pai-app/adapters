@@ -52,5 +52,11 @@
       "amount": 3000,
       "description": "Added to wallet from Paytm"
     }
-  ]
+  ],
+  "statement": {
+    "asOf": 1690761600000,
+    "periodStart": 1688169600000,
+    "periodEnd": 1690761600000,
+    "closingBalance": 0
+  }
 }

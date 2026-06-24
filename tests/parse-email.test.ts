@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import type {
-  Bank, PdfFile, AdapterResult, EmailAdapter, FileAdapter, MailMessage, MailAttachment,
+  Bank, PdfFile, AdapterResult, EmailAdapter, FileAdapter, MailMessage, MailAttachment, StatementSummary,
 } from '@/types'
 import { ParseError } from '@/types'
 
@@ -25,6 +25,13 @@ vi.mock('@/extract/excel', () => ({
 const { parseEmail } = await import('@/parse-email')
 
 const PDF: PdfFile = { kind: 'pdf', name: 'a.pdf', pages: [['x']] }
+
+const STATEMENT: StatementSummary = {
+  asOf: 1717200000000,
+  periodStart: 1714521600000,
+  periodEnd: 1717200000000,
+  closingBalance: 123450,
+}
 
 const RESULT: AdapterResult = {
   account: { currency: 'INR', accountNumber: ['123'] },
@@ -94,6 +101,30 @@ describe('parseEmail', () => {
     })
   })
 
+  it('passes the statement summary through from an email-content adapter', async () => {
+    mocks.banks = [{
+      id: 'bank',
+      emailDomains: ['bank.example'],
+      offerings: [{
+        id: 'off',
+        kind: 'bank',
+        emailAdapters: [emailAdapter(true, () => Promise.resolve({ ...RESULT, statement: STATEMENT }))],
+      }],
+    }]
+    const result = await parseEmail(email())
+    expect(result?.statement).toEqual(STATEMENT)
+  })
+
+  it('leaves statement undefined when the email-content adapter does not set it', async () => {
+    mocks.banks = [{
+      id: 'bank',
+      emailDomains: ['bank.example'],
+      offerings: [{ id: 'off', kind: 'bank', emailAdapters: [emailAdapter(true, () => Promise.resolve(RESULT))] }],
+    }]
+    const result = await parseEmail(email())
+    expect(result?.statement).toBeUndefined()
+  })
+
   it('throws ambiguous-format when multiple email adapters match', async () => {
     mocks.banks = [{
       id: 'bank',
@@ -154,6 +185,31 @@ describe('parseEmail', () => {
     const att = attachment({ mimeType: 'application/octet-stream', filename: 'doc.PDF' })
     const result = await parseEmail(email({ attachments: [att] }))
     expect(result?.offeringId).toBe('off')
+  })
+
+  it('passes the statement summary through from an attachment file adapter', async () => {
+    const adapter: FileAdapter = {
+      fileKind: 'pdf',
+      isSupported: () => true,
+      read: () => Promise.resolve({ ...RESULT, statement: STATEMENT }),
+    }
+    mocks.banks = [{
+      id: 'bank',
+      emailDomains: ['bank.example'],
+      offerings: [{ id: 'off', kind: 'bank', fileAdapters: [adapter] }],
+    }]
+    const result = await parseEmail(email({ attachments: [attachment()] }))
+    expect(result?.statement).toEqual(STATEMENT)
+  })
+
+  it('leaves statement undefined when the attachment file adapter does not set it', async () => {
+    mocks.banks = [{
+      id: 'bank',
+      emailDomains: ['bank.example'],
+      offerings: [{ id: 'off', kind: 'bank', fileAdapters: [fileAdapter(true)] }],
+    }]
+    const result = await parseEmail(email({ attachments: [attachment()] }))
+    expect(result?.statement).toBeUndefined()
   })
 
   it('skips attachments that are neither pdf nor excel', async () => {

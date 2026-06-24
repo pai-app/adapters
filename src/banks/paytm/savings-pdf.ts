@@ -6,11 +6,12 @@
  * minor-unit amounts, UTC dates).
  */
 
-import type { FileAdapter, AdapterResult, AccountDetails, TransactionDetails, PdfFile } from '@/types'
+import type { FileAdapter, AdapterResult, AccountDetails, TransactionDetails, PdfFile, StatementSummary } from '@/types'
 import { ParseError } from '@/types'
 import { parseAmountToMinor } from '@/util/amount'
+import { INDIAN_AMOUNT, INDIAN_AMOUNT_G } from '@/util/regex'
 import {
-  CURRENCY, TIME_REGEX, SKIP_AFTER, SKIP_DESCRIPTION, parseDateTimeAmPm,
+  CURRENCY, TIME_REGEX, SKIP_AFTER, SKIP_DESCRIPTION, parseDateTimeAmPm, parseLongDate,
 } from './shared'
 
 // ── Identification ──────────────────────────────────────
@@ -34,6 +35,15 @@ const DATE_LINE = /^(\d{1,2})\s+(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec
 // Amount line: sign + amount + balance. E.g. "+   Rs.5,000.00   Rs.6,105.40"
 const AMOUNT_LINE = /^([+-])\s*(?:Rs\.|₹)\s*(\d{1,3}(?:,\d{2,3})*(?:\.\d{2})?)\s+(?:Rs\.|₹)\s*(\d{1,3}(?:,\d{2,3})*(?:\.\d{2})?)$/
 const HEADER_LINE = /^DATE[\s]+&[\s]+TIME[\s]+TRANSACTION[\s]+DETAILS/i
+
+// ── Statement summary ───────────────────────────────────
+
+// Two summary layouts: a tabular header naming both balances over a value row,
+// or a stacked block where each value precedes its `CLOSING BALANCE` label.
+const SUMMARY_HEADER = /OPENING BALANCE.*CLOSING BALANCE/i
+const CLOSING_LABEL = /^CLOSING BALANCE$/i
+// "Account statement for: 01 Jul 2023 to 31 Jul 2023" — short or full month names.
+const STATEMENT_PERIOD = /Account statement for:\s*(\d{1,2}\s+[A-Za-z]+\s+\d{4})\s+to\s+(\d{1,2}\s+[A-Za-z]+\s+\d{4})/i
 
 type Pages = readonly (readonly string[])[]
 
@@ -62,6 +72,7 @@ function readPaytmSavingsPdf(pages: Pages): AdapterResult {
   }
   const holderName = extractHolderName(pages)
   const transactions = extractTransactions(pages)
+  const statement = extractStatement(pages)
 
   return {
     account: {
@@ -69,7 +80,58 @@ function readPaytmSavingsPdf(pages: Pages): AdapterResult {
       ...(holderName && { accountHolderName: [holderName] }),
     },
     transactions,
+    ...(statement && { statement }),
   }
+}
+
+// ── Statement summary extraction ────────────────────────
+
+/**
+ * Best-effort statement period + closing balance. A savings balance is an
+ * asset, so `closingBalance` is stored positive. Missing figures are left
+ * `undefined`; a statement with no figure at all is omitted.
+ */
+function extractStatement(pages: Pages): StatementSummary | undefined {
+  const period = extractPeriod(pages)
+  const closingBalance = extractClosingBalance(pages)
+
+  const summary: StatementSummary = {
+    ...(period && { periodStart: period.start, periodEnd: period.end, asOf: period.end }),
+    ...(closingBalance !== undefined && { closingBalance }),
+  }
+  return Object.keys(summary).length > 0 ? summary : undefined
+}
+
+function extractPeriod(pages: Pages): { start: number; end: number } | undefined {
+  for (const page of pages) {
+    for (const line of page) {
+      const match = STATEMENT_PERIOD.exec(line)
+      if (match) return { start: parseLongDate(match[1]), end: parseLongDate(match[2]) }
+    }
+  }
+  return undefined
+}
+
+function extractClosingBalance(pages: Pages): number | undefined {
+  // Tabular: a header row naming both balances, value row's 2nd amount is closing.
+  for (const page of pages) {
+    for (let i = 0; i < page.length; i++) {
+      if (!SUMMARY_HEADER.test(page[i])) continue
+      for (let j = i + 1; j < Math.min(i + 3, page.length); j++) {
+        const amounts = [...page[j].matchAll(INDIAN_AMOUNT_G)].map((m) => m[1])
+        if (amounts.length >= 2) return parseAmountToMinor(amounts[1], CURRENCY, 1)
+      }
+    }
+  }
+  // Stacked: a standalone "CLOSING BALANCE" label with the value on the line above.
+  for (const page of pages) {
+    for (let i = 1; i < page.length; i++) {
+      if (!CLOSING_LABEL.test(page[i].trim())) continue
+      const match = INDIAN_AMOUNT.exec(page[i - 1])
+      if (match?.[1]) return parseAmountToMinor(match[1], CURRENCY, 1)
+    }
+  }
+  return undefined
 }
 
 // ── Metadata extraction ─────────────────────────────────

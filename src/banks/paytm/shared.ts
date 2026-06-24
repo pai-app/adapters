@@ -5,6 +5,7 @@
 
 import type { MailMessage } from '@/types'
 import { parseDate } from '@/util/date'
+import { MONTH_NAMES } from '@/util/regex'
 
 /** Email sender domains for Paytm Payments Bank. */
 export const PAYTM_EMAIL_DOMAINS = ['paytmbank.com']
@@ -62,4 +63,19 @@ export function parseDateTimeAmPm(dateLine: string, timeLine: string): number {
   else if (ampm === 'AM' && hour === 12) hour = 0
 
   return baseDate + hour * 3_600_000 + minute * 60_000
+}
+
+/**
+ * Parse a `DD Month YYYY` summary date to ms epoch (UTC midnight). Accepts both
+ * short (`01 Jul 2023`) and full (`20 September 2021`) month names — the month
+ * is matched on its first three letters.
+ */
+export function parseLongDate(text: string): number {
+  const match = /^(\d{1,2})\s+([A-Za-z]{3,})\s+(\d{4})$/.exec(text.trim())
+  /* v8 ignore next */
+  if (!match) throw new Error(`Unparseable date: "${text}"`)
+  const monthIdx = MONTH_NAMES.indexOf(match[2].slice(0, 3).toLowerCase())
+  /* v8 ignore next */
+  if (monthIdx < 0) throw new Error(`Unknown month: ${match[2]}`)
+  return Date.UTC(parseInt(match[3], 10), monthIdx, parseInt(match[1], 10))
 }

@@ -96,5 +96,11 @@
       "amount": 17500000,
       "description": "NEFT CR-CITI0000004-GLOBEX-1608-SALARY PA YMENT-JOHN DOE-CITIN26600045678 SALARY PAYMENT FOR APR 2026 Value Dt 28/04/2026"
     }
-  ]
+  ],
+  "statement": {
+    "asOf": 1777507200000,
+    "periodStart": 1775001600000,
+    "periodEnd": 1777507200000,
+    "closingBalance": 47689950
+  }
 }

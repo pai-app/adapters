@@ -9,11 +9,11 @@
  * - **Separated**: time line → amount line → description/date lines.
  */
 
-import type { FileAdapter, AdapterResult, TransactionDetails, PdfFile } from '@/types'
+import type { FileAdapter, AdapterResult, TransactionDetails, PdfFile, StatementSummary } from '@/types'
 import { ParseError } from '@/types'
 import { parseAmountToMinor } from '@/util/amount'
 import {
-  CURRENCY, TIME_REGEX, SKIP_AFTER, SKIP_DESCRIPTION, parseDateTimeAmPm,
+  CURRENCY, TIME_REGEX, SKIP_AFTER, SKIP_DESCRIPTION, parseDateTimeAmPm, parseLongDate,
 } from './shared'
 
 // ── Identification ──────────────────────────────────────
@@ -38,6 +38,17 @@ const COMBINED =
   /^([+-])\s*Rs\.\s*(\d{1,3}(?:,\d{2,3})*(?:\.\d{2})?)\s*(.+?)\s+Rs\.\s*\d{1,3}(?:,\d{2,3})*(?:\.\d{2})?\s*(\d{2}\s+(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+\d{2,4})$/i
 const INLINE_DATE = /(\d{1,2}\s+(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+\d{2,4})/i
 const RS_BALANCE = /Rs\.\s*\d{1,3}(?:,\d{2,3})*(?:\.\d{2})?/g
+
+// ── Statement summary ───────────────────────────────────
+
+// History-style statements print a labelled summary: a `<start> to <end>`
+// period and a `Closing Balance` block (label, date, then `Rs.<value>`). Simple
+// single-month statements carry neither, so the summary is omitted for those.
+const WALLET_PERIOD =
+  /Wallet statement for\s+(\d{1,2}\s+[A-Za-z]{3,}\s+\d{4})\s+to\s+(\d{1,2}\s+[A-Za-z]{3,}\s+\d{4})/i
+const CLOSING_LABEL = /^Closing Balance$/i
+// Looser than INDIAN_AMOUNT so a bare `Rs.0` closing balance is captured too.
+const RS_AMOUNT = /Rs\.\s*([\d,]+(?:\.\d{2})?)/
 
 // ── Skip patterns ───────────────────────────────────────
 
@@ -95,7 +106,54 @@ function readPaytmWalletPdf(pages: Pages): AdapterResult {
   if (!account.accountNumber?.[0]) {
     throw new ParseError('Unable to extract account from Paytm wallet PDF', { kind: 'parse-failed' })
   }
-  return { account, transactions: extractTransactions(pages) }
+  const statement = extractStatement(pages)
+  return {
+    account,
+    transactions: extractTransactions(pages),
+    ...(statement && { statement }),
+  }
+}
+
+// ── Statement summary extraction ────────────────────────
+
+/**
+ * Best-effort statement period + closing balance. A wallet balance is an
+ * asset, so `closingBalance` is stored positive. Missing figures are left
+ * `undefined`; a statement with no figure at all is omitted.
+ */
+function extractStatement(pages: Pages): StatementSummary | undefined {
+  const period = extractPeriod(pages)
+  const closingBalance = extractClosingBalance(pages)
+
+  const summary: StatementSummary = {
+    ...(period && { periodStart: period.start, periodEnd: period.end, asOf: period.end }),
+    ...(closingBalance !== undefined && { closingBalance }),
+  }
+  return Object.keys(summary).length > 0 ? summary : undefined
+}
+
+function extractPeriod(pages: Pages): { start: number; end: number } | undefined {
+  for (const page of pages) {
+    for (const line of page) {
+      const match = WALLET_PERIOD.exec(line)
+      if (match) return { start: parseLongDate(match[1]), end: parseLongDate(match[2]) }
+    }
+  }
+  return undefined
+}
+
+/** The closing balance follows the `Closing Balance` label and its date line. */
+function extractClosingBalance(pages: Pages): number | undefined {
+  for (const page of pages) {
+    for (let i = 0; i < page.length; i++) {
+      if (!CLOSING_LABEL.test(page[i].trim())) continue
+      for (let j = i + 1; j < Math.min(i + 4, page.length); j++) {
+        const match = RS_AMOUNT.exec(page[j])
+        if (match?.[1]) return parseAmountToMinor(match[1], CURRENCY, 1)
+      }
+    }
+  }
+  return undefined
 }
 
 // ── Metadata extraction ─────────────────────────────────

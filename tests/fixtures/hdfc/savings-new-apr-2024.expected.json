@@ -116,5 +116,11 @@
       "amount": 1500000,
       "description": "UPI-RAHUL VIKRAM SHARMA-fakeuser3@okhdfcbank-F DRL0005556-412765432109-miscValue Dt 29/04/2024 Ref 412765432109"
     }
-  ]
+  ],
+  "statement": {
+    "asOf": 1714435200000,
+    "periodStart": 1711929600000,
+    "periodEnd": 1714435200000,
+    "closingBalance": 126580300
+  }
 }

@@ -267,5 +267,11 @@
       "amount": 2900,
       "description": "Added to wallet from Paytm Payments Bank  Transaction ID - 45903569147"
     }
-  ]
+  ],
+  "statement": {
+    "asOf": 1692403200000,
+    "periodStart": 1684454400000,
+    "periodEnd": 1692403200000,
+    "closingBalance": 0
+  }
 }

@@ -80,5 +80,14 @@
       "amount": -54500,
       "description": "SCREENMAX NEXUS CENTRALBANGALORE"
     }
-  ]
+  ],
+  "statement": {
+    "asOf": 1779235200000,
+    "periodStart": 1776729600000,
+    "periodEnd": 1779235200000,
+    "closingBalance": -6239250,
+    "creditLimit": 100000000,
+    "minimumDue": 312000,
+    "dueDate": 1780963200000
+  }
 }

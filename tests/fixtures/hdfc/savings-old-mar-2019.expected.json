@@ -37,5 +37,11 @@
       "amount": 5275000,
       "description": "SALARY ACME TECHNOLOGIES PVT LTD Value Dt 29/03/2019 Ref 903286789012"
     }
-  ]
+  ],
+  "statement": {
+    "asOf": 1553817600000,
+    "periodStart": 1551398400000,
+    "periodEnd": 1553817600000,
+    "closingBalance": 37805000
+  }
 }

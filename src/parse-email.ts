@@ -63,6 +63,7 @@ export async function parseEmail(
           kind: match.offering.kind,
           account: result.account,
           transactions: result.transactions,
+          statement: result.statement,
         },
       })
     }
@@ -137,6 +138,7 @@ export async function parseEmail(
         kind: match.offering.kind,
         account: result.account,
         transactions: result.transactions,
+        statement: result.statement,
       }
     }
   }

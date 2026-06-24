@@ -47,5 +47,14 @@
       "amount": -41000,
       "description": "GLOW BEAUTY STUDIO Bangalore IN"
     }
-  ]
+  ],
+  "statement": {
+    "asOf": 1779321600000,
+    "periodStart": 1776816000000,
+    "periodEnd": 1779321600000,
+    "closingBalance": -898665,
+    "creditLimit": 60000000,
+    "minimumDue": 44933,
+    "dueDate": 1780876800000
+  }
 }

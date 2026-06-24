@@ -198,5 +198,11 @@
       "amount": 42500,
       "description": "Received from: K SURESH VPA: sureshk1@ybl A/C No: 50100290000001 (HDFC0001225) Transaction ID: S10000036 Reference Number: 100000000029"
     }
-  ]
+  ],
+  "statement": {
+    "asOf": 1632960000000,
+    "periodStart": 1632096000000,
+    "periodEnd": 1632960000000,
+    "closingBalance": 73400
+  }
 }

@@ -6,11 +6,11 @@
  * UTC dates).
  */
 
-import type { FileAdapter, AdapterResult, TransactionDetails, PdfFile } from '@/types'
+import type { FileAdapter, AdapterResult, TransactionDetails, PdfFile, StatementSummary } from '@/types'
 import { ParseError } from '@/types'
 import { parseDate } from '@/util/date'
 import { parseAmountToMinor } from '@/util/amount'
-import { INDIAN_AMOUNT_G, DATE_DASH_G } from '@/util/regex'
+import { INDIAN_AMOUNT, INDIAN_AMOUNT_G, DATE_DASH_G } from '@/util/regex'
 
 const CURRENCY = 'INR'
 
@@ -18,6 +18,21 @@ const CURRENCY = 'INR'
 
 const FEDERAL_EMAIL = /@federalbank\.co\.in/i
 const FINTECH = /Fintech Partnerships/i
+
+// ── Statement summary ───────────────────────────────────
+
+// Federal prints dates as `DD-MM-YYYY`. The billing period appears as a
+// `<date> to <date>` range on a single line (sometimes trailed by the APR).
+const FED_DATE = /(\d{1,2}-\d{1,2}-\d{2,4})/
+const PERIOD_RANGE = /(\d{1,2}-\d{1,2}-\d{2,4})\s+to\s+(\d{1,2}-\d{1,2}-\d{2,4})/i
+// The amount labels require a trailing `:` or `(in Rs.)` so they only match the
+// real summary rows — never the "Total Amount Due on statement dated…" prose in
+// the interest-calculation illustration printed on later pages.
+const TOTAL_DUE_LABEL = /Total (?:Amount )?Due\s*(?:\(in\s+Rs\.?\)|:)/i
+const MIN_DUE_LABEL = /Minimum (?:Amount )?Due\s*(?:\(in\s+Rs\.?\)|:)/i
+// `^` anchor keeps this off the "Available Credit Limit" header.
+const CREDIT_LIMIT_LABEL = /^Credit Limit\b/i
+const PAYMENT_DUE_LABEL = /Payment Due Date/i
 
 // ── Account ─────────────────────────────────────────────
 
@@ -60,6 +75,7 @@ function readFederalCreditPdf(pages: Pages): AdapterResult {
   }
   const holderName = extractHolderName(pages)
   const transactions = extractTransactions(pages)
+  const statement = extractStatement(pages)
 
   return {
     account: {
@@ -68,7 +84,76 @@ function readFederalCreditPdf(pages: Pages): AdapterResult {
       ...(holderName && { accountHolderName: [holderName] }),
     },
     transactions,
+    ...(statement && { statement }),
   }
+}
+
+// ── Statement summary extraction ────────────────────────
+
+/**
+ * Best-effort extraction of the statement's closing figures. The total amount
+ * due is a liability, so `closingBalance` is stored negative; `minimumDue` and
+ * `creditLimit` are stored positive. Any figure that cannot be found is left
+ * `undefined`. The statement is omitted entirely when no closing figure (due,
+ * minimum, credit limit, or due date) can be read — the label-free positional
+ * layout of older statements is not parsed.
+ */
+function extractStatement(pages: Pages): StatementSummary | undefined {
+  const period = extractPeriod(pages)
+  const dueDate = findDateAfterLabel(pages, PAYMENT_DUE_LABEL)
+  const totalDue = findAmountAfterLabel(pages, TOTAL_DUE_LABEL)
+  const minimumDue = findAmountAfterLabel(pages, MIN_DUE_LABEL)
+  const creditLimit = findAmountAfterLabel(pages, CREDIT_LIMIT_LABEL)
+
+  if (totalDue === undefined && minimumDue === undefined && creditLimit === undefined && dueDate === undefined) {
+    return undefined
+  }
+
+  return {
+    ...(period && { periodStart: period.start, periodEnd: period.end, asOf: period.end }),
+    ...(totalDue !== undefined && { closingBalance: parseAmountToMinor(totalDue, CURRENCY, -1) }),
+    ...(creditLimit !== undefined && { creditLimit: parseAmountToMinor(creditLimit, CURRENCY, 1) }),
+    ...(minimumDue !== undefined && { minimumDue: parseAmountToMinor(minimumDue, CURRENCY, 1) }),
+    ...(dueDate !== undefined && { dueDate }),
+  }
+}
+
+function extractPeriod(pages: Pages): { start: number; end: number } | undefined {
+  for (const page of pages) {
+    for (const line of page) {
+      const match = PERIOD_RANGE.exec(line)
+      if (match) return { start: parseDate(match[1]), end: parseDate(match[2]) }
+    }
+  }
+  return undefined
+}
+
+function findDateAfterLabel(pages: Pages, labelRe: RegExp): number | undefined {
+  for (const page of pages) {
+    for (let i = 0; i < page.length; i++) {
+      if (!labelRe.test(page[i])) continue
+      for (let j = i; j < Math.min(i + 3, page.length); j++) {
+        const match = FED_DATE.exec(page[j])
+        if (match?.[1]) return parseDate(match[1])
+      }
+    }
+  }
+  return undefined
+}
+
+// The min-due value can sit several lines below its label (the holder's address
+// block prints between them), so the look-ahead window is generous.
+function findAmountAfterLabel(pages: Pages, labelRe: RegExp): string | undefined {
+  for (const page of pages) {
+    for (let i = 0; i < page.length; i++) {
+      if (!labelRe.test(page[i])) continue
+      for (let j = i; j < Math.min(i + 7, page.length); j++) {
+        const match = INDIAN_AMOUNT.exec(page[j])
+        if (match?.[1]) return match[1]
+      }
+    }
+  }
+  return undefined
 }
 
 // ── Metadata extraction ─────────────────────────────────

@@ -502,5 +502,11 @@
       "amount": 129900,
       "description": "Added to wallet from PPBL"
     }
-  ]
+  ],
+  "statement": {
+    "asOf": 1680220800000,
+    "periodStart": 1648771200000,
+    "periodEnd": 1680220800000,
+    "closingBalance": 2500
+  }
 }

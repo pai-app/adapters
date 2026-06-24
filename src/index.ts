@@ -11,6 +11,7 @@ export type {
   AccountKind,
   AccountDetails,
   TransactionDetails,
+  StatementSummary,
 } from './types'
 export type {
   BankCatalogEntry,

@@ -358,5 +358,11 @@
       "amount": -9000,
       "description": "VPA: paytmqr281005050101tuocketpjxc3@paytm Transaction ID: S43960731 Reference Number: 321269055105 Sent to: Sri Udupi Park"
     }
-  ]
+  ],
+  "statement": {
+    "asOf": 1690761600000,
+    "periodStart": 1688169600000,
+    "periodEnd": 1690761600000,
+    "closingBalance": 3000400
+  }
 }
