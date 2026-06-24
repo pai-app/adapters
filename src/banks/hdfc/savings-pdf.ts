@@ -5,11 +5,11 @@
  * the new type contracts (`FileAdapter`, `AdapterResult`, minor-unit amounts).
  */
 
-import type { FileAdapter, AdapterResult, TransactionDetails, PdfFile } from '@/types'
+import type { FileAdapter, AdapterResult, TransactionDetails, PdfFile, StatementSummary } from '@/types'
 import { ParseError } from '@/types'
 import { parseDate } from '@/util/date'
 import { parseAmountFloat, parseAmountToMinor } from '@/util/amount'
-import { INDIAN_AMOUNT_G, DATE_SLASH_START, REFERENCE_NUMBER } from '@/util/regex'
+import { INDIAN_AMOUNT, INDIAN_AMOUNT_G, DATE_SLASH_START, REFERENCE_NUMBER } from '@/util/regex'
 import { HDFC_IFSC_REGEX, HDFC_IFSC_LABEL_REGEX } from './shared'
 
 const CURRENCY = 'INR'
@@ -17,6 +17,23 @@ const CURRENCY = 'INR'
 const ACCOUNT_NUMBER_LABEL = /Account[\s]+Number|Account[\s]+No/i
 const ACCOUNT_NUMBER_DIGITS = /(\d{10,})/
 const OPENING_BALANCE_LABEL = /Opening[\s]+Balance/i
+// Statement period: "Statement ... From : 01/04/2026 To : 30/04/2026" on one
+// line (year may be 2- or 4-digit across statement eras).
+const STATEMENT_PERIOD = /From\s*:?\s*(\d{1,2}\/\d{1,2}\/\d{2,4})\s+To\s*:?\s*(\d{1,2}\/\d{1,2}\/\d{2,4})/i
+// Closing balance lives in the trailing STATEMENT SUMMARY block, in one of two
+// layouts: a tabular header row naming both opening & closing balances followed
+// by a value row (closing = last amount), or a standalone "Closing Balance"
+// label with the value on the next line. The transaction column header also
+// contains "Closing Balance", so neither anchor may match a bare column header.
+const OPENING_BAL_TEXT = /Opening[\s]*Balance/i
+const CLOSING_BAL_TEXT = /Closing[\s]*Bal/i
+const CLOSING_BAL_LABEL = /^Closing[\s]*Balance\*?$/i
+// Combined-statement summary amounts are glued with no separators
+// ("12,65,803.002,50,003.00…"); match each as an exact-2-decimal Indian amount
+// so the run splits cleanly (the shared INDIAN_AMOUNT's greedy `.\d+` does not).
+const SUMMARY_AMOUNT_G = /\d{1,3}(?:,\d{2,3})*\.\d{2}/g
+// Period without a "From" prefix, e.g. the combined layout's ": 01/04/2024 To 30/04/2024".
+const PERIOD_TO = /(\d{1,2}\/\d{1,2}\/\d{2,4})\s+To\s*:?\s*(\d{1,2}\/\d{1,2}\/\d{2,4})/i
 const HOLDER_NAME = /^([A-Z][a-z]+(?:\s+[A-Z][a-z]+)+)$/
 // Header block style: colon-prefixed value on its own line
 const CUSTOMER_ID_VALUE = /^:\s*(\d{7,9})$/
@@ -66,6 +83,7 @@ function readHdfcSavingsPdf(pages: Pages): AdapterResult {
   const ifscCode = extractIfscCode(pages)
   const micrCode = extractMicrCode(pages)
   const transactions = extractTransactions(pages)
+  const statement = extractStatement(pages)
 
   return {
     account: {
@@ -77,7 +95,72 @@ function readHdfcSavingsPdf(pages: Pages): AdapterResult {
       ...(micrCode && { micrCode: [micrCode] }),
     },
     transactions,
+    ...(statement && { statement }),
   }
+}
+
+// ── Statement summary extraction ────────────────────────
+
+/**
+ * Best-effort extraction of the statement period and closing balance. A savings
+ * balance is an asset, so `closingBalance` is stored positive. Any figure that
+ * cannot be found is left `undefined` — a missing figure never fails the parse.
+ */
+function extractStatement(pages: Pages): StatementSummary | undefined {
+  const period = extractPeriod(pages)
+  const closingBalance = extractClosingBalance(pages)
+
+  const summary: StatementSummary = {
+    ...(period && { periodStart: period.start, periodEnd: period.end, asOf: period.end }),
+    ...(closingBalance !== undefined && { closingBalance }),
+  }
+  return Object.keys(summary).length > 0 ? summary : undefined
+}
+
+function extractPeriod(pages: Pages): { start: number; end: number } | undefined {
+  for (const page of pages) {
+    for (const line of page) {
+      const match = STATEMENT_PERIOD.exec(line) ?? PERIOD_TO.exec(line)
+      if (match) return { start: parseDate(match[1]), end: parseDate(match[2]) }
+    }
+  }
+  return undefined
+}
+
+function extractClosingBalance(pages: Pages): number | undefined {
+  // Summary header naming BOTH opening and closing balances. Column order and
+  // value-row position vary by statement era:
+  //  - classic:   "Opening Balance … Closing Bal" (closing last), values BELOW
+  //  - combined:  "Closing Balance…Opening Balance" (closing first), values ABOVE
+  // The transaction column header names "Closing Balance" but not "Opening", so
+  // the dual test excludes it. Pick the closing amount by the header's column
+  // order; combined-layout value rows are glued, so split with SUMMARY_AMOUNT_G.
+  for (const page of pages) {
+    for (let i = 0; i < page.length; i++) {
+      const header = page[i]
+      if (!OPENING_BAL_TEXT.test(header) || !CLOSING_BAL_TEXT.test(header)) continue
+      const closingFirst = header.search(/Closing/i) < header.search(/Opening/i)
+      for (const j of [i + 1, i + 2, i - 1]) {
+        if (j < 0 || j >= page.length) continue
+        const amounts = page[j].match(SUMMARY_AMOUNT_G)
+        if (amounts && amounts.length >= 2) {
+          const pick = closingFirst ? amounts[0] : amounts[amounts.length - 1]
+          return parseAmountToMinor(pick, CURRENCY, 1)
+        }
+      }
+    }
+  }
+  // Stacked summary: a standalone "Closing Balance" label with the value below.
+  for (const page of pages) {
+    for (let i = 0; i < page.length; i++) {
+      if (!CLOSING_BAL_LABEL.test(page[i].trim())) continue
+      for (let j = i + 1; j < Math.min(i + 3, page.length); j++) {
+        const match = INDIAN_AMOUNT.exec(page[j])
+        if (match?.[1]) return parseAmountToMinor(match[1], CURRENCY, 1)
+      }
+    }
+  }
+  return undefined
 }
 
 // ── Metadata extraction ─────────────────────────────────

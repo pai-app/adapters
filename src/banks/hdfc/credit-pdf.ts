@@ -5,10 +5,11 @@
  * the new type contracts (`FileAdapter`, `AdapterResult`, minor-unit amounts).
  */
 
-import type { FileAdapter, AdapterResult, TransactionDetails, PdfFile } from '@/types'
+import type { FileAdapter, AdapterResult, TransactionDetails, PdfFile, StatementSummary } from '@/types'
 import { ParseError } from '@/types'
-import { parseDateTime } from '@/util/date'
+import { parseDate, parseDateTime } from '@/util/date'
 import { parseAmountToMinor } from '@/util/amount'
+import { INDIAN_AMOUNT, INDIAN_AMOUNT_G } from '@/util/regex'
 
 const CURRENCY = 'INR'
 
@@ -28,6 +29,21 @@ const NUMERIC_ACCOUNT = /\d{10,}/
 
 const TX_HEADER = /DATE & TIME\s+TRANSACTION DESCRIPTION/i
 const HOLDER_NAME = /^[A-Z][A-Z\s]+[A-Z]$/
+
+// ── Statement summary ───────────────────────────────────
+
+const BILLING_PERIOD_LABEL = /Billing Period/i
+const PAYMENT_DUE_LABEL = /(?:Payment )?Due Date/i
+const TOTAL_DUE_LABEL = /Total Amount Due|Total Dues/i
+const MIN_DUE_LABEL = /Minimum (?:Amount )?Due/i
+// `^` anchor keeps this off the "Available Credit Limit" header.
+const CREDIT_LIMIT_LABEL = /^(?:Total )?Credit Limit/i
+const AVAILABLE_CREDIT_LABEL = /Available Credit Limit/i
+// HDFC prints dates as `DD/MM/YYYY` (savings-style cards) or `DD Mon[,] YYYY`
+// (Diners-style cards); accept both.
+const ANY_DATE = /(\d{1,2}\/\d{1,2}\/\d{4}|\d{1,2}\s+[A-Za-z]{3},?\s+\d{4})/
+const PERIOD_RANGE =
+  /(\d{1,2}\/\d{1,2}\/\d{4}|\d{1,2}\s+[A-Za-z]{3},?\s+\d{4})\s*(?:to|-|–)\s*(\d{1,2}\/\d{1,2}\/\d{4}|\d{1,2}\s+[A-Za-z]{3},?\s+\d{4})/i
 
 // ── Transactions ────────────────────────────────────────
 
@@ -83,6 +99,7 @@ function readHdfcCreditPdf(pages: Pages): AdapterResult {
   const holderName = extractHolderName(pages)
   const altAccount = extractAltAccountNumber(pages)
   const transactions = extractTransactions(pages)
+  const statement = extractStatement(pages)
 
   return {
     account: {
@@ -92,7 +109,95 @@ function readHdfcCreditPdf(pages: Pages): AdapterResult {
       ...(altAccount && { customerId: [altAccount] }),
     },
     transactions,
+    ...(statement && { statement }),
   }
+}
+
+// ── Statement summary extraction ────────────────────────
+
+/**
+ * Best-effort extraction of the statement's closing figures. The total amount
+ * due is a liability, so `closingBalance` is stored negative; `minimumDue`,
+ * `creditLimit`, and `available` are stored positive. Any figure that cannot be
+ * found is left `undefined` — a missing figure never fails the parse.
+ */
+function extractStatement(pages: Pages): StatementSummary | undefined {
+  const period = extractBillingPeriod(pages)
+  const dueDate = findDateAfterLabel(pages, PAYMENT_DUE_LABEL)
+  const totalDue = findAmountAfterLabel(pages, TOTAL_DUE_LABEL)
+  const minimumDue = findAmountAfterLabel(pages, MIN_DUE_LABEL)
+  const creditLimit = findAmountAfterLabel(pages, CREDIT_LIMIT_LABEL)
+  // Available credit is optional: only emit it when a single amount sits next
+  // to the label (some cards pack total/available/cash on one multi-amount row).
+  const available = findSingleAmountAfterLabel(pages, AVAILABLE_CREDIT_LABEL)
+
+  const summary: StatementSummary = {
+    ...(period && { periodStart: period.start, periodEnd: period.end, asOf: period.end }),
+    ...(totalDue !== undefined && { closingBalance: parseAmountToMinor(totalDue, CURRENCY, -1) }),
+    ...(available !== undefined && { available: parseAmountToMinor(available, CURRENCY, 1) }),
+    ...(creditLimit !== undefined && { creditLimit: parseAmountToMinor(creditLimit, CURRENCY, 1) }),
+    ...(minimumDue !== undefined && { minimumDue: parseAmountToMinor(minimumDue, CURRENCY, 1) }),
+    ...(dueDate !== undefined && { dueDate }),
+  }
+  return Object.keys(summary).length > 0 ? summary : undefined
+}
+
+function extractBillingPeriod(pages: Pages): { start: number; end: number } | undefined {
+  for (const page of pages) {
+    for (let i = 0; i < page.length; i++) {
+      if (!BILLING_PERIOD_LABEL.test(page[i])) continue
+      for (let j = i; j < Math.min(i + 6, page.length); j++) {
+        const match = PERIOD_RANGE.exec(page[j])
+        if (match) return { start: parseFlexDate(match[1]), end: parseFlexDate(match[2]) }
+      }
+    }
+  }
+  return undefined
+}
+
+function findDateAfterLabel(pages: Pages, labelRe: RegExp): number | undefined {
+  for (const page of pages) {
+    for (let i = 0; i < page.length; i++) {
+      if (!labelRe.test(page[i])) continue
+      for (let j = i; j < Math.min(i + 3, page.length); j++) {
+        const match = ANY_DATE.exec(page[j])
+        if (match?.[1]) return parseFlexDate(match[1])
+      }
+    }
+  }
+  return undefined
+}
+
+function findAmountAfterLabel(pages: Pages, labelRe: RegExp): string | undefined {
+  for (const page of pages) {
+    for (let i = 0; i < page.length; i++) {
+      if (!labelRe.test(page[i])) continue
+      for (let j = i; j < Math.min(i + 4, page.length); j++) {
+        const match = INDIAN_AMOUNT.exec(page[j])
+        if (match?.[1]) return match[1]
+      }
+    }
+  }
+  return undefined
+}
+
+function findSingleAmountAfterLabel(pages: Pages, labelRe: RegExp): string | undefined {
+  for (const page of pages) {
+    for (let i = 0; i < page.length; i++) {
+      if (!labelRe.test(page[i])) continue
+      for (let j = i; j < Math.min(i + 3, page.length); j++) {
+        const amounts = [...page[j].matchAll(INDIAN_AMOUNT_G)]
+        if (amounts.length === 1) return amounts[0][1]
+        if (amounts.length > 1) return undefined
+      }
+    }
+  }
+  return undefined
+}
+
+/** Parse a `DD/MM/YYYY` or `DD Mon[,] YYYY` date to ms epoch. */
+function parseFlexDate(text: string): number {
+  return parseDate(text.replace(/,/g, ' ').replace(/\s+/g, ' ').trim())
 }
 
 // ── Metadata extraction ─────────────────────────────────

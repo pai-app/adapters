@@ -67,6 +67,7 @@ export async function parseFile(
     kind: match.offering.kind,
     account: result.account,
     transactions: result.transactions,
+    statement: result.statement,
   }
 }
 

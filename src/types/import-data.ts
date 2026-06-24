@@ -45,9 +45,28 @@ export type TransactionDetails = {
 }
 
 /**
+ * Best-effort summary of an account statement's closing figures.
+ *
+ * Every field is optional — a missing summary (or a missing field) never fails
+ * the parse. Amounts are signed integers in minor units of the statement's
+ * currency: assets are positive, liabilities (credit-card/loan) are negative.
+ * Timestamps are ms epoch.
+ */
+export type StatementSummary = {
+  readonly asOf?: number            // statement close date (ms epoch) — the latest periodEnd
+  readonly periodStart?: number     // statement period start
+  readonly periodEnd?: number       // statement period end — the source of asOf
+  readonly closingBalance?: number  // signed minor units — assets +, liabilities (credit-card/loan) −
+  readonly available?: number       // available funds / available credit
+  readonly creditLimit?: number     // credit-card
+  readonly minimumDue?: number      // credit-card
+  readonly dueDate?: number         // credit-card payment due (ms epoch)
+}
+
+/**
  * The package's public output. `bankId`, `offeringId`, and `kind` are filled
  * by the package from the matched bank/offering. Parsers only return
- * `{ account, transactions }`.
+ * `{ account, transactions }` (and optionally `statement`).
  */
 export type ImportData = {
   readonly bankId: string
@@ -55,6 +74,7 @@ export type ImportData = {
   readonly kind: AccountKind
   readonly account: AccountDetails
   readonly transactions: readonly TransactionDetails[]
+  readonly statement?: StatementSummary
 }
 
 /**
@@ -64,4 +84,5 @@ export type ImportData = {
 export type AdapterResult = {
   readonly account: AccountDetails
   readonly transactions: readonly TransactionDetails[]
+  readonly statement?: StatementSummary
 }

@@ -53,5 +53,11 @@
       "amount": 17500000,
       "description": "NEFT Credit Salary Payment - Globex Corp"
     }
-  ]
+  ],
+  "statement": {
+    "asOf": 1777507200000,
+    "periodStart": 1775001600000,
+    "periodEnd": 1777507200000,
+    "closingBalance": 22030275
+  }
 }

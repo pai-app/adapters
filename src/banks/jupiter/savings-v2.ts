@@ -18,7 +18,7 @@
  *   running-balance indicator). Particulars wrap with a hyphen-space break.
  */
 
-import type { AdapterResult, TransactionDetails } from '@/types'
+import type { AdapterResult, TransactionDetails, StatementSummary } from '@/types'
 import { ParseError } from '@/types'
 import { parseDate } from '@/util/date'
 import { parseAmountToMinor } from '@/util/amount'
@@ -32,6 +32,11 @@ const CUSTOMER_ID = /Customer ID \(UCIC\):\s*([X\d]{6,})/
 const IFSC_CODE = /IFSC:\s*([A-Z]{4}0[A-Z0-9]{6})/i
 const SWIFT_CODE = /Swift Code:\s*([A-Z0-9]{8,11})/i
 const MICR_CODE = /MICR code:\s*(\d{9})/
+
+// "Statement Period: 08/02/2026 to 07/03/2026" — slash-date range.
+const STATEMENT_PERIOD = /Statement Period:\s*(\d{1,2}\/\d{1,2}\/\d{2,4})\s+to\s+(\d{1,2}\/\d{1,2}\/\d{2,4})/i
+// "Available Balance: 21,709.88" — the statement's closing balance.
+const AVAILABLE_BALANCE = /Available Balance:\s*([\d,]+\.\d{2})/
 
 // "09/02/2026 09/02/2026 UPIOUT/640630841010/vy-"
 const ROW_START = /^(\d{2}\/\d{2}\/\d{4})\s+\d{2}\/\d{2}\/\d{4}\s+(.*)$/
@@ -51,6 +56,7 @@ export function readJupiterV2(pages: Pages): AdapterResult {
   const micrCode = extractMatch(pages, MICR_CODE)
   const swiftCode = extractMatch(pages, SWIFT_CODE)
   const transactions = parseTransactionLines(collectLines(pages))
+  const statement = extractStatement(pages)
 
   return {
     account: {
@@ -63,7 +69,37 @@ export function readJupiterV2(pages: Pages): AdapterResult {
       ...(swiftCode && { swiftCode: [swiftCode.toUpperCase()] }),
     },
     transactions,
+    ...(statement && { statement }),
   }
+}
+
+// ── Statement summary extraction ───────────────────────
+
+/**
+ * Best-effort statement period + closing balance. A savings balance is an
+ * asset, so `closingBalance` is stored positive. The emailed statement prints
+ * its closing figure as "Available Balance". Missing figures are left
+ * `undefined`; a statement with no figure at all is omitted.
+ */
+function extractStatement(pages: Pages): StatementSummary | undefined {
+  const period = extractPeriod(pages)
+  const available = extractMatch(pages, AVAILABLE_BALANCE)
+
+  const summary: StatementSummary = {
+    ...(period && { periodStart: period.start, periodEnd: period.end, asOf: period.end }),
+    ...(available !== null && { closingBalance: parseAmountToMinor(available, CURRENCY, 1) }),
+  }
+  return Object.keys(summary).length > 0 ? summary : undefined
+}
+
+function extractPeriod(pages: Pages): { start: number; end: number } | undefined {
+  for (const page of pages) {
+    for (const line of page) {
+      const match = STATEMENT_PERIOD.exec(line)
+      if (match) return { start: parseDate(match[1]), end: parseDate(match[2]) }
+    }
+  }
+  return undefined
 }
 
 /** Flatten every page into one line stream (headers/footers are skipped by the row parser). */

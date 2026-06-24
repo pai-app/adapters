@@ -14,7 +14,7 @@
  *   Particulars occasionally wrap across physical lines.
  */
 
-import type { AdapterResult, TransactionDetails } from '@/types'
+import type { AdapterResult, TransactionDetails, StatementSummary } from '@/types'
 import { ParseError } from '@/types'
 import { parseDate } from '@/util/date'
 import { parseAmountToMinor } from '@/util/amount'
@@ -28,6 +28,9 @@ const CUSTOMER_ID = /Customer ID\s+(\d{6,})/
 const IFSC_CODE = /^IFSC\s+([A-Z]{4}0[A-Z0-9]{6})\b/
 const MICR_CODE = /MICR Code\s+(\d{9})\b/
 const SWIFT_CODE = /SWIFT Code\s+([A-Z0-9]{8,11})\b/
+
+// "STATEMENT OF ACCOUNT PERIOD : 01-MAR-2026 to 31-MAR-2026" — DD-MON-YYYY range.
+const STATEMENT_PERIOD = /PERIOD\s*:?\s*(\d{1,2}-[A-Za-z]{3}-\d{2,4})\s+to\s+(\d{1,2}-[A-Za-z]{3}-\d{2,4})/i
 
 const DATE_START = /^\d{1,2}\/\d{1,2}\/\d{2,4}\b/
 const FIRST_DATE = /^(\d{1,2}\/\d{1,2}\/\d{2,4})/
@@ -48,6 +51,7 @@ export function readJupiterV1(pages: Pages): AdapterResult {
   const micrCode = extractMatch(pages, MICR_CODE)
   const swiftCode = extractMatch(pages, SWIFT_CODE)
   const transactions = parseTransactionLines(collectTransactionLines(pages))
+  const statement = extractStatement(pages)
 
   return {
     account: {
@@ -60,7 +64,57 @@ export function readJupiterV1(pages: Pages): AdapterResult {
       ...(swiftCode && { swiftCode: [swiftCode.toUpperCase()] }),
     },
     transactions,
+    ...(statement && { statement }),
   }
+}
+
+// ── Statement summary extraction ────────────────────────
+
+/**
+ * Best-effort statement period + closing balance. A savings balance is an
+ * asset, so `closingBalance` is stored positive. The closing balance is the
+ * running balance on the final transaction row. Missing figures are left
+ * `undefined`; a statement with no figure at all is omitted.
+ */
+function extractStatement(pages: Pages): StatementSummary | undefined {
+  const period = extractPeriod(pages)
+  const closingBalance = extractClosingBalance(pages)
+
+  const summary: StatementSummary = {
+    ...(period && { periodStart: period.start, periodEnd: period.end, asOf: period.end }),
+    ...(closingBalance !== undefined && { closingBalance }),
+  }
+  return Object.keys(summary).length > 0 ? summary : undefined
+}
+
+function extractPeriod(pages: Pages): { start: number; end: number } | undefined {
+  for (const page of pages) {
+    for (const line of page) {
+      const match = STATEMENT_PERIOD.exec(line)
+      if (match) return { start: parseMonthDate(match[1]), end: parseMonthDate(match[2]) }
+    }
+  }
+  return undefined
+}
+
+/** The closing balance is the running balance printed on the last txn row. */
+function extractClosingBalance(pages: Pages): number | undefined {
+  const lines = collectTransactionLines(pages)
+  let balance: string | undefined
+  for (let i = 0; i < lines.length; i++) {
+    if (!FIRST_DATE.test(lines[i])) continue
+    const merged = mergeRowLines(lines, i)
+    if (!merged) continue
+    i = merged.endIndex
+    const amounts = merged.text.match(AMOUNT_TOKEN)
+    if (amounts && amounts.length >= 2) balance = amounts[amounts.length - 1]
+  }
+  return balance !== undefined ? parseAmountToMinor(balance, CURRENCY, 1) : undefined
+}
+
+/** Parse a `DD-MON-YYYY` date (e.g. `31-MAR-2026`) to ms epoch. */
+function parseMonthDate(text: string): number {
+  return parseDate(text.replace(/-/g, ' '))
 }
 
 /**
@@ -125,6 +179,9 @@ function mergeRowLines(
 
 /** Parse a merged single-row string into a transaction, or null to skip it. */
 function parseRow(text: string, firstDate: string, index: number): TransactionDetails | null {
+  // `?? []` is a type guard only: `parseRow` runs solely on rows `mergeRowLines`
+  // already matched ≥1 amount, so `text.match` is never null here.
+  /* v8 ignore next */
   const amounts = text.match(AMOUNT_TOKEN) ?? []
   if (amounts.length < 2) return null
   const amountText = amounts[0]

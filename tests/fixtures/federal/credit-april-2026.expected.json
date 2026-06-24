@@ -67,5 +67,14 @@
       "amount": -289000,
       "description": "MYNTRA FASHION"
     }
-  ]
+  ],
+  "statement": {
+    "asOf": 1777507200000,
+    "periodStart": 1775001600000,
+    "periodEnd": 1777507200000,
+    "closingBalance": -2165955,
+    "creditLimit": 20000000,
+    "minimumDue": 216596,
+    "dueDate": 1779062400000
+  }
 }

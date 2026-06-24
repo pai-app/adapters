@@ -1,5 +1,5 @@
 // ── Public (exported from package root) ──────────────────────────
-export type { AccountKind, AccountDetails, TransactionDetails, ImportData } from './import-data'
+export type { AccountKind, AccountDetails, TransactionDetails, ImportData, StatementSummary } from './import-data'
 export type { PdfFile, ExcelFile, ExcelSheet, FileKind } from './file'
 export type { MailMessage, MailAttachment } from './mail'
 export type { BankCatalogEntry, BankCatalogOffering } from './bank'

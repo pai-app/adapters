@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import type { Bank, PdfFile, ExcelFile, AdapterResult, FileAdapter } from '@/types'
+import type { Bank, PdfFile, ExcelFile, AdapterResult, FileAdapter, StatementSummary } from '@/types'
 import { ParseError } from '@/types'
 
 const mocks = vi.hoisted(() => ({
@@ -24,6 +24,13 @@ const { parseFile } = await import('@/parse-file')
 
 const PDF: PdfFile = { kind: 'pdf', name: 'a.pdf', pages: [['x']] }
 const EXCEL: ExcelFile = { kind: 'excel', name: 'a.xlsx', sheets: [] }
+
+const STATEMENT: StatementSummary = {
+  asOf: 1717200000000,
+  periodStart: 1714521600000,
+  periodEnd: 1717200000000,
+  closingBalance: 123450,
+}
 
 const RESULT: AdapterResult = {
   account: { currency: 'INR', accountNumber: ['123'] },
@@ -80,6 +87,19 @@ describe('parseFile', () => {
   it('returns null when no adapter matches', async () => {
     mocks.banks = [bankWith(pdfAdapter(false))]
     expect(await parseFile(pdfFileInput())).toBeNull()
+  })
+
+  it('passes the adapter statement summary through to ImportData', async () => {
+    const adapter = pdfAdapter(true, () => Promise.resolve({ ...RESULT, statement: STATEMENT }))
+    mocks.banks = [bankWith(adapter)]
+    const result = await parseFile(pdfFileInput())
+    expect(result?.statement).toEqual(STATEMENT)
+  })
+
+  it('leaves statement undefined when the adapter does not set it', async () => {
+    mocks.banks = [bankWith(pdfAdapter(true))]
+    const result = await parseFile(pdfFileInput())
+    expect(result?.statement).toBeUndefined()
   })
 
   it('skips offerings without file adapters and adapters of the wrong kind', async () => {

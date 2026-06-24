@@ -349,5 +349,11 @@
       "amount": -125000,
       "description": "UPIOUT/645618141964/9876543210@ybl/Paid via /0000"
     }
-  ]
+  ],
+  "statement": {
+    "asOf": 1774915200000,
+    "periodStart": 1772323200000,
+    "periodEnd": 1774915200000,
+    "closingBalance": 539591
+  }
 }

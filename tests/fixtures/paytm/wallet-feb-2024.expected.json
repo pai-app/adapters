@@ -42,5 +42,8 @@
       "amount": 25000,
       "description": "Cashback Received  Note: Promotional cashback"
     }
-  ]
+  ],
+  "statement": {
+    "closingBalance": 78548
+  }
 }

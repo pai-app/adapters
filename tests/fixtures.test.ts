@@ -84,6 +84,7 @@ describe('fixtures (data-driven)', () => {
       expect(result).toEqual({
         account: expected.account,
         transactions: expected.transactions,
+        statement: expected.statement,
       })
     })
   })

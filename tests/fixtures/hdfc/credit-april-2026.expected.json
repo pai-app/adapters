@@ -65,5 +65,15 @@
       "amount": -1500000,
       "description": "CRED RZP PAYMENT"
     }
-  ]
+  ],
+  "statement": {
+    "asOf": 1777507200000,
+    "periodStart": 1775001600000,
+    "periodEnd": 1777507200000,
+    "closingBalance": -2826755,
+    "available": 17173245,
+    "creditLimit": 20000000,
+    "minimumDue": 142000,
+    "dueDate": 1779062400000
+  }
 }

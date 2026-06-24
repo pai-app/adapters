@@ -216,5 +216,11 @@
       "amount": 3000,
       "description": "UPI IN/606626144788/navilimited@idfcbank/NAV/0000"
     }
-  ]
+  ],
+  "statement": {
+    "asOf": 1772841600000,
+    "periodStart": 1770508800000,
+    "periodEnd": 1772841600000,
+    "closingBalance": 2170988
+  }
 }
