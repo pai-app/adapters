@@ -179,6 +179,8 @@ function extractPositional(pages: Pages): {
     }
     return result
   }
+  /* v8 ignore next 2 -- unreachable: only called when a period exists, so the
+     loop always returns from the period-bearing page. */
   return {}
 }
 

@@ -179,6 +179,9 @@ function mergeRowLines(
 
 /** Parse a merged single-row string into a transaction, or null to skip it. */
 function parseRow(text: string, firstDate: string, index: number): TransactionDetails | null {
+  // `?? []` is a type guard only: `parseRow` runs solely on rows `mergeRowLines`
+  // already matched ≥1 amount, so `text.match` is never null here.
+  /* v8 ignore next */
   const amounts = text.match(AMOUNT_TOKEN) ?? []
   if (amounts.length < 2) return null
   const amountText = amounts[0]
