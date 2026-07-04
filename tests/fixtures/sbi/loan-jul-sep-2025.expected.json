@@ -1,0 +1,88 @@
+{
+  "bankId": "sbi",
+  "offeringId": "loan",
+  "kind": "loan",
+  "account": {
+    "currency": "INR",
+    "accountNumber": [
+      "99999999999"
+    ],
+    "accountHolderName": [
+      "JOHN DOE AND JANE DOE"
+    ],
+    "ifscCode": [
+      "SBIN0002288"
+    ],
+    "micrCode": [
+      "600002061"
+    ]
+  },
+  "transactions": [
+    {
+      "date": 1751328000000,
+      "description": "INTEREST REPAYMENT G",
+      "amount": 763500
+    },
+    {
+      "date": 1751328000001,
+      "description": "PRINCIPAL REPAYMENT NEFT*HDFC0000240*HDF",
+      "amount": 7636500
+    },
+    {
+      "date": 1751673600002,
+      "description": "PRINCIPAL REPAYMENT ACH-OWDR-*SBIN0004",
+      "amount": 4100000
+    },
+    {
+      "date": 1753920000003,
+      "description": "INTEREST",
+      "amount": -682900
+    },
+    {
+      "date": 1754006400004,
+      "description": "INTEREST REPAYMENT G",
+      "amount": 682900
+    },
+    {
+      "date": 1754006400005,
+      "description": "PRINCIPAL REPAYMENT NEFT*HDFC0000240*HDF",
+      "amount": 7717100
+    },
+    {
+      "date": 1754352000006,
+      "description": "PRINCIPAL REPAYMENT ACH-OWDR-*SBIN0004",
+      "amount": 4100000
+    },
+    {
+      "date": 1756598400007,
+      "description": "INTEREST",
+      "amount": -597600
+    },
+    {
+      "date": 1756684800008,
+      "description": "INTEREST REPAYMENT G",
+      "amount": 597600
+    },
+    {
+      "date": 1756684800009,
+      "description": "PRINCIPAL REPAYMENT NEFT*HDFC0000240*HDF",
+      "amount": 7802400
+    },
+    {
+      "date": 1757030400010,
+      "description": "PRINCIPAL REPAYMENT ACH-OWDR-*SBIN0004",
+      "amount": 4100000
+    },
+    {
+      "date": 1759190400011,
+      "description": "INTEREST",
+      "amount": -495300
+    }
+  ],
+  "statement": {
+    "periodStart": 1751328000000,
+    "periodEnd": 1759190400000,
+    "asOf": 1759190400000,
+    "closingBalance": -70841900
+  }
+}

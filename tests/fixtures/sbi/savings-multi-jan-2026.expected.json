@@ -1,0 +1,38 @@
+{
+  "bankId": "sbi",
+  "offeringId": "savings",
+  "kind": "bank",
+  "account": {
+    "currency": "INR",
+    "accountNumber": [
+      "XXXXXXX0000"
+    ],
+    "accountHolderName": [
+      "JOHN DOE"
+    ],
+    "ifscCode": [
+      "SBIN0001515"
+    ],
+    "micrCode": [
+      "600002041"
+    ]
+  },
+  "transactions": [
+    {
+      "date": 1764806400000,
+      "amount": -9000,
+      "description": "APY_DEC25_Mont_1000_99999999999999999_999999999999"
+    },
+    {
+      "date": 1766620800001,
+      "amount": 300,
+      "description": "INTEREST CREDIT"
+    }
+  ],
+  "statement": {
+    "periodStart": 1764547200000,
+    "periodEnd": 1767139200000,
+    "asOf": 1767139200000,
+    "closingBalance": 23921
+  }
+}

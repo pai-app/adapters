@@ -1,0 +1,62 @@
+{
+  "bankId": "sbi",
+  "offeringId": "loan",
+  "kind": "loan",
+  "account": {
+    "currency": "INR",
+    "accountNumber": [
+      "99999999999999999"
+    ],
+    "accountHolderName": [
+      "JOHN DOE"
+    ]
+  },
+  "transactions": [
+    {
+      "date": 1756684800000,
+      "description": "NPB REPAYMENT FRO- NEFT*HDFC0000240*HDFCH0 9999999999*JOHN DOE SBIN999999999999",
+      "amount": 8400000
+    },
+    {
+      "date": 1757030400001,
+      "description": "NPB REPAYMENT FRO-ACH- OWDR- CR*SBIN0004487*HDFC00000 99999999999",
+      "amount": 4100000
+    },
+    {
+      "date": 1759190400002,
+      "description": "INTEREST",
+      "amount": -495300
+    },
+    {
+      "date": 1759276800003,
+      "description": "NPB REPAYMENT FRO- NEFT*HDFC0000240*HDFCH0 9999999999*JOHN DOE SBIN999999999999",
+      "amount": 8400000
+    },
+    {
+      "date": 1759622400004,
+      "description": "NPB REPAYMENT FRO-ACH- OWDR- CR*SBIN0004487*HDFC00000 99999999999",
+      "amount": 4100000
+    },
+    {
+      "date": 1760486400005,
+      "description": "NPB REPAYMENT FRO- NEFT*HDFC0000001*HDFCH0 9999999999*JOHN DOE SBIN999999999999",
+      "amount": 58300000
+    },
+    {
+      "date": 1760745600006,
+      "description": "DISCHARGE INTERES",
+      "amount": -194100
+    },
+    {
+      "date": 1760745600007,
+      "description": "DISCHARGE VIA TRA-HL CLOSURE CUST REQ -01",
+      "amount": 236000
+    }
+  ],
+  "statement": {
+    "periodStart": 1756684800000,
+    "periodEnd": 1762041600000,
+    "asOf": 1762041600000,
+    "closingBalance": 0
+  }
+}
