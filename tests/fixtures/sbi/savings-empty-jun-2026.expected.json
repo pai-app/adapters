@@ -1,0 +1,26 @@
+{
+  "bankId": "sbi",
+  "offeringId": "savings",
+  "kind": "bank",
+  "account": {
+    "currency": "INR",
+    "accountNumber": [
+      "XXXXXXX0000"
+    ],
+    "accountHolderName": [
+      "JOHN DOE"
+    ],
+    "ifscCode": [
+      "SBIN0001515"
+    ],
+    "micrCode": [
+      "600002041"
+    ]
+  },
+  "transactions": [],
+  "statement": {
+    "asOf": 1780185600000,
+    "periodEnd": 1780185600000,
+    "closingBalance": 3548114
+  }
+}
