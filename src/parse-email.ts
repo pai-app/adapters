@@ -15,12 +15,17 @@ import { log } from '@/log'
  * 4. If neither pass yields data, returns `null`.
  *
  * `passwords` is an ordered list tried against encrypted PDF attachments.
+ *
+ * `bankIds`, when provided and non-empty, restricts parsing to the listed
+ * banks — the caller's opt-in subset of adapters. An empty/omitted list means
+ * "all banks". Ids not in the catalog are ignored.
  */
 export async function parseEmail(
   email: import('@/types').MailMessage,
   passwords?: readonly string[],
+  bankIds?: readonly string[],
 ): Promise<ImportData | null> {
-  const survivingBanks = filterBanksByEmail(email.from)
+  const survivingBanks = filterBanks(email.from, bankIds)
 
   if (survivingBanks.length === 0) {
     log.email('no bank matched sender %s', email.from)
@@ -146,9 +151,16 @@ export async function parseEmail(
   return null
 }
 
-function filterBanksByEmail(from: string): readonly Bank[] {
+/**
+ * Banks eligible for an email: those whose `emailDomains` match the sender,
+ * further narrowed to `bankIds` when the caller opts into a subset. An
+ * empty/omitted `bankIds` means "all banks".
+ */
+function filterBanks(from: string, bankIds?: readonly string[]): readonly Bank[] {
   const lower = from.toLowerCase()
+  const allowed = bankIds && bankIds.length > 0 ? new Set(bankIds) : undefined
   return BANKS.filter((bank) => {
+    if (allowed && !allowed.has(bank.id)) return false
     if (!bank.emailDomains?.length) return false
     return bank.emailDomains.some((domain) => lower.includes(domain.toLowerCase()))
   })

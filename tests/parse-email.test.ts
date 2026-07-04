@@ -313,3 +313,39 @@ describe('parseEmail', () => {
     expect(await parseEmail(email({ attachments: [attachment()] }))).toBeNull()
   })
 })
+
+describe('parseEmail bankIds filter', () => {
+  function bankWithEmailAdapter() {
+    return {
+      id: 'bank',
+      emailDomains: ['bank.example'],
+      offerings: [{ id: 'off', kind: 'bank' as const, emailAdapters: [emailAdapter(true, () => Promise.resolve(RESULT))] }],
+    }
+  }
+
+  it('parses when the matching bank is in the allow-list', async () => {
+    mocks.banks = [bankWithEmailAdapter()]
+    const result = await parseEmail(email(), undefined, ['bank'])
+    expect(result?.bankId).toBe('bank')
+  })
+
+  it('returns null when the matching bank is excluded from the allow-list', async () => {
+    mocks.banks = [bankWithEmailAdapter()]
+    expect(await parseEmail(email(), undefined, ['other-bank'])).toBeNull()
+  })
+
+  it('treats an empty allow-list as “all banks”', async () => {
+    mocks.banks = [bankWithEmailAdapter()]
+    const result = await parseEmail(email(), undefined, [])
+    expect(result?.bankId).toBe('bank')
+  })
+
+  it('scopes the attachment pass to the allow-list too', async () => {
+    mocks.banks = [{
+      id: 'bank',
+      emailDomains: ['bank.example'],
+      offerings: [{ id: 'off', kind: 'bank', fileAdapters: [fileAdapter(true)] }],
+    }]
+    expect(await parseEmail(email({ attachments: [attachment()] }), undefined, ['other-bank'])).toBeNull()
+  })
+})

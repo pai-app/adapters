@@ -45,6 +45,22 @@ describe('statementEmailDomains', () => {
     const expected = new Set(BANKS.flatMap((b) => b.emailDomains ?? []))
     expect(new Set(domains)).toEqual(expected)
   })
+
+  it('restricts to the given bank ids when a non-empty subset is supplied', () => {
+    const target = BANKS.find((b) => (b.emailDomains?.length ?? 0) > 0)
+    expect(target).toBeDefined()
+
+    const domains = statementEmailDomains([target!.id])
+    expect(new Set(domains)).toEqual(new Set(target!.emailDomains))
+  })
+
+  it('treats an empty bankIds list as “all banks”', () => {
+    expect(new Set(statementEmailDomains([]))).toEqual(new Set(statementEmailDomains()))
+  })
+
+  it('contributes nothing for ids not in the catalog', () => {
+    expect(statementEmailDomains(['not-a-real-bank'])).toEqual([])
+  })
 })
 
 describe('collectEmailDomains', () => {
