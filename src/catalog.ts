@@ -29,10 +29,16 @@ export function collectEmailDomains(banks: readonly Bank[]): readonly string[] {
 }
 
 /**
- * Flat, de-duplicated list of every bank's statement email domains. Consumers
- * use it as the server-side pre-filter when sweeping a mailbox for statement
- * emails (mirrors `parseEmail`'s own `email.from` pre-filter).
+ * Flat, de-duplicated list of statement email domains. Consumers use it as the
+ * server-side pre-filter when sweeping a mailbox for statement emails (mirrors
+ * `parseEmail`'s own `email.from` pre-filter).
+ *
+ * `bankIds`, when provided and non-empty, restricts the result to those banks'
+ * domains — the caller's opt-in adapter subset. Empty/omitted = all banks. Ids
+ * not in the catalog contribute nothing.
  */
-export function statementEmailDomains(): readonly string[] {
-  return collectEmailDomains(BANKS)
+export function statementEmailDomains(bankIds?: readonly string[]): readonly string[] {
+  const allowed = bankIds && bankIds.length > 0 ? new Set(bankIds) : undefined
+  const banks = allowed ? BANKS.filter((bank) => allowed.has(bank.id)) : BANKS
+  return collectEmailDomains(banks)
 }
