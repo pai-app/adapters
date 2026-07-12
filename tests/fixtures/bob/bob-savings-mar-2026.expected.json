@@ -1,0 +1,61 @@
+{
+  "bankId": "bob",
+  "offeringId": "savings",
+  "kind": "bank",
+  "account": {
+    "currency": "INR",
+    "accountNumber": [
+      "70350100009999"
+    ],
+    "accountHolderName": [
+      "JOHN A SMITH"
+    ],
+    "customerId": [
+      "ABCD09999"
+    ],
+    "ifscCode": [
+      "BARB0DBGEOR"
+    ],
+    "micrCode": [
+      "600012081"
+    ]
+  },
+  "transactions": [
+    {
+      "date": 1773705600000,
+      "amount": 2500000,
+      "description": "NEFT-AXISCN9000000001-SAMPLE MUTUAL FUND RED"
+    },
+    {
+      "date": 1773705600001,
+      "amount": 15000000,
+      "description": "EBANK:WIB/9000000002/Gift"
+    },
+    {
+      "date": 1773705600002,
+      "amount": 10000000,
+      "description": "MBK/900000000003/21:57:29/Transfer"
+    },
+    {
+      "date": 1773705600003,
+      "amount": -21000000,
+      "description": "EBANK:WIB/9000000004/peter smith"
+    },
+    {
+      "date": 1774310400004,
+      "amount": -2500000,
+      "description": "UPI/900000000005/11:47:22/UPI/samplebroker .rz"
+    },
+    {
+      "date": 1774569600005,
+      "amount": 200000,
+      "description": "NEFT-PUNBS9000000006-SAMPLE JAIN SOCIAL WELFARE"
+    }
+  ],
+  "statement": {
+    "periodStart": 1772323200000,
+    "periodEnd": 1774915200000,
+    "asOf": 1774915200000,
+    "closingBalance": 5200000
+  }
+}
