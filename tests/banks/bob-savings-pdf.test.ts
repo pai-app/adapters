@@ -12,7 +12,7 @@ describe('Bank of Baroda savings PDF adapter', () => {
       expect(bobSavingsPdfAdapter.isSupported(pdf([[]]))).toBe(false)
     })
 
-    it('matches on the statement marker + BARB0 IFSC', () => {
+    it('matches on the statement marker alone (IFSC present)', () => {
       const file = pdf([
         [
           'Statement of transactions in Savings Account 70350100009999 in INR',
@@ -20,6 +20,21 @@ describe('Bank of Baroda savings PDF adapter', () => {
         ],
       ])
       expect(bobSavingsPdfAdapter.isSupported(file)).toBe(true)
+    })
+
+    it('matches when the header omits the MICR/IFSC line (older .com layout)', () => {
+      const file = pdf([
+        [
+          'Statement of transactions in Savings Account 70350100009999 in INR for the period Aug 01, 2025 - Aug 31, 2025',
+          'KADEL CHAMBERS 340 MINT STREET CHENNAI, TAMIL NADU, INDIA - 600079',
+        ],
+      ])
+      expect(bobSavingsPdfAdapter.isSupported(file)).toBe(true)
+    })
+
+    it('rejects a non-BoB PDF that has an IFSC-like token but no marker', () => {
+      const file = pdf([['Some other bank BARB0DBGEOR account statement']])
+      expect(bobSavingsPdfAdapter.isSupported(file)).toBe(false)
     })
   })
 

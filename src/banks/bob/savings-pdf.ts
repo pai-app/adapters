@@ -22,7 +22,7 @@ import { ParseError } from '@/types'
 import { parseDate } from '@/util/date'
 import { parseAmountToMinor, parseAmountFloat } from '@/util/amount'
 import { MONTH_NAMES } from '@/util/regex'
-import { BOB_IFSC_REGEX, BOB_STATEMENT_MARKER } from './shared'
+import { BOB_STATEMENT_MARKER } from './shared'
 
 const CURRENCY = 'INR'
 
@@ -53,7 +53,11 @@ export const bobSavingsPdfAdapter: FileAdapter = {
   isSupported(file) {
     const pdf = file as PdfFile
     const joined = pdf.pages.map((p) => p.join(' ')).join(' ')
-    return BOB_IFSC_REGEX.test(joined) && BOB_STATEMENT_MARKER.test(joined)
+    // The transaction-table marker is unique to a BoB savings e-statement and
+    // is present on every layout — including older statements whose header
+    // omits the MICR/IFSC line. Match on it alone; the IFSC (when present) is
+    // optional metadata extracted later, never a gate for recognition.
+    return BOB_STATEMENT_MARKER.test(joined)
   },
 
   // eslint-disable-next-line @typescript-eslint/require-await

@@ -1,0 +1,40 @@
+{
+  "bankId": "bob",
+  "offeringId": "savings",
+  "kind": "bank",
+  "account": {
+    "currency": "INR",
+    "accountNumber": [
+      "70350100009999"
+    ],
+    "accountHolderName": [
+      "JOHN A SMITH"
+    ],
+    "customerId": [
+      "ABCD09999"
+    ]
+  },
+  "transactions": [
+    {
+      "date": 1742083200000,
+      "amount": -47,
+      "description": "SMS Charges for FEB 25"
+    },
+    {
+      "date": 1742947200001,
+      "amount": -121300,
+      "description": "EBANK:BBPS/1000000001/SAMPLE00000000000 5640/TNEB00"
+    },
+    {
+      "date": 1743120000002,
+      "amount": 317500,
+      "description": "NEFT-PUNBH90000000001-SAMPLE WELFARE SOCIAL TRUST"
+    }
+  ],
+  "statement": {
+    "periodStart": 1740787200000,
+    "periodEnd": 1743379200000,
+    "asOf": 1743379200000,
+    "closingBalance": 563317
+  }
+}

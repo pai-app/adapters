@@ -2,9 +2,6 @@
  * Shared Bank of Baroda patterns reused across the BoB adapter(s).
  */
 
-/** Bank of Baroda IFSC pattern: `BARB0` followed by 6 alphanumerics. */
-export const BOB_IFSC_REGEX = /BARB0[A-Z0-9]{6}/i
-
 /** Marker phrase unique to a BoB savings e-statement transaction table. */
 export const BOB_STATEMENT_MARKER = /Statement of transactions in Savings Account/i
 
