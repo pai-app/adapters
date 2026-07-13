@@ -10,5 +10,6 @@ import { federalBank } from './federal/index'
 import { jupiterBank } from './jupiter/index'
 import { paytmBank } from './paytm/index'
 import { sbiBank } from './sbi/index'
+import { bobBank } from './bob/index'
 
-export const BANKS: readonly Bank[] = [hdfcBank, federalBank, jupiterBank, paytmBank, sbiBank]
+export const BANKS: readonly Bank[] = [hdfcBank, federalBank, jupiterBank, paytmBank, sbiBank, bobBank]

@@ -1,0 +1,36 @@
+{
+  "bankId": "bob",
+  "offeringId": "savings",
+  "kind": "bank",
+  "account": {
+    "currency": "INR",
+    "accountNumber": [
+      "70350100009999"
+    ],
+    "accountHolderName": [
+      "JOHN A SMITH"
+    ],
+    "customerId": [
+      "ABCD09999"
+    ],
+    "ifscCode": [
+      "BARB0DBGEOR"
+    ],
+    "micrCode": [
+      "600012081"
+    ]
+  },
+  "transactions": [
+    {
+      "date": 1777593600000,
+      "amount": 18000,
+      "description": "70350100009999:Int.Pd:01-02-2026 to 30-04-2026"
+    }
+  ],
+  "statement": {
+    "periodStart": 1777593600000,
+    "periodEnd": 1780185600000,
+    "asOf": 1780185600000,
+    "closingBalance": 5200000
+  }
+}
