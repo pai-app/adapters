@@ -48,7 +48,12 @@ const PERIOD_RANGE =
 // ── Transactions ────────────────────────────────────────
 
 const DATE_TIME = /^(\d{2}\/\d{2}\/\d{4})\|\s*(\d{2}:\d{2})/
-const REWARDS_AMOUNT = /\+\s*(\d*)\s*C\s*([\d,]+(?:\.\d+)?)/
+// The rewards prefix is optional: purchases earning points render as
+// `+ <points> C <amount>`, zero-reward purchases as a bare `C <amount>`, and
+// payments/credits as `+ C <amount>` (a `+` with no points). Requiring the
+// amount to carry two decimals keeps a stray `C` inside a description from
+// being mistaken for the amount column.
+const REWARDS_AMOUNT = /(?:\+\s*(\d*)\s*)?C\s*([\d,]+\.\d{2})/
 
 const SKIP_LINES = [
   /^Page \d+ of \d+/i,
@@ -206,7 +211,10 @@ function extractAccountNumber(pages: Pages): string | null {
   for (const page of pages) {
     for (let i = 0; i < page.length; i++) {
       if (!CARD_NUMBER_LABEL.test(page[i])) continue
-      for (let j = i; j < Math.min(i + 5, page.length); j++) {
+      // Diners-style headers stack every label first, then every value, so the
+      // card number can sit several lines below its label (one line per extra
+      // label such as "CKYC ID"). Scan a wider window to reach it.
+      for (let j = i; j < Math.min(i + 8, page.length); j++) {
         const match = MASKED_CARD.exec(page[j])
         if (match) return match[0]
       }

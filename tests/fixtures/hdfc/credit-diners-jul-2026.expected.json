@@ -1,0 +1,90 @@
+{
+  "bankId": "hdfc",
+  "offeringId": "credit-card",
+  "kind": "credit-card",
+  "account": {
+    "currency": "INR",
+    "accountNumber": [
+      "00361010XXXX7788"
+    ],
+    "customerId": [
+      "0001015260003344556"
+    ]
+  },
+  "transactions": [
+    {
+      "date": 1782000780000,
+      "amount": -52100,
+      "description": "WWW SWIGGY COMGURGAON"
+    },
+    {
+      "date": 1782100140001,
+      "amount": 310100,
+      "description": "BPPY CC PAYMENT AB012345CDEFGH67I (Ref# ST261990083000055667788)"
+    },
+    {
+      "date": 1782256080002,
+      "amount": -264000,
+      "description": "EMI TRUFFLES HOSPITALITY PBANGALORE"
+    },
+    {
+      "date": 1782599160003,
+      "amount": -33200,
+      "description": "SWIGGY FOODBANGALORE"
+    },
+    {
+      "date": 1782683160004,
+      "amount": -12500,
+      "description": "The Fusion Pizza and BBENGALURU UR"
+    },
+    {
+      "date": 1782688680005,
+      "amount": -30000,
+      "description": "KINO CINEMASBANGALORE"
+    },
+    {
+      "date": 1782683400006,
+      "amount": -50000,
+      "description": "KINO CINEMASBANGALORE"
+    },
+    {
+      "date": 1782681960007,
+      "amount": -36000,
+      "description": "KINO CINEMASBANGALORE"
+    },
+    {
+      "date": 1783202940008,
+      "amount": -33200,
+      "description": "SWIGGY INBANGALORE"
+    },
+    {
+      "date": 1783461720009,
+      "amount": -225134,
+      "description": "5633 DMART HOODI BENGABANGALORE"
+    },
+    {
+      "date": 1783720620010,
+      "amount": -10400,
+      "description": "STAR BAZAARBANGALORE"
+    },
+    {
+      "date": 1783716840011,
+      "amount": -47350,
+      "description": "5633 DMART HOODI BENGABANGALORE"
+    },
+    {
+      "date": 1784073000012,
+      "amount": -96500,
+      "description": "INPAVA HOSPITALITYBENGALURU UR"
+    }
+  ],
+  "statement": {
+    "periodStart": 1782000000000,
+    "periodEnd": 1784505600000,
+    "asOf": 1784505600000,
+    "closingBalance": -890400,
+    "creditLimit": 100000000,
+    "minimumDue": 45000,
+    "dueDate": 1786233600000
+  }
+}
